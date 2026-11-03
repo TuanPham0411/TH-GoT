@@ -106,7 +106,8 @@ def resource_thumbnail(name):
     if source.suffix.lower() == ".svg":
         return send_file(source, mimetype="image/svg+xml", max_age=604800)
     THUMB_CACHE.mkdir(parents=True, exist_ok=True)
-    target = THUMB_CACHE / f"{hashlib.sha256(name.encode('utf-8')).hexdigest()}.webp"
+    cache_key = f'{ASSET_DIR}:{name}'.encode('utf-8')
+    target = THUMB_CACHE / f"{hashlib.sha256(cache_key).hexdigest()}.webp"
     if not target.is_file() or target.stat().st_mtime < source.stat().st_mtime:
         with THUMB_LOCK:
             if not target.is_file() or target.stat().st_mtime < source.stat().st_mtime:
@@ -227,7 +228,9 @@ def cache_and_security_headers(response):
     response.headers["X-Frame-Options"] = "SAMEORIGIN"
     response.headers["Referrer-Policy"] = "same-origin"
     request_path = request.path
-    if response.status_code == 200 and (request_path.startswith("/resource/") or request_path.startswith("/thumb/")):
+    if response.status_code == 200 and request_path.startswith(('/resource/images/', '/static/images/', '/thumb/')):
+        response.headers['Cache-Control'] = 'public, max-age=0, must-revalidate'
+    elif response.status_code == 200 and request_path.startswith("/resource/"):
         response.headers["Cache-Control"] = "public, max-age=604800"
     elif response.status_code == 200 and request_path.startswith("/static/"):
         response.headers["Cache-Control"] = "public, max-age=3600, must-revalidate"
