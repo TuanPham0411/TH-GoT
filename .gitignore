@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+data/
+game/static/cache/
+node_modules/
+*.log
+reports/
+*.key
+*.pem
+game/resource/images/
+game/static/images/
+.assets/
+backups/

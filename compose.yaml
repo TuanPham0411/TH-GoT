@@ -1,0 +1,33 @@
+name: th-got
+services:
+  web:
+    build: .
+    image: ${APP_IMAGE:-th-got:local}
+    init: true
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    environment:
+      DATA_DIR: /data
+      THUMB_CACHE: /data/thumbs
+      PUBLIC_URL: ${PUBLIC_URL:-http://localhost:5082}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI:-}
+      FLASK_SECRET_KEY: ${FLASK_SECRET_KEY:-}
+      TRUST_PROXY: ${TRUST_PROXY:-0}
+      ASSETS_URL: ${ASSETS_URL:-}
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-5082}:5000"
+    volumes:
+      - data:/data
+      - assets:/assets
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+    logging:
+      driver: json-file
+      options: {max-size: 10m, max-file: "3"}
+volumes:
+  data:
+  assets:

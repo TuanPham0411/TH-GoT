@@ -1,0 +1,16 @@
+.git
+.venv
+.env
+.env.*
+data
+**/__pycache__
+game/static/cache
+game/tests
+game/tests-js
+game/tools
+tests
+reports
+game/resource/images
+game/static/images
+.assets
+backups
