@@ -87,8 +87,12 @@ class DriveStore:
         if not valid_path(path):
             raise DriveMissing()
         fingerprint = hashlib.sha256(path.encode()).hexdigest()
-        q = ("'" + self.folder + "' in parents and trashed = false and "
-             "appProperties has { key='gotPathHash' and value='" + fingerprint + "' }")
+        q = (
+            "trashed = false and "
+            "appProperties has { key='gotPathHash' and value='" + fingerprint + "' } and "
+            "('" + self.folder + "' in parents or "
+            "appProperties has { key='gotRoot' and value='" + self.folder + "' })"
+        )
         data = json.loads(self.call('GET', 'files', q=q, pageSize=2,
                                    fields='files(id,mimeType,description,version),nextPageToken'))
         found = data.get('files', [])
