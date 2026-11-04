@@ -15,7 +15,7 @@ Cần Docker Engine và Docker Compose v2. GitHub/image chỉ chứa source, JSO
 git clone https://github.com/TuanPham0411/TH-GoT.git
 cd TH-GoT
 cp .env.example .env
-# Điền Google OAuth, PUBLIC_URL và ASSETS_URL (link tệp Drive, không phải thư mục).
+# Điền Google OAuth và PUBLIC_URL; nguồn Drive mặc định đã được cấu hình.
 docker compose up -d --build --wait --wait-timeout 1800
 python3 tools/smoke.py
 ```
@@ -58,7 +58,7 @@ ASSET_DIR="$PWD/.assets/current" .venv/bin/python game/tools/audit_v88_complete.
 node --test game/tests-js/session-clock.test.cjs
 ```
 
-Audit ảnh cần cài tài nguyên trước theo [hướng dẫn tài nguyên](docs/ASSETS.md); các test source/auth/asset-manager không cần Drive. CI có job tích hợp riêng khi đặt repository variable `TH_GOT_ASSETS_URL`; nếu biến chưa có, job này được đánh dấu skipped, không phải đã kiểm thử ảnh.
+Audit ảnh cần cài tài nguyên trước theo [hướng dẫn tài nguyên](docs/ASSETS.md); các test source/auth/asset-manager không cần Drive. CI chạy job integration mặc định với [gói Drive công khai](https://drive.google.com/file/d/1JsQk7-4mWJlmCJDd5TdDy9mnUnEm41U5/view?usp=sharing). Repository variable `TH_GOT_ASSETS_URL` chỉ là override tùy chọn; job tải/xác minh đủ ảnh, audit và smoke test. Build image không tải Drive.
 
 Test Google dùng provider giả lập để xác minh state, nonce, PKCE, audience, issuer, email_verified và expiry; không cần, không chứa credential thật. Đăng nhập Google thật phải kiểm thử với client/callback đã đăng ký. Phần mềm được tách từ GOT, xem [nguồn gốc](docs/PROVENANCE.md).
 

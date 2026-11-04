@@ -31,11 +31,11 @@ jobs:
       - name: Image contains source and lock only; missing assets fail closed
         run: |
           docker run --rm --entrypoint python standalone:test -c "from pathlib import Path; assert not Path('/app/resource/images').exists(); assert not Path('/app/static/images').exists(); assert Path('/app/assets.lock.json').is_file()"
-          if docker run --rm standalone:test > startup.log 2>&1; then
+          if docker run --rm --network none standalone:test > startup.log 2>&1; then
             cat startup.log
             exit 1
           fi
-          grep -q 'Assets not installed' startup.log
+          grep -q 'Asset setup failed:' startup.log
       - uses: docker/setup-qemu-action@v3
         if: github.event_name != 'pull_request'
       - uses: docker/setup-buildx-action@v3
@@ -60,14 +60,12 @@ jobs:
             ${{ steps.image.outputs.name }}:${{ github.sha }}
             ${{ steps.image.outputs.name }}:latest
   integration:
-    # Set this public repository variable after uploading the pinned archive.
-    # Source/image builds never need Drive. Full-media checks explicitly require it.
-    if: vars.TH_GOT_ASSETS_URL != ''
+    # Run full-media checks by default; source/image builds do not download Drive.
     runs-on: ubuntu-latest
     env:
       APP_IMAGE: standalone:test
       PUBLIC_URL: http://localhost:5082
-      ASSETS_URL: ${{ vars.TH_GOT_ASSETS_URL }}
+      ASSETS_URL: ${{ vars.TH_GOT_ASSETS_URL || 'https://drive.google.com/file/d/1JsQk7-4mWJlmCJDd5TdDy9mnUnEm41U5/view?usp=sharing' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

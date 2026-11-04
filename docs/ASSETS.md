@@ -2,15 +2,19 @@
 
 GitHub chứa mã, HTML/CSS/JS, JSON cấu hình/chủ đề và `assets.lock.json`. Image build hoàn toàn không tải/kèm thư viện ảnh. Toàn bộ `game/resource/images/` và `game/static/images/` (gồm ảnh trang giới thiệu) được đóng thành một gói `.tar.gz` và đưa lên Drive. Thiết bị tải gói khi chạy lần đầu, xác minh SHA-256 của gói lẫn từng tệp, giải nén vào volume `assets`, rồi mới mở web.
 
-## Chuẩn bị Drive một lần
+## Nguồn Drive mặc định
 
-Thư mục do chủ dự án cung cấp: https://drive.google.com/drive/folders/1hueCpVN5ez5aFRGAxbjc2hjK-Yaw3rA0
+Gói chuẩn đã được upload và cấu hình trong `assets.lock.json` và `.env.example`:
 
-1. Upload gói `th-got-assets-<hash>.tar.gz` đã được tạo từ toàn bộ ảnh gốc vào thư mục này. Không giải nén, đổi nội dung hoặc tải từng ảnh lên.
-2. Chia sẻ **tệp nén** với “Bất kỳ ai có đường liên kết”, cho phép người xem tải xuống. Thư mục công khai không tự cấp quyền ghi cho công cụ triển khai.
-3. Copy liên kết `https://drive.google.com/file/d/FILE_ID/view?...` vào `ASSETS_URL` trong `.env` của thiết bị. Không dùng liên kết thư mục. Downloader xử lý URL chia sẻ, resourcekey và trang xác nhận tệp lớn của Drive.
-4. Có thể đặt cùng URL công khai vào trường `url` trong `assets.lock.json` để các lần cài mới không cần điền ASSETS_URL. URL không phải credential; không đưa token Google cá nhân vào file này. Biến `ASSETS_URL` luôn ưu tiên hơn URL mặc định.
-5. Để CI kiểm thử bộ ảnh thật, đặt repository variable `TH_GOT_ASSETS_URL` bằng liên kết đó. Job integration tải/xác minh, audit và smoke test; job build/publish image không phụ thuộc Drive.
+https://drive.google.com/file/d/1JsQk7-4mWJlmCJDd5TdDy9mnUnEm41U5/view?usp=sharing
+
+- Tệp: `th-got-assets-5b878953c7227f78.tar.gz`.
+- Kích thước: **1626348552 bytes**, **1274 tệp**, gồm ảnh trang giới thiệu.
+- SHA-256: `5b878953c7227f788d3da7167cb297f013fdf6977d80c6bb00c8b9e8a3191462`.
+
+Không cần upload lại hoặc điền URL khi cài mới. `ASSETS_URL` có thể override nguồn mặc định bằng link tệp Drive hoặc mirror HTTPS chứa cùng byte; không dùng link thư mục. Downloader xử lý URL chia sẻ, resourcekey và trang xác nhận tệp lớn của Drive. URL không phải credential.
+
+CI chạy integration mặc định với nguồn trên. Repository variable `TH_GOT_ASSETS_URL` là override tùy chọn. Job tải/xác minh archive và inventory, audit ảnh và smoke test; build/publish image không tải Drive.
 
 Drive có giới hạn lượt tải/băng thông. Nếu bị yêu cầu đăng nhập hoặc hết quota, bootstrap dừng với lỗi; không chạy ứng dụng thiếu ảnh. Có thể đổi `ASSETS_URL` sang mirror HTTPS chứa **cùng byte** và cùng SHA-256, hoặc import offline. Không mount Drive bằng FUSE; lúc chơi mọi ảnh được phục vụ từ đĩa thiết bị, không hotlink tới Drive.
 
@@ -20,7 +24,7 @@ Drive có giới hạn lượt tải/băng thông. Nếu bị yêu cầu đăng 
 git clone https://github.com/TuanPham0411/TH-GoT.git
 cd TH-GoT
 cp .env.example .env
-# Điền PUBLIC_URL, Google OAuth và ASSETS_URL.
+# Điền PUBLIC_URL và Google OAuth; nguồn Drive mặc định đã được cấu hình.
 docker compose up -d --build --wait --wait-timeout 1800
 python3 tools/smoke.py
 ```
@@ -54,7 +58,7 @@ Gói import cũng phải khớp file khóa, không có chế độ bỏ kiểm t
 Tải/cài bộ ảnh hiện tại ngoài source tree:
 
 ```sh
-python3 tools/assets.py install --root .assets --url 'https://drive.google.com/file/d/FILE_ID/view'
+python3 tools/assets.py install --root .assets
 # Hoặc: python3 tools/assets.py install --root .assets --archive /path/to/archive.tar.gz
 ASSET_DIR="$PWD/.assets/current" .venv/bin/python game/app.py
 ASSET_DIR="$PWD/.assets/current" .venv/bin/python game/tools/audit_v88_complete.py
