@@ -78,10 +78,26 @@ jobs:
       - run: docker build -t standalone:test .
       - name: Import verified assets into the deployment volume
         run: |
-          docker compose run --rm --no-deps --user 0 --entrypoint sh -v "$PWD/.assets:/import:ro" web -c 'cp -a /import/. /assets/ && chown -R 10001:10001 /assets'
+          chmod -R a+rX .assets
+          docker compose run --rm --no-deps --entrypoint sh -v "$PWD/.assets:/import:ro" web -c 'cp -a --no-preserve=ownership /import/. /assets/'
       - run: docker compose up -d --no-build --wait --wait-timeout 180
       - run: python tools/smoke.py
+      - name: Verify installed files and restart with no network
+        run: |
+          docker compose run --rm --no-deps --entrypoint python web /app/assets.py verify
+          docker compose stop web
+          docker run -d --name offline-check --network none \
+            -v th-got_assets:/assets -v th-got_data:/data standalone:test
+          for attempt in $(seq 1 30); do
+            if docker exec offline-check python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/healthz',timeout=2)"; then
+              break
+            fi
+            sleep 2
+          done
+          docker exec -i offline-check python - --origin http://127.0.0.1:5000 < tools/smoke.py
       - if: always()
         run: |
           docker compose logs --no-color --tail 80
+          docker logs offline-check || true
+          docker rm -f offline-check || true
           docker compose down -v
