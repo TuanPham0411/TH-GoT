@@ -14,3 +14,6 @@ game/resource/images
 game/static/images
 .assets
 backups
+
+# Retired disk-based bootstrap is a development/legacy tool only.
+game/assets.py

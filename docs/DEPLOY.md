@@ -1,24 +1,33 @@
 # Triển khai và sao lưu
 
-Ứng dụng phục vụ HTTP bên trong container ở cổng 5000; reverse proxy chịu trách nhiệm HTTPS. Cấu hình hostname chỉ qua `PUBLIC_URL` và Google callback, không ghi cứng trong frontend.
+Hostname GoT: **https://got.th.io.vn**. Container phục vụ HTTP ở cổng 5000, Compose bind localhost 5082; reverse proxy cung cấp HTTPS. `PUBLIC_URL=https://got.th.io.vn`, đăng ký callback `/auth/callback` và `/admin/drive/callback`. Chỉ bật `TRUST_PROXY=1` khi có đúng một proxy tin cậy.
 
-Trên Pi mới dùng hệ điều hành ARM64 và Docker/Compose chính thức: https://docs.docker.com/engine/install/debian/. Có thể build trên AMD64 bằng CI rồi pull đúng image ARM64 vào Pi; Pi không cần Node hay compiler để chạy image. Thư viện ảnh nằm trên Drive, tách khỏi image. Lần chạy đầu cần `ASSETS_URL` hoặc import gói offline; xem [ASSETS.md](ASSETS.md). Chừa ít nhất 5 GB trống cho gói tải, giải nén và volume (nhiều hơn nếu giữ nhiều phiên bản). Khi tải lần đầu dùng `--wait-timeout 1800`; kiểm tra log tiến độ nếu đường truyền chậm. Sau đó ứng dụng không cần Drive khi chạy/restart, chỉ khi cài phiên bản tài nguyên mới.
+Hỗ trợ Linux AMD64 và ARM64, Raspberry Pi OS/Debian **64 bit**. CI build image cho cả hai kiến trúc; Pi không cần Node/compiler khi pull image. Dùng tag commit SHA đã kiểm thử tại `ghcr.io/tuanpham0411/th-got:COMMIT_SHA`.
 
-Sao lưu nhất quán:
+```sh
+test -e .env || cp .env.example .env
+# Cấu hình Google OAuth, ADMIN_EMAILS và DRIVE_FOLDER_ID.
+docker compose up -d --build --wait --wait-timeout 180
+python3 tools/smoke.py
+# Sau khi quản trị viên kết nối Drive và chuyển dữ liệu:
+python3 tools/smoke.py --media
+```
+
+`/healthz` là readiness của web/database, cho phép cấu hình ban đầu. `/readyz` kiểm tra tài nguyên trên Drive; không gọi bản mới là đã chơi được trước khi smoke `--media` qua. Ảnh chỉ ở Drive, kể cả khi restart: cần Internet và quyền Drive còn hiệu lực. Không có volume assets hoặc cache thumbnail. Không chuyển volume ảnh cũ sang bản này và không tự xóa volume cũ khi nâng cấp.
+
+Volume `data` chứa database tài khoản/phiên, khóa phiên và refresh token Drive đã mã hóa bằng khóa phiên. Giữ cả database và khóa khi sao lưu/khôi phục. Nếu đổi khóa hoặc mất token, quản trị viên cần kết nối lại Drive. Không có ảnh trong bản sao lưu `data`.
+
+Sao lưu nhất quán, bằng đúng user ứng dụng có quyền đọc volume:
 
 ```sh
 docker compose stop web
 umask 077
 mkdir -p backups
-docker compose run --rm -T --no-deps --user 0 --entrypoint tar web -C /data -czf - . > backups/data.tar.gz
+docker compose run --rm -T --no-deps --entrypoint tar web -C /data -czf - . > backups/data.tar.gz
 # Sao lưu .env riêng vào nơi riêng tư; không đưa lên Git.
 docker compose start web
 ```
 
-Không dùng `docker compose down -v` trừ khi chủ ý xóa toàn bộ người dùng và phiên. Trước khi phục hồi trên máy mới, dừng web, giữ một bản sao volume hiện tại, khôi phục vào volume `/data`, rồi kiểm tra chủ sở hữu UID/GID 10001 và khởi động lại. Khóa `session.key` cần được giữ nếu muốn các cookie đang dùng tiếp tục hợp lệ.
+Không dùng `docker compose down -v` trừ khi chủ ý xóa dữ liệu người dùng. Khôi phục vào volume riêng, giữ bản sao hiện tại và bảo đảm UID/GID 10001 sở hữu dữ liệu trước khi chạy. SQLite không chia sẻ qua NFS; cấu hình hỗ trợ là một container Gunicorn, một worker có threads và một volume data riêng.
 
-SQLite không được chia sẻ qua NFS hay cho nhiều replica ghi cùng lúc. Một container Gunicorn, một volume riêng là cấu hình được hỗ trợ. Với bind mount thay named volume, tạo thư mục và cấp quyền UID 10001 trước. Giữ replica cũ và backup để rollback; nếu bản mới đã ghi dữ liệu, không đổi về DB cũ mà bỏ mất các thay đổi vừa phát sinh.
-
-Tệp `.env` chỉ nằm trên máy triển khai. Có thể dùng secret manager của nền tảng để đưa các biến tương tự vào process; không cần copy `.env` vào image.
-
-Volume `data` chứa tài khoản/phiên/khóa, còn `assets` chỉ chứa tài nguyên có thể khôi phục từ gói đã pin. Khi chuyển máy, sao lưu volume assets hoặc dùng lại đúng `assets.lock.json` và URL để tải lại. Không xóa data để cập nhật ảnh. Build image không truy cập Drive; entrypoint ánh xạ bộ ảnh đã xác minh vào ứng dụng trên thiết bị triển khai.
+Bật Google Drive API và dùng OAuth client của triển khai mới; không lấy credential hoặc database của website cũ. Các đích mạng cần cho runtime: `accounts.google.com`, `oauth2.googleapis.com`, `www.googleapis.com` và các endpoint nội dung Google mà Drive trả về. Không tắt TLS để xử lý lỗi proxy; với proxy có CA riêng, cung cấp CA tin cậy cho runtime bằng bind mount read-only và `SSL_CERT_FILE`, không copy CA phiên vào image.

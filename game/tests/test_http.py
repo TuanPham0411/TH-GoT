@@ -22,14 +22,6 @@ spec.loader.exec_module(module)
 class HTTPTests(unittest.TestCase):
     def setUp(self):
         self.client = module.app.test_client()
-        self.assets_temp = tempfile.TemporaryDirectory()
-        self.addCleanup(self.assets_temp.cleanup)
-        assets = Path(self.assets_temp.name)
-        for prefix in ('resource/images', 'static/images'):
-            (assets / prefix).mkdir(parents=True)
-        asset_patch = patch.object(module, 'ASSET_DIR', assets)
-        asset_patch.start()
-        self.addCleanup(asset_patch.stop)
 
     def test_readiness(self):
         self.assertEqual(self.client.get('/healthz').status_code, 200)
@@ -68,26 +60,24 @@ class HTTPTests(unittest.TestCase):
         for topic in self.client.get('/api/bootstrap').json['topics']:
             self.assertEqual(self.client.get('/api/topic/' + topic['id']).status_code, 200)
 
-    def test_external_asset_mapping_and_readiness(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            for prefix in ('resource/images', 'static/images'):
-                path = root / prefix / 'external.png'
-                path.parent.mkdir(parents=True)
-                Image.new('RGB', (16, 16), 'red').save(path)
-            lock = root / 'lock.json'
-            lock.write_text('{"sha256":"expected"}')
-            with patch.object(module, 'ASSET_DIR', root), patch.object(module, 'THUMB_CACHE', root / 'thumbs'), patch.dict(os.environ, {'ASSETS_LOCK': str(lock)}):
-                self.assertEqual(self.client.get('/healthz').status_code, 503)
-                (root / '.verified').write_text('expected')
-                self.assertEqual(self.client.get('/healthz').status_code, 200)
-                for url in ('/resource/images/external.png', '/static/images/external.png', '/thumb/images/external.png'):
-                    response = self.client.get(url)
-                    self.assertEqual(response.status_code, 200)
-                    self.assertIn('image/', response.content_type)
-                    response.close()
-                for url in ('/resource/images/../../app.py', '/static/images/../../app.py', '/thumb/games.json'):
-                    self.assertEqual(self.client.get(url).status_code, 404)
+    def test_drive_media_and_readiness_without_disk_cache(self):
+        import io
+        import drive_store
+        body = io.BytesIO()
+        Image.new('RGB', (16, 16), 'red').save(body, 'PNG')
+        provider = module.app.extensions['drive_store']
+        with patch.object(provider, 'read', return_value=(body.getvalue(), 'image/png')):
+            for url in ('/resource/images/external.png', '/static/images/external.png', '/thumb/images/external.png'):
+                response = self.client.get(url)
+                self.assertEqual(response.status_code, 200)
+                self.assertIn('image/', response.content_type)
+                self.assertEqual(response.headers['Cache-Control'], 'no-store')
+        with patch.object(provider, 'document', side_effect=drive_store.DriveUnavailable('No connection')):
+            self.assertEqual(self.client.get('/readyz').status_code, 503)
+        with patch.object(provider, 'document', return_value={'schema': 1}):
+            self.assertEqual(self.client.get('/readyz').status_code, 200)
+        for url in ('/resource/images/../../app.py', '/static/images/../../app.py', '/thumb/games.json'):
+            self.assertEqual(self.client.get(url).status_code, 404)
 
     def test_range_is_not_compressed(self):
         response = self.client.get('/static/js/app-v89.js', headers={'Range': 'bytes=0-99', 'Accept-Encoding': 'gzip'})

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Quản trị tài nguyên · Game Of Thiên{% endblock %}
+{% block content %}
+<main class="page-shell" style="max-width:1100px;margin:auto;padding:24px">
+<h1>Tài nguyên Game Of Thiên</h1>
+<p>Ảnh và nội dung chỉnh sửa được lưu trực tiếp trên Google Drive. App không giữ bản sao ảnh trên máy chủ hay bộ nhớ đệm trình duyệt.</p>
+<p id="notice" role="status" aria-live="polite"></p>
+{% if drive_owner %}
+<p>Drive đã kết nối: {{ drive_owner }}.</p>
+<button id="migrate" type="button">Chuyển bộ ảnh có sẵn thành tài nguyên Drive</button>
+<p>Chỉ cần chuyển dữ liệu một lần. Gói ảnh được đọc và kiểm tra trong bộ nhớ, từng ảnh được lưu vào thư mục Drive. Tài nguyên đã sửa không bị ghi đè khi chạy lại.</p>
+<label>Chủ đề <select id="topic"><option value="">Chọn chủ đề</option></select></label>
+<button id="add" type="button">Thêm tài nguyên</button>
+<div id="items" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;margin-top:24px"></div>
+<dialog id="editor" style="width:min(620px,90vw)"><form id="edit-form">
+<h2 id="editor-title">Tài nguyên</h2>
+<input type="hidden" name="id">
+<p><label>Tên tiếng Việt <input name="viName" required maxlength="5000"></label></p>
+<p><label>Tên tiếng Anh <input name="enName" required maxlength="5000"></label></p>
+<p><label>Mô tả tiếng Việt <textarea name="description" required maxlength="5000"></textarea></label></p>
+<p><label>Mô tả tiếng Anh <textarea name="descriptionEn" required maxlength="5000"></textarea></label></p>
+<p><label>Ảnh PNG, JPEG hoặc WebP (tối đa 32 MB) <input type="file" name="image" accept="image/png,image/jpeg,image/webp"></label></p>
+<p>Khi sửa, để trống ảnh để giữ ảnh hiện tại. Xóa tài nguyên sẽ chuyển ảnh không còn dùng vào thùng rác Drive.</p>
+<p id="edit-error" role="alert"></p><button type="submit">Lưu vào Drive</button> <button id="cancel-edit" type="button">Hủy</button>
+</form></dialog>
+{% else %}
+<p>Kết nối tài khoản Google có quyền chỉnh sửa thư mục Drive trước khi quản trị tài nguyên. Chỉ tài khoản được chỉ định làm quản trị viên mới kết nối được.</p>
+{% endif %}
+<form method="post" action="/admin/drive/connect"><input type="hidden" name="csrf" value="{{ csrf_token }}"><button>Kết nối Google Drive{% if drive_owner %} lại{% endif %}</button></form>
+<p>Ứng dụng xin quyền Google Drive để đọc và sửa tệp trong thư mục đã cấu hình. Quyền này khác với đăng nhập Google thông thường của người chơi.</p>
+</main>
+{% if drive_owner %}
+<script src="/static/js/resources.js" defer data-csrf="{{ csrf_token }}"></script>
+{% endif %}
+{% endblock %}

@@ -1,13 +1,11 @@
-from flask import Flask, render_template, jsonify, send_from_directory, send_file, abort, request
+from flask import Flask, Request, render_template, jsonify, send_from_directory, send_file, abort, request
 from pathlib import Path
 import json
 import io
 import subprocess
 import hashlib
-import threading
 import gzip
 import os
-import tempfile
 import secrets
 import sqlite3
 from datetime import datetime, timedelta, timezone
@@ -16,18 +14,27 @@ from auth import configure, connect, user, valid_csrf
 from werkzeug.http import parse_accept_header
 from werkzeug.datastructures import Accept
 from PIL import Image
+import drive_store
 
 app = Flask(__name__,root_path=str(Path(__file__).resolve().parent))
 ROOT = Path(__file__).resolve().parent
 RESOURCE = ROOT / "resource"
-ASSET_DIR = Path(os.environ.get("ASSET_DIR", str(ROOT))).resolve()
-THUMB_CACHE = Path(os.environ.get("THUMB_CACHE", str(ROOT / "static" / "cache" / "resource-thumbs")))
-THUMB_LOCK = threading.Lock()
+class MemoryRequest(Request):
+    def _get_file_stream(self, total_content_length, content_type, filename=None, content_length=None):
+        return io.BytesIO()
+
+app.request_class = MemoryRequest
 configure(app, os.environ.get('DATA_DIR', str(ROOT.parent / 'data')))
+app.config['MAX_CONTENT_LENGTH'] = drive_store.MAX_IMAGE + 1024 * 1024
+app.config['RESOURCE_ROOT'] = RESOURCE
+app.config['DRIVE_ARCHIVE_LOCK'] = Path(os.environ.get('DRIVE_ARCHIVE_LOCK', str(ROOT.parent / 'assets.lock.json' if (ROOT.parent / 'assets.lock.json').is_file() else ROOT / 'assets.lock.json')))
+drive_store.register(app)
 with app.app_context(), connect() as connection:
     connection.execute('CREATE TABLE IF NOT EXISTS game_sessions(token TEXT PRIMARY KEY,user_id INTEGER NOT NULL REFERENCES users(id),config_json TEXT NOT NULL,created_at TEXT NOT NULL,expires_at TEXT NOT NULL)')
 
 def load_json(path, default=None):
+    if path.is_relative_to(RESOURCE) and drive_store.connected():
+        return drive_store.store().document('resource/' + path.relative_to(RESOURCE).as_posix())
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except Exception:
@@ -85,48 +92,52 @@ def game_session(token):
 
 @app.get("/resource/<path:name>")
 def resource_file(name):
+    if not drive_store.valid_path(name):
+        abort(404)
+    if name.endswith('.json'):
+        path = RESOURCE / name
+        if not path.is_file():
+            abort(404)
+        return jsonify(load_json(path))
     return send_from_directory(RESOURCE, name)
+
+def drive_image(path, thumbnail=False):
+    if not drive_store.valid_path(path):
+        abort(404)
+    body, mime = drive_store.store().read(path)
+    if not mime.startswith('image/'):
+        abort(415)
+    if thumbnail and mime != 'image/svg+xml':
+        try:
+            with Image.open(io.BytesIO(body)) as image:
+                image.thumbnail((480, 320), Image.Resampling.LANCZOS)
+                if image.mode not in ('RGB', 'RGBA'):
+                    image = image.convert('RGB')
+                output = io.BytesIO()
+                image.save(output, 'WEBP', quality=80, method=4)
+                body, mime = output.getvalue(), 'image/webp'
+        except (OSError, ValueError, Image.DecompressionBombError):
+            abort(415)
+    response = send_file(io.BytesIO(body), mimetype=mime, max_age=0, etag=False, conditional=False)
+    response.headers['Cache-Control'] = 'no-store'
+    if mime == 'image/svg+xml':
+        response.headers['Content-Security-Policy'] = "sandbox; default-src 'none'; style-src 'unsafe-inline'"
+    return response
 
 @app.get('/resource/images/<path:name>')
 def resource_image(name):
-    return send_from_directory(ASSET_DIR / 'resource' / 'images', name)
+    return drive_image('resource/images/' + name)
 
 @app.get('/static/images/<path:name>')
 def static_image(name):
-    return send_from_directory(ASSET_DIR / 'static' / 'images', name)
+    return drive_image('static/images/' + name)
 
-@app.get("/thumb/<path:name>")
+@app.get('/thumb/<path:name>')
 def resource_thumbnail(name):
-    resource_root = (ASSET_DIR / 'resource' / 'images').resolve()
     if not name.startswith('images/'):
         abort(404)
-    source = (resource_root / name[len('images/'):]).resolve()
-    if resource_root not in source.parents or not source.is_file():
-        abort(404)
-    if source.suffix.lower() == ".svg":
-        return send_file(source, mimetype="image/svg+xml", max_age=604800)
-    THUMB_CACHE.mkdir(parents=True, exist_ok=True)
-    cache_key = f'{ASSET_DIR}:{name}'.encode('utf-8')
-    target = THUMB_CACHE / f"{hashlib.sha256(cache_key).hexdigest()}.webp"
-    if not target.is_file() or target.stat().st_mtime < source.stat().st_mtime:
-        with THUMB_LOCK:
-            if not target.is_file() or target.stat().st_mtime < source.stat().st_mtime:
-                # Each worker needs its own temporary file; publish atomically.
-                fd, filename = tempfile.mkstemp(suffix=".webp", dir=THUMB_CACHE)
-                os.close(fd)
-                temporary = Path(filename)
-                try:
-                    with Image.open(source) as image:
-                        image.thumbnail((480, 320), Image.Resampling.LANCZOS)
-                        if image.mode not in ("RGB", "RGBA"):
-                            image = image.convert("RGB")
-                        image.save(temporary, "WEBP", quality=80, method=4)
-                    temporary.replace(target)
-                except (OSError, ValueError):
-                    abort(415)
-                finally:
-                    temporary.unlink(missing_ok=True)
-    return send_file(target, mimetype="image/webp", max_age=604800)
+    return drive_image('resource/' + name, thumbnail=True)
+
 @app.get("/api/bootstrap")
 def bootstrap():
     return jsonify({
@@ -188,21 +199,20 @@ def status():
 @app.get("/healthz")
 def health():
     required = ("manifest.json", "topics.json", "games.json")
-    ready = all(load_json(RESOURCE / name, None) for name in required)
-    ready = ready and all((ASSET_DIR / prefix).is_dir() for prefix in ('resource/images', 'static/images'))
-    if os.environ.get('ASSETS_LOCK'):
-        lock = load_json(Path(os.environ['ASSETS_LOCK']))
-        try:
-            ready = ready and (ASSET_DIR / '.verified').read_text() == lock.get('sha256')
-            ready = ready and all((ASSET_DIR / prefix).is_dir() for prefix in ('resource/images', 'static/images'))
-        except OSError:
-            ready = False
+    ready = all((RESOURCE / name).is_file() for name in required)
     try:
         with connect() as connection:
             connection.execute('SELECT 1 FROM users LIMIT 1')
     except sqlite3.Error:
         ready=False
-    return jsonify({"ok": bool(ready)}), 200 if ready else 503
+    return jsonify({"ok": bool(ready), "media_connected": bool(drive_store.connected())}), 200 if ready else 503
+
+@app.get('/readyz')
+def media_ready():
+    from drive_migration import MARKER
+    marker = drive_store.store().document(MARKER)
+    drive_store.store().document('resource/manifest.json')
+    return jsonify(ok=marker.get('schema') == 1), 200 if marker.get('schema') == 1 else 503
 
 @app.after_request
 def cache_and_security_headers(response):
@@ -228,10 +238,13 @@ def cache_and_security_headers(response):
     response.headers["X-Frame-Options"] = "SAMEORIGIN"
     response.headers["Referrer-Policy"] = "same-origin"
     request_path = request.path
+    if request_path.startswith(("/api/admin/", "/admin/")):
+        response.headers["Cache-Control"] = "no-store"
+        return response
     if response.status_code == 200 and request_path.startswith(('/resource/images/', '/static/images/', '/thumb/')):
-        response.headers['Cache-Control'] = 'public, max-age=0, must-revalidate'
+        response.headers['Cache-Control'] = 'no-store'
     elif response.status_code == 200 and request_path.startswith("/resource/"):
-        response.headers["Cache-Control"] = "public, max-age=604800"
+        response.headers["Cache-Control"] = "no-store"
     elif response.status_code == 200 and request_path.startswith("/static/"):
         response.headers["Cache-Control"] = "public, max-age=3600, must-revalidate"
     elif response.status_code >= 400:

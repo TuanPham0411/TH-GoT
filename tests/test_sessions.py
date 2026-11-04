@@ -30,7 +30,7 @@ class SessionTests(ApplicationTest):
                 self.assertEqual(self.client.get('/api/sessions/'+token).json['expires_at'],result['expires_at'])
         with self.app.app_context(),auth.connect() as connection:
             tables={row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
-        self.assertEqual(tables,{'users','game_sessions'})
+        self.assertEqual(tables,{'users','game_sessions','drive_connection'})
 
     def test_csrf_limits_and_expiration(self):
         self.google_login()

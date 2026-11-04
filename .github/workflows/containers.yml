@@ -28,14 +28,38 @@ jobs:
       - run: python game/tools/audit_v89_ui.py
       - run: node --test game/tests-js/session-clock.test.cjs
       - run: docker build -t standalone:test .
-      - name: Image contains source and lock only; missing assets fail closed
+      - name: Image has no media storage and web starts without downloading images
         run: |
-          docker run --rm --entrypoint python standalone:test -c "from pathlib import Path; assert not Path('/app/resource/images').exists(); assert not Path('/app/static/images').exists(); assert Path('/app/assets.lock.json').is_file()"
-          if docker run --rm --network none standalone:test > startup.log 2>&1; then
-            cat startup.log
-            exit 1
-          fi
-          grep -q 'Asset setup failed:' startup.log
+          docker run --rm --entrypoint python standalone:test -c "from pathlib import Path; assert not Path('/app/resource/images').exists(); assert not Path('/app/static/images').exists(); assert not Path('/assets').exists()"
+          docker run -d --name setup-check --network none standalone:test
+          for attempt in $(seq 1 30); do
+            if docker exec setup-check python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/healthz',timeout=2)"; then
+              break
+            fi
+            sleep 2
+          done
+          docker exec -i setup-check python - <<'PYTEST'
+          import json
+          from urllib.request import urlopen
+          from urllib.error import HTTPError
+          from pathlib import Path
+          with urlopen('http://127.0.0.1:5000/healthz') as response:
+              health=json.load(response)
+          assert health['ok'] and not health['media_connected']
+          for path in ('/readyz','/resource/images/missing.png'):
+              try:
+                  urlopen('http://127.0.0.1:5000'+path)
+                  raise AssertionError('Unconfigured Drive media unexpectedly ready')
+              except HTTPError as error:
+                  assert error.code==503
+          assert not Path('/assets').exists()
+          assert not list(Path('/data').rglob('*.png'))
+          assert not list(Path('/data').rglob('*.webp'))
+          PYTEST
+      - if: always()
+        run: |
+          docker logs setup-check || true
+          docker rm -f setup-check || true
       - uses: docker/setup-qemu-action@v3
         if: github.event_name != 'pull_request'
       - uses: docker/setup-buildx-action@v3
@@ -59,45 +83,3 @@ jobs:
           tags: |
             ${{ steps.image.outputs.name }}:${{ github.sha }}
             ${{ steps.image.outputs.name }}:latest
-  integration:
-    # Run full-media checks by default; source/image builds do not download Drive.
-    runs-on: ubuntu-latest
-    env:
-      APP_IMAGE: standalone:test
-      PUBLIC_URL: http://localhost:5082
-      ASSETS_URL: ${{ vars.TH_GOT_ASSETS_URL || 'https://drive.google.com/file/d/1JsQk7-4mWJlmCJDd5TdDy9mnUnEm41U5/view?usp=sharing' }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: pip install -r game/requirements.txt
-      - run: python tools/assets.py install --root .assets --url "$ASSETS_URL"
-      - run: python tools/assets.py verify --root .assets
-      - run: ASSET_DIR="$PWD/.assets/current" python game/tools/audit_v88_complete.py
-      - run: docker build -t standalone:test .
-      - name: Import verified assets into the deployment volume
-        run: |
-          chmod -R a+rX .assets
-          docker compose run --rm --no-deps --entrypoint sh -v "$PWD/.assets:/import:ro" web -c 'cp -a --no-preserve=ownership /import/. /assets/'
-      - run: docker compose up -d --no-build --wait --wait-timeout 180
-      - run: python tools/smoke.py
-      - name: Verify installed files and restart with no network
-        run: |
-          docker compose run --rm --no-deps --entrypoint python web /app/assets.py verify
-          docker compose stop web
-          docker run -d --name offline-check --network none \
-            -v th-got_assets:/assets -v th-got_data:/data standalone:test
-          for attempt in $(seq 1 30); do
-            if docker exec offline-check python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/healthz',timeout=2)"; then
-              break
-            fi
-            sleep 2
-          done
-          docker exec -i offline-check python - --origin http://127.0.0.1:5000 < tools/smoke.py
-      - if: always()
-        run: |
-          docker compose logs --no-color --tail 80
-          docker logs offline-check || true
-          docker rm -f offline-check || true
-          docker compose down -v

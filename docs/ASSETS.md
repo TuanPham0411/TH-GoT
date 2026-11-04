@@ -1,73 +1,40 @@
-# Tài nguyên trên Google Drive
+# Drive là nơi lưu ảnh duy nhất
 
-GitHub chứa mã, HTML/CSS/JS, JSON cấu hình/chủ đề và `assets.lock.json`. Image build hoàn toàn không tải/kèm thư viện ảnh. Toàn bộ `game/resource/images/` và `game/static/images/` (gồm ảnh trang giới thiệu) được đóng thành một gói `.tar.gz` và đưa lên Drive. Thiết bị tải gói khi chạy lần đầu, xác minh SHA-256 của gói lẫn từng tệp, giải nén vào volume `assets`, rồi mới mở web.
+App không tải gói ảnh về volume, không cài `.assets`, không ghi thumbnail xuống đĩa và không chơi bằng cache offline. Ảnh được đọc từ Drive khi hiển thị. Thumbnail và upload chỉ được xử lý trong RAM, tối đa 32 MB cho mỗi ảnh; phản hồi ảnh dùng `Cache-Control: no-store`. App không có service worker, IndexedDB hay Cache Storage để lưu ảnh.
 
-## Nguồn Drive mặc định
+## Thư mục và dữ liệu ban đầu
 
-Gói chuẩn đã được upload và cấu hình trong `assets.lock.json` và `.env.example`:
+Thư mục mặc định: https://drive.google.com/drive/folders/1hueCpVN5ez5aFRGAxbjc2hjK-Yaw3rA0
 
-https://drive.google.com/file/d/1JsQk7-4mWJlmCJDd5TdDy9mnUnEm41U5/view?usp=sharing
+Gói chuẩn **đã có trên Drive**, không cần upload lại:
+https://drive.google.com/file/d/1JsQk7-4mWJlmCJDd5TdDy9mnUnEm41U5/view
 
-- Tệp: `th-got-assets-5b878953c7227f78.tar.gz`.
+- Tên: `th-got-assets-5b878953c7227f78.tar.gz`.
 - Kích thước: **1626348552 bytes**, **1274 tệp**, gồm ảnh trang giới thiệu.
 - SHA-256: `5b878953c7227f788d3da7167cb297f013fdf6977d80c6bb00c8b9e8a3191462`.
 
-Không cần upload lại hoặc điền URL khi cài mới. `ASSETS_URL` có thể override nguồn mặc định bằng link tệp Drive hoặc mirror HTTPS chứa cùng byte; không dùng link thư mục. Downloader xử lý URL chia sẻ, resourcekey và trang xác nhận tệp lớn của Drive. URL không phải credential.
+Gói nén chỉ là nguồn chuyển dữ liệu một lần. App cần ảnh riêng lẻ trên Drive để đọc và sửa trực tiếp. Inventory trong `assets.lock.json` giữ nguyên để xác minh dữ liệu ban đầu; nó không đóng băng tài nguyên sau khi quản trị viên chỉnh sửa.
 
-CI chạy integration mặc định với nguồn trên. Repository variable `TH_GOT_ASSETS_URL` là override tùy chọn. Job tải/xác minh archive và inventory, audit ảnh và smoke test; build/publish image không tải Drive.
+## Kết nối và chuyển dữ liệu
 
-Drive có giới hạn lượt tải/băng thông. Nếu bị yêu cầu đăng nhập hoặc hết quota, bootstrap dừng với lỗi; không chạy ứng dụng thiếu ảnh. Có thể đổi `ASSETS_URL` sang mirror HTTPS chứa **cùng byte** và cùng SHA-256, hoặc import offline. Không mount Drive bằng FUSE; lúc chơi mọi ảnh được phục vụ từ đĩa thiết bị, không hotlink tới Drive.
+Cấu hình Google OAuth, hai callback và `ADMIN_EMAILS` theo README. Đăng nhập bằng tài khoản quản trị có quyền chỉnh sửa thư mục, mở `/admin/resources` rồi kết nối Drive. Public share URL không cấp quyền ghi; phải hoàn tất consent của chủ tài khoản.
 
-## Thiết bị mới
+Bấm chuyển dữ liệu trên trang quản trị. Tác vụ chạy nền trong process web:
 
-```sh
-git clone https://github.com/TuanPham0411/TH-GoT.git
-cd TH-GoT
-cp .env.example .env
-# Điền PUBLIC_URL và Google OAuth; nguồn Drive mặc định đã được cấu hình.
-docker compose up -d --build --wait --wait-timeout 1800
-python3 tools/smoke.py
-```
+1. Đọc gói trực tiếp từ Drive API, tính size/SHA-256 theo chunk trong RAM; không ghi archive xuống đĩa.
+2. Đọc lượt thứ hai, kiểm tra đường dẫn, loại entry, size và hash từng ảnh, rồi upload từng tệp vào thư mục Drive. Từ chối symlink, traversal, tệp lặp hoặc ngoài inventory.
+3. Khởi tạo các tài liệu JSON trên Drive và ghi marker hoàn tất chỉ sau khi đủ 1274 ảnh.
 
-Dùng image GHCR thay build tại chỗ cũng có cùng quy trình tải lần đầu. Image/source tương ứng luôn mang file khóa đã pin; URL không được tự quyết định checksum. Cần mạng để tải lần đầu và dung lượng ít nhất 5 GB trống. Tải lỗi hoặc mất điện không tạo bản cài “ready”; chạy lại sẽ cài lại. Không hỗ trợ tiếp tục tải byte từ tệp dở. Một khóa cài đặt ngăn hai process đồng thời cài cùng volume. Web chỉ bắt đầu sau khi toàn bộ gói được xác minh.
+Tác vụ có thể tốn thời gian và quota Drive. Nếu container restart hoặc mạng lỗi, chạy lại: ảnh đã có được so hash, không ghi đè ảnh khác nội dung; JSON đã có không bị ghi đè. Sau khi có marker hoàn tất, chạy migration lại không ghi đè tài nguyên đã sửa. Không chạy nhiều replica cùng quản lý một thư mục trong khi chuyển dữ liệu.
 
-Volume có `releases/<SHA-256>/` và `current` trỏ tới bản sẵn sàng. Phiên bản cũ được giữ khi nâng cấp để có thể rollback. Không tự xóa volume khi restart. Mỗi lần start kiểm tra marker và sự hiện diện/kích thước của các tệp; xác minh đầy đủ khi cần:
+Ảnh được định danh bằng logical path trong metadata Drive; app không tạo public permission hoặc tự mở rộng chia sẻ thư mục. Trình duyệt đọc qua app, không nhận access token hoặc refresh token Drive.
 
-```sh
-docker compose run --rm --no-deps --entrypoint python web /app/assets.py verify
-```
+## Thêm, sửa và xóa từ app
 
-Lệnh trên đọc hash mọi tệp, không dùng mạng. Nếu phát hiện hỏng nội dung cùng kích thước, dừng web, xóa **chỉ marker `.verified` của bản tài nguyên đó** trong volume rồi chạy lại để cài lại; không xóa volume data.
+Ở `/admin/resources`, chọn chủ đề rồi thêm ảnh PNG/JPEG/WebP, tên và mô tả song ngữ. Khi sửa có thể thay ảnh hoặc giữ ảnh cũ. App kiểm tra ảnh và gửi dữ liệu trực tiếp đến Drive. Metadata của chủ đề được cập nhật trên Drive, không sửa source trong container.
 
-## Import gói offline trên thiết bị
+Khi xóa, app bỏ tài nguyên khỏi chủ đề trên Drive rồi chuyển ảnh không còn được tài liệu khác tham chiếu vào thùng rác Drive. Tệp đang dùng ở tài liệu khác được giữ. Drive không có transaction bao trùm nhiều tệp: nếu một bước gặp lỗi mạng, kiểm tra trạng thái trên trang quản trị trước khi thử lại; app không xóa ảnh cũ trước khi ghi tài liệu mới.
 
-Copy đúng gói nén lên thiết bị, rồi:
+Dữ liệu ảnh, tài liệu đang sửa và marker đều nằm trên Drive. Volume `data` chỉ chứa dữ liệu tài khoản, phiên và kết nối OAuth đã mã hóa. Không mount volume ảnh cũ vào bản mới. Chỉ xóa volume ảnh cũ sau khi đã xác minh Drive và sao lưu phù hợp; không tự xóa volume người dùng.
 
-```sh
-docker compose build
-docker compose run --rm --no-deps \
-  -v /duong/dan/tuyet/doi/th-got-assets-HASH.tar.gz:/import.tar.gz:ro \
-  --entrypoint python web /app/assets.py install --archive /import.tar.gz
-docker compose up -d --no-build --wait --wait-timeout 180
-```
-
-Gói import cũng phải khớp file khóa, không có chế độ bỏ kiểm tra checksum. Có thể để ASSETS_URL trống sau khi import. Volume named được Docker khởi tạo với chủ sở hữu UID 10001; nếu bind-mount, cấp quyền thư mục cho UID/GID 10001 trước.
-
-## Phát triển, thêm hoặc cập nhật ảnh
-
-Tải/cài bộ ảnh hiện tại ngoài source tree:
-
-```sh
-python3 tools/assets.py install --root .assets
-# Hoặc: python3 tools/assets.py install --root .assets --archive /path/to/archive.tar.gz
-ASSET_DIR="$PWD/.assets/current" .venv/bin/python game/app.py
-ASSET_DIR="$PWD/.assets/current" .venv/bin/python game/tools/audit_v88_complete.py
-```
-
-Khi sửa ảnh, dùng một thư mục staging riêng có cấu trúc `resource/images/` và `static/images/`, không chỉnh trực tiếp cache bản đã xác minh:
-
-```sh
-python3 tools/assets.py pack --source /path/to/staging --output /path/to/output --lock assets.lock.json
-```
-
-Lệnh tạo tar deterministic, kiểm tra không còn pointer LFS, tạo inventory từng tệp và pin SHA-256/size. Upload gói mới lên Drive, điền URL mới vào lock, commit lock và JSON cấu hình nếu thay đổi. Build/deploy source mới; thiết bị chỉ tải bản mới khi SHA thay đổi. Không commit tar, ảnh hay thư mục cache. Đổi URL gói mà không đổi hash không thể đưa nội dung khác vào bản chạy.
+Mất quyền Drive, hết quota hoặc mất mạng: API trả lỗi 503; không phục vụ ảnh cũ từ đĩa. Kết nối lại Drive bằng tài khoản quản trị để khôi phục quyền truy cập.

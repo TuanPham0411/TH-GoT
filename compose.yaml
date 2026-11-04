@@ -10,19 +10,18 @@ services:
     security_opt: [no-new-privileges:true]
     environment:
       DATA_DIR: /data
-      THUMB_CACHE: /data/thumbs
       PUBLIC_URL: ${PUBLIC_URL:-http://localhost:5082}
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
       GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI:-}
       FLASK_SECRET_KEY: ${FLASK_SECRET_KEY:-}
       TRUST_PROXY: ${TRUST_PROXY:-0}
-      ASSETS_URL: ${ASSETS_URL:-}
+      ADMIN_EMAILS: ${ADMIN_EMAILS:-}
+      DRIVE_FOLDER_ID: ${DRIVE_FOLDER_ID:-1hueCpVN5ez5aFRGAxbjc2hjK-Yaw3rA0}
     ports:
       - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-5082}:5000"
     volumes:
       - data:/data
-      - assets:/assets
     tmpfs:
       - /tmp:rw,noexec,nosuid,size=64m
     logging:
@@ -30,4 +29,3 @@ services:
       options: {max-size: 10m, max-file: "3"}
 volumes:
   data:
-  assets:
