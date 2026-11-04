@@ -1,0 +1,49 @@
+name: Export downloadable game assets
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/export-assets.yml]
+permissions:
+  contents: write
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: TuanPham0411/GOT
+          ref: 4a7de663b0bf16427b7c51e88ea3d8c1426cda73
+          path: upstream
+          lfs: true
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rebuild original archive
+        run: |
+          mkdir -p upstream/game/static/images/intro
+          cp upstream/portal/static/images/game-of-thien-learning-garden.png upstream/game/static/images/intro/learning-garden.png
+          python tools/assets.py pack --source upstream/game --output export --lock export/rebuilt.lock.json
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          expected=json.loads(Path('assets.lock.json').read_text())
+          actual=json.loads(Path('export/rebuilt.lock.json').read_text())
+          assert actual['files']==expected['files'], 'Source image inventory mismatch'
+          assert actual['sha256']==expected['sha256'], 'Archive checksum mismatch'
+          assert actual['bytes']==expected['bytes'], 'Archive size mismatch'
+          with open(os.environ['GITHUB_ENV'],'a') as f:
+              f.write('ASSET_NAME='+actual['archive']+'\n')
+          PY
+      - name: Publish temporary download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view assets-transfer --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload assets-transfer "export/$ASSET_NAME" --repo "$GITHUB_REPOSITORY"
+          else
+            gh release create assets-transfer "export/$ASSET_NAME" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "Temporary game asset download" --notes "Original game media for transfer to Google Drive. SHA-256 is pinned in assets.lock.json." --prerelease --latest=false
+          fi
