@@ -166,7 +166,10 @@ class DisplayHTTPTests(ApplicationTest):
         )
         self.assertEqual(second.status_code, 304)
         self.assertEqual(origin.downloads, 1)
-        self.assertNotIn("no-store", first.headers["Cache-Control"])
+        self.assertIn("no-cache", first.headers["Cache-Control"])
+        self.assertIn("private", first.headers["Cache-Control"])
+        self.assertEqual(first.headers["CDN-Cache-Control"], "no-store")
+        self.assertEqual(first.headers["Cloudflare-CDN-Cache-Control"], "no-store")
 
 class CacheConcurrencyTests(unittest.TestCase):
     def test_simultaneous_cold_requests_download_the_original_only_once(self):

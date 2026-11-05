@@ -14,7 +14,7 @@ Phiên mặc định 10 phút, có tổng kết số lượt trong trang đang m
 - Drive là nguồn gốc. App lập ánh xạ bằng logical path, ID, phiên bản và checksum. Quản trị thêm/sửa/xóa tại `/admin/resources` ghi trực tiếp lên Drive.
 - `/data/display-cache` giữ **bản hiển thị có thể tạo lại**, mặc định giới hạn 256 MiB, thu hồi theo lần dùng gần nhất. Thumbnail WebP tối đa 480 × 360; ảnh lớn tối đa 1280 × 1280. Bản gốc chỉ được xử lý trong RAM, không lưu gói 1,6 GB xuống Pi.
 - Ánh xạ kiểm tra lại mỗi 60 giây khi có yêu cầu. Thay đổi qua quản trị app vô hiệu hóa ánh xạ ngay; đổi nội dung/phiên bản trên Drive tạo khóa cache mới. File chưa có trên Drive trả 404, không hiển thị bản đã xóa khi lần kiểm tra tiếp theo phát hiện xóa.
-- Ảnh có ETag và `public, max-age=0, must-revalidate`; trình duyệt xác thực trước khi dùng lại. App không có service worker, IndexedDB hoặc localStorage ảnh. Đường dẫn ảnh là công khai qua app; OAuth token không gửi cho trình duyệt.
+- Ảnh có ETag và `private, no-cache, max-age=0, must-revalidate` và chỉ thị CDN `no-store`; trình duyệt xác thực trước khi dùng lại. App không có service worker, IndexedDB hoặc localStorage ảnh. Đường dẫn ảnh là công khai qua app; OAuth token không gửi cho trình duyệt.
 - Khi lỗi mạng/quota ngắn hạn, chỉ bản đã xác minh có thể tiếp tục hiển thị tối đa một giờ kể từ lần kiểm tra Drive thành công. Không tạo bản mới từ metadata cũ. Lỗi mất quyền/401/403 xác định sẽ đóng truy cập; `/readyz` vẫn yêu cầu kết nối Drive mới, không coi cache là Drive sẵn sàng.
 - Volume `data` giữ tài khoản, phiên, khóa ký, token mã hóa và cache dẫn xuất. Cache có thể bỏ khỏi backup và tạo lại. `MEDIA_CACHE_MAX_BYTES` chỉnh dung lượng; `MEDIA_CACHE_ENABLED=0` dùng bộ đọc tương thích cũ chỉ trong RAM.
 
