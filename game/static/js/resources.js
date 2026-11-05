@@ -21,7 +21,7 @@
       for (const item of current) {
         const card = document.createElement('article');
         const image = document.createElement('img');
-        image.src = '/thumb/' + item.image; image.alt = item.viName; image.loading = 'lazy';
+        image.src = '/thumb/' + item.image + '?v=drive-display-10-1'; image.alt = item.viName; image.loading = 'lazy';
         image.style.cssText = 'width:100%;height:150px;object-fit:contain';
         const title = document.createElement('h3'); title.textContent = item.viName;
         const edit = document.createElement('button'); edit.textContent = 'Sửa'; edit.onclick = () => open(item);
