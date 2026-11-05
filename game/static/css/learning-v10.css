@@ -1729,3 +1729,5 @@ summary {
 .got-gate-card p {
   color: var(--muted);
 }
+/* Keep the library introduction compact and labels readable on small screens. */
+.learning-play .library-hero h1{color:#203c32}.learning-play .library-hero h1 em{color:#52825e}.learning-play .library-guide b{background:#416d46;color:#fff}.learning-play input::placeholder{color:#60725f;opacity:1}@media(max-width:620px){.learning-play .library-hero{min-height:0;padding:24px 22px;margin:20px 0}.learning-play .library-toolbar{position:static;top:auto}.learning-play .library-guide{gap:8px}.learning-play .library-guide span{font-size:10px}}

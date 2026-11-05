@@ -156,8 +156,8 @@ const shuffle = (input) => {
   }
   return a;
 };
-const asset = (p) => (p ? "/resource/" + p : "");
-const thumb = (p) => (p ? "/thumb/" + p : "");
+const asset = (p) => (p ? "/resource/" + p + "?v=drive-display-10-1" : "");
+const thumb = (p) => (p ? "/thumb/" + p + "?v=drive-display-10-1" : "");
 const showToast = (text) => {
   UI.toast.textContent = text;
   UI.toast.classList.add("show");
@@ -1460,7 +1460,7 @@ async function hiddenObjectGame() {
     ' × <b id="hiddenRemaining">' +
     required +
     '</b></span></div><div class="hidden-scene themed-scene"><img class="hidden-scene-background" src="' +
-    scene.image +
+    scene.image + "?v=drive-display-10-1" +
     '" alt="' +
     escapeHtml(scene.viName) +
     '">' +

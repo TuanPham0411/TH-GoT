@@ -112,7 +112,9 @@ def drive_image(path, thumbnail=False):
     if cache:
         file,mime,etag,state=cache.image(path,thumbnail)
         response=send_file(file,mimetype=mime,conditional=True,etag=etag,max_age=0)
-        response.headers['Cache-Control']='public, max-age=0, must-revalidate'
+        response.headers['Cache-Control']='private, no-cache, max-age=0, must-revalidate'
+        response.headers['CDN-Cache-Control']='no-store'
+        response.headers['Cloudflare-CDN-Cache-Control']='no-store'
         response.headers['X-Resource-Cache']=state
         if state=='stale':response.headers['Warning']='110 - "Using a verified cached display copy"'
         if mime=='image/svg+xml':response.headers['Content-Security-Policy']="sandbox; default-src 'none'; style-src 'unsafe-inline'"

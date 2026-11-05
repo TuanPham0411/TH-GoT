@@ -30,6 +30,6 @@
 <p>Ứng dụng xin quyền Google Drive để đọc và sửa tệp trong thư mục đã cấu hình. Quyền này khác với đăng nhập Google thông thường của người chơi.</p>
 </main>
 {% if drive_owner %}
-<script src="/static/js/resources.js" defer data-csrf="{{ csrf_token }}"></script>
+<script src="/static/js/resources.js?v=drive-display-10-1" defer data-csrf="{{ csrf_token }}"></script>
 {% endif %}
 {% endblock %}

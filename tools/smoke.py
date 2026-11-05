@@ -8,7 +8,7 @@ def get(path):
     with urlopen(a.origin.rstrip('/')+path,timeout=60) as r:
         assert r.status==200
         if path.startswith(('/resource/images/','/static/images/','/thumb/')):
-            assert 'must-revalidate' in r.headers['Cache-Control']
+            assert 'must-revalidate' in r.headers['Cache-Control'] and 'no-cache' in r.headers['Cache-Control']
             assert r.headers.get('ETag') and r.headers.get('X-Resource-Cache') in ('hit','miss','stale')
         return r.read()
 assert json.loads(get('/healthz'))['ok']
