@@ -8,7 +8,8 @@ def get(path):
     with urlopen(a.origin.rstrip('/')+path,timeout=60) as r:
         assert r.status==200
         if path.startswith(('/resource/images/','/static/images/','/thumb/')):
-            assert r.headers['Cache-Control']=='no-store'
+            assert 'must-revalidate' in r.headers['Cache-Control']
+            assert r.headers.get('ETag') and r.headers.get('X-Resource-Cache') in ('hit','miss','stale')
         return r.read()
 assert json.loads(get('/healthz'))['ok']
 assert b'Google' in get('/')
@@ -25,6 +26,6 @@ if a.media:
     image=json.loads(get('/api/topic/'+data['topics'][0]['id']))['items'][0]['image']
     assert len(get('/resource/'+image))>1000
     assert get('/thumb/'+image)[8:12]==b'WEBP'
-    print('PASS: real Drive readiness, image and memory-only thumbnail with no-store headers')
+    print('PASS: real Drive readiness, image and versioned local WebP display cache with revalidation')
 else:
     print('Drive media not tested; run --media after connecting and initializing Drive.')

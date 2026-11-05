@@ -54,7 +54,7 @@
       </div>
       <ol class="got-story-steps">
         <li><span>1</span><div class="got-step-doodle got-doodle-door" aria-hidden="true"></div><h3>Đăng nhập tài khoản Google</h3><p>Đường dẫn game sẽ đưa người dùng về trang này. Chỉ cần tài khoản Google, không cần tạo tài khoản game khác.</p></li>
-        <li><span>2</span><div class="got-step-doodle got-doodle-cards" aria-hidden="true"></div><h3>Chọn thời lượng phiên</h3><p>Đặt thời gian theo mốc 10 phút, tối đa 60 phút. Toàn bộ 18 trò được mở cùng lúc.</p></li>
+        <li><span>2</span><div class="got-step-doodle got-doodle-cards" aria-hidden="true"></div><h3>Chọn nhóm tuổi và thời lượng</h3><p>Đặt thời gian theo mốc 10 phút, tối đa 60 phút. Toàn bộ 18 trò được mở cùng lúc.</p></li>
         <li><span>3</span><div class="got-step-doodle got-doodle-star" aria-hidden="true"></div><h3>Bắt đầu phiên học</h3><p>Hệ thống tạo một phiên riêng rồi mới chuyển sang web game. Đường dẫn không có phiên hợp lệ sẽ luôn quay lại đây.</p></li>
       </ol>
     </div>
@@ -71,7 +71,7 @@
       {% if not me %}
       <div class="got-gate-card">
         <div class="got-gate-illustration" aria-hidden="true"><span></span><i></i></div>
-        <div><span class="got-kicker">BƯỚC ĐẦU TIÊN</span><h3>Đăng nhập để mở phiên</h3><p>Dùng chính tài khoản Google đang sử dụng ở trang giới thiệu. Trẻ không cần tài khoản riêng.</p><a class="button primary" href="/login?next=/%23mo-phien">ĐĂNG NHẬP TÀI KHOẢN THIÊN HẠ</a></div>
+        <div><span class="got-kicker">BƯỚC ĐẦU TIÊN</span><h3>Đăng nhập để mở phiên</h3><p>Dùng chính tài khoản Google đang sử dụng ở trang giới thiệu. Trẻ không cần tài khoản riêng.</p><a class="button primary" href="/login?next=/%23mo-phien">PHỤ HUYNH ĐĂNG NHẬP GOOGLE</a></div>
       </div>
       {% else %}
       <form class="got-builder" id="gotSessionForm" novalidate>
@@ -80,17 +80,17 @@
           <div><span class="got-kicker">ĐANG CHUẨN BỊ BỞI</span><strong>{{ me.name or me.email }}</strong></div>
           <div class="got-license-chip">MIỄN PHÍ · TOÀN BỘ 18 TRÒ CHƠI</div>
         </div>
-        <fieldset class="got-session-duration">
+        <fieldset class="got-session-duration age-picker"><legend>Trẻ đang ở giai đoạn nào?</legend><p class="got-field-help">Gợi ý nội dung và độ khó phù hợp. Vẫn có thể khám phá đủ 18 trò trong phiên.</p><div class="age-options">{% for profile in education.profiles %}<label><input type="radio" name="profile" value="{{profile.id}}"{% if loop.first %} checked{% endif %}><span><b>{{profile.name}}</b><small>{{profile.ages}}</small><em>{{profile.note}}</em></span></label>{% endfor %}</div></fieldset><fieldset class="got-session-duration">
           <legend>Thời lượng của cả phiên</legend>
           <p class="got-field-help">Thời gian bắt đầu khi mở phiên và dùng chung cho toàn bộ trò chơi.</p>
           <label for="gotSessionDuration">Chọn số phút</label>
           <select id="gotSessionDuration" name="duration_minutes">
-            {% for minutes in [10,20,30,40,50,60] %}<option value="{{ minutes }}"{% if minutes == 30 %} selected{% endif %}>{{ minutes }} phút</option>{% endfor %}
+            {% for minutes in [10,20,30,40,50,60] %}<option value="{{ minutes }}"{% if minutes == 10 %} selected{% endif %}>{{ minutes }} phút</option>{% endfor %}
           </select>
         </fieldset>
         <div class="got-builder-summary">
           <div><span>ĐƯỢC MỞ</span><strong>Toàn bộ {{ game_library|length }} trò</strong></div>
-          <div><span>THỜI LƯỢNG PHIÊN</span><strong id="gotTotalTime">30 phút</strong></div>
+          <div><span>THỜI LƯỢNG PHIÊN</span><strong id="gotTotalTime">10 phút</strong></div>
           <button class="button primary" id="gotStartButton" type="submit">BẮT ĐẦU PHIÊN HỌC</button>
         </div>
         <p class="got-form-message" id="gotFormMessage" role="status" aria-live="polite"></p>
@@ -99,12 +99,13 @@
     </div>
   </section>
 
+<section class="got-section" id="kham-pha"><div class="got-wrap"><div class="got-heading"><span class="got-kicker">18 CÁCH KHÁM PHÁ</span><h2>Chơi có mục tiêu.<br><em>Học theo nhịp của con.</em></h2><p>Mỗi trò có hướng dẫn trước khi chơi. Có thể chọn đáp án bằng chạm hoặc bàn phím; âm thanh là tùy chọn. Điểm chỉ ghi nhận lượt chơi, không xếp hạng trẻ.</p></div><div class="curriculum-grid">{% for id, guide in education.guides.items() %}<article><span>{{guide.icon}}</span><h3>{{guide.title}}</h3><p>{{guide.goal}}</p><details><summary>Cách chơi &amp; đồng hành</summary><ol>{% for step in guide.steps %}<li>{{step}}</li>{% endfor %}</ol><p>{{guide.parent}}</p></details></article>{% endfor %}</div></div></section>
   <section class="got-section" id="gioi-han">
     <div class="got-wrap got-safety-grid">
       <div class="got-heading">
         <span class="got-kicker">VUI CHƠI CÓ GIỚI HẠN</span>
-        <h2>Một chiếc khung <em>dịu dàng và rõ ràng</em></h2>
-        <p>Phiên học giúp trẻ biết mình sẽ làm gì và trong bao lâu. Khi hết thời gian, phiên tự kết thúc; muốn tiếp tục, người lớn cần chuẩn bị một phiên mới.</p>
+        <h2>Học một chút.<br><em>Nghỉ một chút.</em></h2>
+        <p>Người lớn đồng hành với trẻ mẫu giáo. Bắt đầu 10 phút; sau mỗi lượt hãy nhìn xa, vận động và trò chuyện về điều vừa học. Phiên học giúp trẻ biết mình sẽ làm gì và trong bao lâu. Khi hết thời gian, phiên tự kết thúc; muốn tiếp tục, người lớn cần chuẩn bị một phiên mới.</p>
       </div>
       <div class="got-safety-cards">
         <article><span>01</span><h3>Tất cả trò trong một phiên</h3><p>Trẻ tự do chuyển giữa 18 trò trong thời gian đã được người lớn đặt.</p></article>
@@ -139,7 +140,7 @@
       const response = await fetch('/api/sessions', {
         method: 'POST',
         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-        body: JSON.stringify({csrf: form.elements.csrf.value, duration_minutes: minutes})
+        body: JSON.stringify({csrf: form.elements.csrf.value, duration_minutes: minutes, profile: form.elements.profile.value})
       });
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error(data.message || 'Chưa thể mở phiên lúc này');

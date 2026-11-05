@@ -60,21 +60,21 @@ class HTTPTests(unittest.TestCase):
         for topic in self.client.get('/api/bootstrap').json['topics']:
             self.assertEqual(self.client.get('/api/topic/' + topic['id']).status_code, 200)
 
-    def test_drive_media_and_readiness_without_disk_cache(self):
+    def test_legacy_drive_adapter_without_display_cache(self):
         import io
         import drive_store
         body = io.BytesIO()
         Image.new('RGB', (16, 16), 'red').save(body, 'PNG')
         provider = module.app.extensions['drive_store']
-        with patch.object(provider, 'read', return_value=(body.getvalue(), 'image/png')):
+        with patch.object(provider, 'view_cache', None), patch.object(provider, 'read', return_value=(body.getvalue(), 'image/png')):
             for url in ('/resource/images/external.png', '/static/images/external.png', '/thumb/images/external.png'):
                 response = self.client.get(url)
                 self.assertEqual(response.status_code, 200)
                 self.assertIn('image/', response.content_type)
                 self.assertEqual(response.headers['Cache-Control'], 'no-store')
-        with patch.object(provider, 'document', side_effect=drive_store.DriveUnavailable('No connection')):
+        with patch.object(provider, 'view_cache', None), patch.object(provider, 'document', side_effect=drive_store.DriveUnavailable('No connection')):
             self.assertEqual(self.client.get('/readyz').status_code, 503)
-        with patch.object(provider, 'document', return_value={'schema': 1}):
+        with patch.object(provider, 'view_cache', None), patch.object(provider, 'document', return_value={'schema': 1}):
             self.assertEqual(self.client.get('/readyz').status_code, 200)
         for url in ('/resource/images/../../app.py', '/static/images/../../app.py', '/thumb/games.json'):
             self.assertEqual(self.client.get(url).status_code, 404)

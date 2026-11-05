@@ -7,6 +7,28 @@ on:
 permissions:
   contents: read
 jobs:
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: pip install -r game/requirements.txt
+      - run: npm install --no-save --package-lock=false playwright@1.56.1
+      - run: npx playwright install --with-deps chromium
+      - name: Exercise all games, age settings, accessibility and session expiry
+        run: |
+          python tests/browser_server.py > /tmp/browser-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"; cat /tmp/browser-server.log' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:5099/healthz >/dev/null; then break; fi
+            sleep 1
+          done
+          node tests/browser_learning.cjs
   build:
     runs-on: ubuntu-latest
     permissions:
