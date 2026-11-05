@@ -13,9 +13,9 @@ python3 tools/smoke.py
 python3 tools/smoke.py --media
 ```
 
-`/healthz` là readiness của web/database, cho phép cấu hình ban đầu. `/readyz` kiểm tra tài nguyên trên Drive; không gọi bản mới là đã chơi được trước khi smoke `--media` qua. Ảnh chỉ ở Drive, kể cả khi restart: cần Internet và quyền Drive còn hiệu lực. Không có volume assets hoặc cache thumbnail. Không chuyển volume ảnh cũ sang bản này và không tự xóa volume cũ khi nâng cấp.
+`/healthz` là readiness của web/database, cho phép cấu hình ban đầu. `/readyz` kiểm tra tài nguyên trên Drive; không gọi bản mới là đã chơi được trước khi smoke `--media` qua. Drive giữ bản gốc. Bản hiển thị WebP và ánh xạ phiên bản được giữ trong `/data/display-cache` qua restart; giới hạn mặc định 256 MiB. Không có volume archive/bản gốc. Không chuyển volume ảnh cũ sang bản này và không tự xóa volume cũ khi nâng cấp.
 
-Volume `data` chứa database tài khoản/phiên, khóa phiên và refresh token Drive đã mã hóa bằng khóa phiên. Giữ cả database và khóa khi sao lưu/khôi phục. Nếu đổi khóa hoặc mất token, quản trị viên cần kết nối lại Drive. Không có ảnh trong bản sao lưu `data`.
+Volume `data` chứa database tài khoản/phiên, khóa phiên và refresh token Drive đã mã hóa bằng khóa phiên. Giữ cả database và khóa khi sao lưu/khôi phục. Nếu đổi khóa hoặc mất token, quản trị viên cần kết nối lại Drive. Cache dẫn xuất trong `data/display-cache` có thể loại khỏi sao lưu; database và khóa phải được giữ.
 
 Sao lưu nhất quán, bằng đúng user ứng dụng có quyền đọc volume:
 
@@ -23,7 +23,7 @@ Sao lưu nhất quán, bằng đúng user ứng dụng có quyền đọc volume
 docker compose stop web
 umask 077
 mkdir -p backups
-docker compose run --rm -T --no-deps --entrypoint tar web -C /data -czf - . > backups/data.tar.gz
+docker compose run --rm -T --no-deps --entrypoint tar web --exclude=./display-cache -C /data -czf - . > backups/data.tar.gz
 # Sao lưu .env riêng vào nơi riêng tư; không đưa lên Git.
 docker compose start web
 ```

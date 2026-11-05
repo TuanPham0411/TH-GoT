@@ -4,7 +4,7 @@ import hashlib
 import io
 import json
 import os
-from pathlib import PurePosixPath
+from pathlib import PurePosixPath, Path
 import secrets
 import threading
 import time
@@ -63,25 +63,30 @@ class DriveStore:
         if not self.folder or not all(c.isalnum() or c in '-_' for c in self.folder):
             raise DriveUnavailable('Invalid Drive folder configuration')
 
-    def call(self, method, path, data=None, mime=None, upload=False, **query):
+    def call(self, method, path, data=None, mime=None, upload=False, request_timeout=45, **query):
         base = 'https://www.googleapis.com/' + ('upload/' if upload else '') + 'drive/v3/'
         query['supportsAllDrives'] = 'true'
-        headers = {'Authorization': 'Bearer ' + self.token_provider()}
-        if mime:
-            headers['Content-Type'] = mime
-        req = Request(base + path + '?' + urlencode(query), data=data, headers=headers, method=method)
-        try:
-            with urlopen(req, timeout=45) as response:
-                body = response.read(MAX_IMAGE + 1)
-                if len(body) > MAX_IMAGE:
-                    raise DriveUnavailable('Drive response exceeds request memory limit')
-                return body
-        except HTTPError as error:
-            if error.code == 404:
-                raise DriveMissing() from None
-            raise DriveUnavailable('Drive request failed; check permission or quota') from None
-        except (OSError, URLError):
-            raise DriveUnavailable('Drive connection unavailable') from None
+        for attempt in range(2):
+            token=self.token_provider()
+            headers = {'Authorization': 'Bearer ' + token}
+            if mime:headers['Content-Type'] = mime
+            req = Request(base + path + '?' + urlencode(query), data=data, headers=headers, method=method)
+            try:
+                with urlopen(req, timeout=request_timeout) as response:
+                    body = response.read(MAX_IMAGE + 1)
+                    if len(body) > MAX_IMAGE:raise DriveUnavailable('Drive response exceeds request memory limit')
+                    return body
+            except HTTPError as error:
+                if error.code == 404:raise DriveMissing() from None
+                try:reasons=[v.get('reason') for v in json.loads(error.read()).get('error',{}).get('errors',[])]
+                except (OSError,ValueError,AttributeError):reasons=[]
+                rejected=error.code==401 or error.code==403 and any(v in ('insufficientPermissions','authError','appNotAuthorizedToFile') for v in reasons)
+                if attempt==0 and rejected and hasattr(self.token_provider,'invalidate'):
+                    self.token_provider.invalidate(token);continue
+                failure=DriveUnavailable('Drive request failed; check permission or quota')
+                failure.http_status=error.code;failure.reason=next((v for v in reasons if v in ('rateLimitExceeded','userRateLimitExceeded','dailyLimitExceeded','insufficientPermissions','authError','forbidden')),'unclassified')
+                raise failure from None
+            except (OSError, URLError):raise DriveUnavailable('Drive connection unavailable') from None
 
     def lookup(self, path):
         if not valid_path(path):
@@ -94,7 +99,7 @@ class DriveStore:
             "appProperties has { key='gotRoot' and value='" + self.folder + "' })"
         )
         data = json.loads(self.call('GET', 'files', q=q, pageSize=2,
-                                   fields='files(id,mimeType,description,version),nextPageToken'))
+                                   fields='files(id,mimeType,description,version,size,md5Checksum,sha256Checksum),nextPageToken'))
         found = data.get('files', [])
         if len(found) > 1 or data.get('nextPageToken'):
             raise DriveUnavailable('Duplicate Drive resource path')
@@ -107,6 +112,7 @@ class DriveStore:
         return self.call('GET', 'files/' + quote(entry['id'], safe=''), alt='media'), entry.get('mimeType', 'application/octet-stream')
 
     def document(self, path):
+        if getattr(self,'view_cache',None):return self.view_cache.document(path)
         body, _ = self.read(path)
         try:
             value = json.loads(body)
@@ -124,16 +130,20 @@ class DriveStore:
         except DriveMissing:
             existing = None
         if existing:
-            return json.loads(self.call('PATCH', 'files/' + quote(existing['id'], safe=''), data, mime,
+            result=json.loads(self.call('PATCH', 'files/' + quote(existing['id'], safe=''), data, mime,
                                         upload=True, uploadType='media', fields='id'))['id']
+            if getattr(self,'view_cache',None):self.view_cache.invalidate(path)
+            return result
         metadata = {'name': PurePosixPath(path).name, 'parents': [self.folder], 'description': path,
                     'appProperties': {'gotPathHash': hashlib.sha256(path.encode()).hexdigest()}}
         boundary = 'got_' + secrets.token_hex(24)
         body = (f'--{boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n'.encode()
                 + json.dumps(metadata).encode() + f'\r\n--{boundary}\r\nContent-Type: {mime}\r\n\r\n'.encode()
                 + data + f'\r\n--{boundary}--\r\n'.encode())
-        return json.loads(self.call('POST', 'files', body, 'multipart/related; boundary=' + boundary,
+        result=json.loads(self.call('POST', 'files', body, 'multipart/related; boundary=' + boundary,
                                     upload=True, uploadType='multipart', fields='id'))['id']
+        if getattr(self,'view_cache',None):self.view_cache.invalidate(path)
+        return result
 
     def write_document(self, path, document):
         return self.write(path, json.dumps(document, ensure_ascii=False).encode(), 'application/json')
@@ -141,6 +151,7 @@ class DriveStore:
     def trash(self, path):
         entry = self.lookup(path)
         self.call('PATCH', 'files/' + quote(entry['id'], safe=''), b'{"trashed":true}', 'application/json')
+        if getattr(self,'view_cache',None):self.view_cache.invalidate(path)
 
     def referenced_elsewhere(self, image, excluded_path):
         def contains(value):
@@ -195,7 +206,9 @@ def register(app):
             with connect() as connection:
                 row = connection.execute('SELECT refresh_encrypted FROM drive_connection WHERE id=1').fetchone()
             if not row:
-                raise DriveUnavailable('Connect a Drive editor account in resource administration')
+                failure=DriveUnavailable('Connect a Drive editor account in resource administration')
+                failure.http_status=403
+                raise failure
             try:
                 refresh = cipher().decrypt(row['refresh_encrypted'].encode()).decode()
                 result = _json_request('https://oauth2.googleapis.com/token', urlencode({
@@ -203,11 +216,28 @@ def register(app):
                     'client_secret': os.environ.get('GOOGLE_CLIENT_SECRET', ''),
                     'refresh_token': refresh, 'grant_type': 'refresh_token'}).encode())
                 access.update(token=result['access_token'], expires=time.time() + int(result.get('expires_in', 3600)))
-            except (OSError, ValueError, KeyError, InvalidToken):
-                raise DriveUnavailable('Reconnect the Drive account') from None
+            except HTTPError as error:
+                failure=DriveUnavailable('Reconnect the Drive account')
+                try:reason=json.loads(error.read()).get('error')
+                except (OSError,ValueError):reason=None
+                if reason in ('invalid_grant','invalid_client','unauthorized_client') or error.code in (401,403):failure.http_status=403
+                raise failure from None
+            except InvalidToken:
+                failure=DriveUnavailable('Reconnect the Drive account');failure.http_status=403
+                raise failure from None
+            except (OSError, ValueError, KeyError):
+                raise DriveUnavailable('Drive token service unavailable; retry or reconnect the account') from None
             return access['token']
 
+    def invalidate(rejected):
+        with token_lock:
+            if access['token']==rejected:access.update(token=None,expires=0)
+    access_token.invalidate=invalidate
     app.extensions['drive_store'] = DriveStore(access_token)
+    if os.environ.get('MEDIA_CACHE_ENABLED','1')=='1':
+        from display_cache import DisplayCache
+        cache_root=os.environ.get('MEDIA_CACHE_DIR',str(Path(app.config['DATABASE']).parent/'display-cache'))
+        app.extensions['drive_store'].view_cache=DisplayCache(app.extensions['drive_store'],cache_root,max_bytes=int(os.environ.get('MEDIA_CACHE_MAX_BYTES',256*1024*1024)))
     bp = Blueprint('drive', __name__)
     migration = {'running': False, 'stage': 'idle', 'done': 0, 'total': 0}
     migration_lock = threading.Lock()
@@ -228,6 +258,12 @@ def register(app):
     def resources():
         require_admin()
         return render_template('resources.html', drive_owner=connected(), folder_id=store().folder)
+
+    @bp.get('/api/admin/display-cache')
+    def display_cache_status():
+        require_admin()
+        cache=getattr(store(),'view_cache',None)
+        return jsonify(ok=True,cache=cache.status() if cache else {'enabled':False})
 
     @bp.post('/admin/drive/connect')
     def connect_drive():

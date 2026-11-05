@@ -2,14 +2,21 @@
 
 18 trò chơi và thư viện học tập miễn phí tại **https://got.th.io.vn**. Google login bắt buộc để mở phiên; mỗi phiên mở đủ 18 game trong 10/20/30/40/50/60 phút. Đổi game hoặc reload không kéo dài deadline. Không thanh toán, subscription hay unlock; không gọi backend hoặc tài khoản của website cũ.
 
-## Ảnh chỉ nằm trên Google Drive
+## Học từ mẫu giáo đến tiểu học
 
-- GitHub và Docker image chứa source, JSON cấu hình ban đầu và inventory, không chứa ảnh hoặc gói ảnh.
-- Máy chủ đọc ảnh từ Drive theo yêu cầu, xử lý thumbnail trong RAM và gửi `Cache-Control: no-store`. Không có volume ảnh, file thumbnail, archive tải xuống hay cache ảnh trên đĩa.
-- Trình duyệt chỉ giữ dữ liệu cần để hiển thị trong phiên; app không ghi ảnh vào localStorage, IndexedDB, service worker hoặc Cache Storage.
-- Quản trị viên thêm/sửa/xóa tại `/admin/resources`: ảnh và nội dung chỉnh sửa được ghi trực tiếp lên Drive. Xóa chuyển ảnh không còn được tài nguyên khác tham chiếu vào thùng rác Drive.
-- Cần kết nối Drive khi chơi, kể cả sau khi restart. Không có chế độ chơi bằng bản sao ảnh offline.
-- Volume `data` chỉ giữ tài khoản, phiên, khóa ký và refresh token Drive đã mã hóa; không giữ ảnh.
+Bốn nhóm gợi ý: mẫu giáo 3–5 tuổi, lớp 1–2, lớp 3, lớp 4–5. Người lớn chọn nhóm và thời lượng; nhóm tuổi định hướng độ khó, số đáp án, số cặp thẻ và phạm vi số. Cả 18 trò vẫn có sẵn. Mỗi trò có mục tiêu, ba bước chơi, thao tác và gợi ý đồng hành trong `game/education.json`. Đây là hoạt động bổ trợ; người lớn chọn theo mức sẵn sàng thực tế của trẻ.
+
+Phiên mặc định 10 phút, có tổng kết số lượt trong trang đang mở, không xếp hạng trẻ hay thu thập hồ sơ trẻ. Đồng hồ máy chủ vẫn giữ deadline khi đổi trò hoặc tải lại. Trang hướng dẫn mở công khai. Bàn phím, màn hình cảm ứng, tắt âm và giảm chuyển động được hỗ trợ; giọng đọc tùy khả năng thiết bị.
+
+## Ảnh gốc trên Drive, bản hiển thị nhanh trên Pi
+
+- GitHub và Docker image chứa source, JSON cấu hình ban đầu và inventory; không chứa ảnh hoặc gói ảnh.
+- Drive là nguồn gốc. App lập ánh xạ bằng logical path, ID, phiên bản và checksum. Quản trị thêm/sửa/xóa tại `/admin/resources` ghi trực tiếp lên Drive.
+- `/data/display-cache` giữ **bản hiển thị có thể tạo lại**, mặc định giới hạn 256 MiB, thu hồi theo lần dùng gần nhất. Thumbnail WebP tối đa 480 × 360; ảnh lớn tối đa 1280 × 1280. Bản gốc chỉ được xử lý trong RAM, không lưu gói 1,6 GB xuống Pi.
+- Ánh xạ kiểm tra lại mỗi 60 giây khi có yêu cầu. Thay đổi qua quản trị app vô hiệu hóa ánh xạ ngay; đổi nội dung/phiên bản trên Drive tạo khóa cache mới. File chưa có trên Drive trả 404, không hiển thị bản đã xóa khi lần kiểm tra tiếp theo phát hiện xóa.
+- Ảnh có ETag và `public, max-age=0, must-revalidate`; trình duyệt xác thực trước khi dùng lại. App không có service worker, IndexedDB hoặc localStorage ảnh. Đường dẫn ảnh là công khai qua app; OAuth token không gửi cho trình duyệt.
+- Khi lỗi mạng/quota ngắn hạn, chỉ bản đã xác minh có thể tiếp tục hiển thị tối đa một giờ kể từ lần kiểm tra Drive thành công. Không tạo bản mới từ metadata cũ. Lỗi mất quyền/401/403 xác định sẽ đóng truy cập; `/readyz` vẫn yêu cầu kết nối Drive mới, không coi cache là Drive sẵn sàng.
+- Volume `data` giữ tài khoản, phiên, khóa ký, token mã hóa và cache dẫn xuất. Cache có thể bỏ khỏi backup và tạo lại. `MEDIA_CACHE_MAX_BYTES` chỉnh dung lượng; `MEDIA_CACHE_ENABLED=0` dùng bộ đọc tương thích cũ chỉ trong RAM.
 
 ## Triển khai AMD64 / ARM64 / Raspberry Pi OS 64 bit
 
@@ -55,6 +62,6 @@ python3 -m venv .venv
 node --test game/tests-js/session-clock.test.cjs
 ```
 
-Tests Drive dùng provider giả lập để kiểm tra quyền quản trị, CSRF, consent/PKCE, mã hóa token, CRUD trên Drive, ảnh không spool xuống đĩa và migration trong RAM. CI không tải thư viện ảnh hoặc tạo release ảnh. Audit ảnh đầy đủ của bộ chuẩn đã được chạy trong pipeline trước khi chuyển kiến trúc; pipeline hiện tại không thay thế kiểm thử Drive thật sau khi cấp quyền.
+Tests Drive dùng provider giả lập để kiểm tra quyền quản trị, CSRF, consent/PKCE, mã hóa token, CRUD trên Drive, cache có phiên bản/ETag, cập nhật/xóa/mất quyền, và migration trong RAM. CI không tải thư viện ảnh hoặc tạo release ảnh. Audit ảnh đầy đủ của bộ chuẩn đã được chạy trong pipeline trước khi chuyển kiến trúc; pipeline hiện tại không thay thế kiểm thử Drive thật sau khi cấp quyền.
 
 Xem [tài nguyên Drive](docs/ASSETS.md), [triển khai/sao lưu](docs/DEPLOY.md) và [nguồn gốc](docs/PROVENANCE.md).

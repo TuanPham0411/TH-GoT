@@ -7,17 +7,18 @@
   <meta name="description" content="Game Of Thien — chơi, học và khám phá">
   <title>Game Of Thien</title>
   <link rel="stylesheet" href="{{ url_for('static',filename='css/app-v89.css') }}">
+<link rel="stylesheet" href="/static/css/learning-v10.css">
 </head>
-<body>
+<body class="learning-play"><a class="skip-link" href="#gamesView">Đến nội dung</a>
   <header class="topbar">
     <a class="brand" href="/" aria-label="Game Of Thien">
       <span class="brand-mark">T</span>
-      <span><b>GAME OF THIEN</b><small>PLAY · LEARN · DISCOVER</small></span>
+      <span><b>GAME OF THIÊN</b><small>KHU VƯỜN HỌC TẬP</small></span>
     </a>
     <nav class="main-nav" aria-label="Khu vực">
       <button class="nav-button active" data-view="games">Trò chơi</button>
       <button class="nav-button" data-view="library">Thư viện</button>
-      <button class="nav-button" data-view="design">Tài nguyên thiết kế</button>
+      <button class="nav-button" data-view="design">Hướng dẫn</button>
     </nav>
     <div class="header-actions">
       <span id="sessionChip" class="session-chip">Đang kiểm tra phiên…</span>
@@ -39,7 +40,7 @@
           <div class="hero-stats">
             <span><b>18</b> trò chơi</span>
             <span><b>10</b> chủ đề</span>
-            <span><b id="resourceCount">500+</b> tư liệu</span>
+            <span><b id="resourceCount">—</b> tư liệu</span>
           </div>
         </div>
         <div class="hero-visual" aria-hidden="true">
@@ -57,14 +58,14 @@
 
       <div class="section-heading">
         <div><span class="eyebrow">DANH SÁCH TRÒ CHƠI</span><h2>Chọn thử thách</h2></div>
-        <div class="filter-row" id="gameFilters">
+        <div><label class="profile-label" for="profilePicker">Nhóm tuổi gợi ý</label><select id="profilePicker" aria-label="Nhóm tuổi gợi ý"></select></div><div class="filter-row" id="gameFilters"><button class="filter" data-filter="recommended">Hợp với con</button>
           <button class="filter active" data-filter="all">Tất cả</button>
           <button class="filter" data-filter="learning">Học tập</button>
           <button class="filter" data-filter="thinking">Tư duy</button>
           <button class="filter" data-filter="action">Vận động</button>
         </div>
       </div>
-      <div id="gameGrid" class="game-grid" aria-live="polite"></div>
+      <p id="profileNote" class="profile-note"></p><div id="learningProgress" class="learning-progress" role="status">Chọn một trò để bắt đầu khám phá.</div><div id="gameGrid" class="game-grid" aria-live="polite"></div>
     </section>
 
     <section id="libraryView" class="view">
@@ -82,7 +83,7 @@
     </section>
 
     <section id="designView" class="view">
-      <div class="design-hero"><span class="eyebrow">KHO TÀI NGUYÊN</span><h1>Dành cho thiết kế game<br>và giao diện.</h1><p>Icon, model, map, NPC, trophy, animation, GIF, frame và theme được gom vào một nơi để xem trước và tái sử dụng.</p></div>
+      <div class="design-hero"><span class="eyebrow">ĐỒNG HÀNH CÙNG CON</span><h1>Mỗi bước nhỏ,<br>một điều hiểu thêm.</h1><p>Chọn trò theo hứng thú và giai đoạn học. Đọc hướng dẫn cùng trẻ, cho con thử, rồi hỏi “Vì sao con chọn thế?”. Không cần hoàn thành mọi trò trong một phiên.</p></div><div class="parent-notes"><article><h2>Học theo nhịp riêng</h2><p>Mẫu giáo: chơi cùng người lớn, ít lựa chọn, thao tác lớn. Tiểu học: tăng dần số lượng, suy luận và tự kiểm tra. Gợi ý độ tuổi không phải đánh giá năng lực.</p></article><article><h2>Nghỉ và trò chuyện</h2><p>Bắt đầu với 10 phút. Sau một lượt, nhìn xa, đứng dậy, tìm đồ vật thật hoặc kể lại từ vừa học. Phiên vẫn kết thúc đúng giờ khi đổi trò hay tải lại.</p></article><article><h2>Âm thanh &amp; dữ liệu</h2><p>Bấm loa để bật hoặc tắt âm. Giọng đọc tùy thiết bị; khi thiếu giọng, người lớn có thể đọc cùng. Không yêu cầu tài khoản Google riêng cho trẻ. Tổng kết chỉ trong trang đang mở.</p></article></div>
       <div id="designGrid" class="design-grid"></div>
     </section>
 
@@ -92,7 +93,7 @@
         <div><span id="gameKicker" class="eyebrow">TRÒ CHƠI</span><h2 id="gameTitle"></h2><p id="gameMeta"></p></div>
         <div class="game-status"><span>⭐ <b id="score">0</b></span><span>⏱ <b id="gameTime">--:--</b></span></div>
       </div>
-      <div id="stage" class="stage"></div>
+      <div class="play-support"><button id="helpButton" class="secondary-button">? Cách chơi</button><span id="learningGoal"></span></div><div id="stage" class="stage" aria-live="polite" aria-atomic="false"></div>
     </section>
   </main>
 
@@ -103,7 +104,7 @@
       <span class="eyebrow">CHUẨN BỊ TRÒ CHƠI</span>
       <h2 id="setupTitle"></h2>
       <p id="setupDescription"></p>
-      <div id="setupFields" class="setup-fields"></div>
+      <div id="setupGuide" class="game-guide"></div><div id="setupFields" class="setup-fields"></div>
       <button id="startButton" class="primary-button">Bắt đầu chơi →</button>
     </div>
   </div>
@@ -128,6 +129,6 @@
 
   <div id="toast" class="toast" role="status"></div>
   <script src="{{ url_for('static',filename='js/session-clock.js') }}?v=2"></script>
-  <script src="{{ url_for('static',filename='js/app-v89.js') }}?v=session-2"></script>
+  <script src="{{ url_for('static',filename='js/app-v89.js') }}?v=learning-10"></script>
 </body>
 </html>

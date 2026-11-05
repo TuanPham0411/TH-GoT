@@ -1,0 +1,300 @@
+{
+  "profiles": [
+    {
+      "id": "preschool",
+      "name": "Mẫu giáo",
+      "ages": "3–5 tuổi",
+      "difficulty": "easy",
+      "limit": 5,
+      "pairs": 3,
+      "choices": 2,
+      "note": "Cùng người lớn gọi tên, đếm đến 5, tìm màu và ghép hình 2 × 2. Bắt đầu với phiên 10 phút.",
+      "recommended": [
+        "colors",
+        "count",
+        "alphabet-vi",
+        "listen-image-vi",
+        "puzzle",
+        "memory",
+        "hidden-object"
+      ]
+    },
+    {
+      "id": "early-primary",
+      "name": "Lớp 1–2",
+      "ages": "6–7 tuổi",
+      "difficulty": "easy",
+      "limit": 20,
+      "pairs": 4,
+      "choices": 3,
+      "note": "Đọc chữ, đếm và cộng trừ trong phạm vi 20; tập phân loại, ghi nhớ và nghe tiếng Anh.",
+      "recommended": [
+        "alphabet-vi",
+        "alphabet-en",
+        "math-basic",
+        "count",
+        "image-answer",
+        "memory",
+        "match-transport",
+        "match-habitat",
+        "listen-image-en"
+      ]
+    },
+    {
+      "id": "middle-primary",
+      "name": "Lớp 3",
+      "ages": "8–9 tuổi",
+      "difficulty": "normal",
+      "limit": 100,
+      "pairs": 6,
+      "choices": 4,
+      "note": "Ôn nhân chia, quan sát quy luật, suy luận và giải thích lựa chọn của mình.",
+      "recommended": [
+        "math-basic",
+        "math-advanced",
+        "sudoku",
+        "puzzle",
+        "match-habitat",
+        "listen-image-en",
+        "tic-tac-toe"
+      ]
+    },
+    {
+      "id": "upper-primary",
+      "name": "Lớp 4–5",
+      "ages": "9–11 tuổi",
+      "difficulty": "hard",
+      "limit": 100,
+      "pairs": 8,
+      "choices": 4,
+      "note": "Tăng độ phức tạp của bài toán, luyện chiến lược và khả năng tự kiểm tra.",
+      "recommended": [
+        "math-advanced",
+        "sudoku",
+        "bomber",
+        "tic-tac-toe",
+        "puzzle",
+        "memory",
+        "space-shooter"
+      ]
+    }
+  ],
+  "guides": {
+    "listen-image-vi": {
+      "title": "Nghe và chọn hình",
+      "icon": "👂",
+      "goal": "Nhận biết từ vựng tiếng Việt qua âm thanh.",
+      "steps": [
+        "Bấm loa để nghe tên.",
+        "Quan sát các hình rồi chạm hình phù hợp.",
+        "Chưa đúng thì nghe lại và thử tiếp."
+      ],
+      "controls": "Chạm, nhấp chuột hoặc Tab rồi Enter.",
+      "parent": "Hỏi trẻ: “Con nhìn thấy đặc điểm nào?”"
+    },
+    "listen-image-en": {
+      "title": "Đôi tai tiếng Anh",
+      "icon": "🎧",
+      "goal": "Làm quen từ tiếng Anh và liên hệ với hình ảnh.",
+      "steps": [
+        "Chọn chủ đề quen thuộc.",
+        "Nghe từ tiếng Anh; bấm loa để nghe lại.",
+        "Chọn hình, rồi cùng đọc lại từ đó."
+      ],
+      "controls": "Chạm hình hoặc dùng Tab và Enter.",
+      "parent": "Bắt đầu với 2–3 hình, không yêu cầu trẻ đọc chữ."
+    },
+    "image-answer": {
+      "title": "Hình này tên gì?",
+      "icon": "🦁",
+      "goal": "Liên hệ hình ảnh với từ ngữ và luyện đọc.",
+      "steps": [
+        "Nhìn kỹ hình ở giữa.",
+        "Đọc hoặc nghe các tên gợi ý.",
+        "Chọn tên phù hợp với hình."
+      ],
+      "controls": "Chạm đáp án; nút loa hỗ trợ trẻ chưa đọc thạo.",
+      "parent": "Mời trẻ đặt một câu với từ vừa học."
+    },
+    "count": {
+      "title": "Đếm cùng mình",
+      "icon": "🔢",
+      "goal": "Đếm từng vật, hiểu số lượng và tránh đếm lặp.",
+      "steps": [
+        "Chỉ lần lượt vào từng hình.",
+        "Nói các số theo thứ tự.",
+        "Chọn số bằng tổng số hình."
+      ],
+      "controls": "Chạm từng hình để đánh dấu đã đếm; chọn số ở dưới.",
+      "parent": "Cho trẻ dùng ngón tay hoặc vật thật để kiểm tra."
+    },
+    "puzzle": {
+      "title": "Xưởng ghép hình",
+      "icon": "🧩",
+      "goal": "Quan sát toàn thể, bộ phận và vị trí trong không gian.",
+      "steps": [
+        "Xem hình mẫu.",
+        "Chạm một mảnh rồi chạm mảnh khác để đổi chỗ.",
+        "Lặp lại đến khi hình khớp mẫu."
+      ],
+      "controls": "Chạm hai mảnh, hoặc Tab và Enter.",
+      "parent": "Gợi ý tìm góc và đường viền trước."
+    },
+    "sudoku": {
+      "title": "Ô số thông minh",
+      "icon": "▦",
+      "goal": "Suy luận loại trừ và kiểm tra quy luật.",
+      "steps": [
+        "Mỗi hàng, cột và vùng chỉ có một lần mỗi số.",
+        "Chạm ô trống nhiều lần để đổi số.",
+        "Bấm Kiểm tra; chỉnh các ô được đánh dấu."
+      ],
+      "controls": "Chạm ô để đổi số; không thay ô đã cho.",
+      "parent": "Phù hợp khi trẻ đã hiểu số và quy tắc không lặp."
+    },
+    "alphabet-vi": {
+      "title": "Vườn chữ Việt",
+      "icon": "Ă",
+      "goal": "Nhận diện 29 chữ cái tiếng Việt.",
+      "steps": [
+        "Chạm một chữ để nghe tên.",
+        "Tìm chữ đó trong tên của mình.",
+        "Bấm đọc cả bảng khi muốn nghe theo thứ tự."
+      ],
+      "controls": "Chạm chữ; có thể nghe lại nhiều lần.",
+      "parent": "Tên chữ khác âm khi đánh vần; người lớn hướng dẫn theo bài học ở lớp."
+    },
+    "alphabet-en": {
+      "title": "ABC khám phá",
+      "icon": "A",
+      "goal": "Nhận diện 26 chữ cái và tên chữ tiếng Anh.",
+      "steps": [
+        "Chạm một chữ để nghe.",
+        "Đọc theo và quan sát hình dạng.",
+        "Tìm chữ tiếp theo trong bảng."
+      ],
+      "controls": "Chạm chữ hoặc Tab và Enter.",
+      "parent": "Học vài chữ mỗi lần; phân biệt tên chữ và âm trong từ."
+    },
+    "memory": {
+      "title": "Đôi bạn trí nhớ",
+      "icon": "🃏",
+      "goal": "Ghi nhớ vị trí, chú ý và so sánh.",
+      "steps": [
+        "Lật hai thẻ.",
+        "Hai hình giống nhau sẽ được giữ mở.",
+        "Nhớ vị trí và tìm đủ các cặp."
+      ],
+      "controls": "Chạm hai thẻ; chờ chúng lật lại trước lượt tiếp.",
+      "parent": "Gọi tên hình sau mỗi cặp, không cần chơi nhanh."
+    },
+    "bomber": {
+      "title": "Khu vườn ô số",
+      "icon": "🌱",
+      "goal": "Dùng số ô lân cận để suy luận vị trí cần tránh.",
+      "steps": [
+        "Mở một ô; lượt đầu luôn an toàn.",
+        "Số cho biết có bao nhiêu ô đá quanh nó.",
+        "Bật Đánh dấu để cắm cờ, rồi mở hết ô an toàn."
+      ],
+      "controls": "Nút Mở ô / Đánh dấu dùng trên cả điện thoại; chuột phải cũng cắm cờ.",
+      "parent": "Dành cho trẻ lớn: cùng phân tích từng bước, không đoán khi có thể suy luận."
+    },
+    "hidden-object": {
+      "title": "Thám tử tí hon",
+      "icon": "🔎",
+      "goal": "Quan sát chi tiết và phân biệt hình với nền.",
+      "steps": [
+        "Nhìn hình mẫu ở đầu tranh.",
+        "Tìm những hình giống mẫu trong cảnh.",
+        "Chạm mỗi hình một lần đến khi tìm đủ."
+      ],
+      "controls": "Chạm hình trong tranh; không cần kéo.",
+      "parent": "Hướng dẫn quét từ trái sang phải, trên xuống dưới."
+    },
+    "tic-tac-toe": {
+      "title": "Cờ cùng bạn",
+      "icon": "⭕",
+      "goal": "Lập kế hoạch, luân phiên và tôn trọng bạn chơi.",
+      "steps": [
+        "Hai bạn lần lượt đặt X và O.",
+        "Nối đủ số quân theo hàng, cột hoặc chéo.",
+        "Nếu kín bàn mà chưa có người thắng thì hòa."
+      ],
+      "controls": "Hai người dùng chung màn hình; chạm ô trống.",
+      "parent": "Hỏi trẻ muốn bảo vệ vị trí nào trước khi đặt quân."
+    },
+    "colors": {
+      "title": "Phòng sắc màu",
+      "icon": "🎨",
+      "goal": "Nhận biết và gọi tên màu quen thuộc.",
+      "steps": [
+        "Nhìn mảng màu và nghe tên.",
+        "Tìm mảng màu giống mẫu.",
+        "Nói một đồ vật ngoài đời có màu đó."
+      ],
+      "controls": "Chạm màu hoặc Tab và Enter; tên màu luôn đi kèm.",
+      "parent": "Màu không phải dấu hiệu phản hồi duy nhất: có chữ và biểu tượng."
+    },
+    "math-basic": {
+      "title": "Toán từng bước",
+      "icon": "➕",
+      "goal": "Hiểu cộng là thêm vào, trừ là bớt đi.",
+      "steps": [
+        "Đọc phép tính hoặc bấm loa.",
+        "Dùng hình chấm gợi ý để tính.",
+        "Chọn kết quả và kiểm tra lại."
+      ],
+      "controls": "Chạm đáp án; nút Gợi ý giúp hình dung.",
+      "parent": "Mẫu giáo dùng số nhỏ; lớp 1–2 tính trong 20; không bấm giờ từng câu."
+    },
+    "math-advanced": {
+      "title": "Thử thách nhân chia",
+      "icon": "✖",
+      "goal": "Hiểu nhóm bằng nhau, bảng nhân và chia hết.",
+      "steps": [
+        "Quan sát phép nhân hoặc chia.",
+        "Dùng gợi ý nhóm để tìm kết quả.",
+        "Chọn kết quả rồi giải thích cách tính."
+      ],
+      "controls": "Chạm đáp án hoặc nghe lại câu hỏi.",
+      "parent": "Dành cho trẻ đã học nhân chia, thường từ lớp 2–3; không có phép chia cho 0."
+    },
+    "match-transport": {
+      "title": "Phương tiện đi đâu?",
+      "icon": "🚲",
+      "goal": "Phân loại phương tiện theo môi trường di chuyển.",
+      "steps": [
+        "Chọn phương tiện bên trái.",
+        "Chọn môi trường phù hợp bên phải.",
+        "Nối đủ các cặp."
+      ],
+      "controls": "Chạm lần lượt hai thẻ, hoặc kéo thả trên máy tính.",
+      "parent": "Nói rõ khác biệt giữa đường bộ, đường sắt, đường thủy và hàng không."
+    },
+    "match-habitat": {
+      "title": "Ngôi nhà muôn loài",
+      "icon": "🌍",
+      "goal": "Liên hệ con vật với môi trường sống phù hợp.",
+      "steps": [
+        "Gọi tên con vật.",
+        "Đọc tên các môi trường bên phải.",
+        "Chọn môi trường tự nhiên phù hợp nhất."
+      ],
+      "controls": "Chạm hai thẻ hoặc kéo thả.",
+      "parent": "Một loài có thể sống ở nhiều nơi; giải thích lựa chọn theo loài trong hình."
+    },
+    "space-shooter": {
+      "title": "Du hành vũ trụ",
+      "icon": "🚀",
+      "goal": "Luyện phối hợp tay mắt và quan sát chuyển động.",
+      "steps": [
+        "Dùng mũi tên để lái tàu.",
+        "Tránh thiên thạch và đón ngôi sao nâng cấp.",
+        "Dừng sau một lượt và cùng kể về chuyến đi."
+      ],
+      "controls": "Phím mũi tên, nút trên màn hình hoặc kéo trong khung chơi.",
+      "parent": "Hoạt động bổ trợ phối hợp, không thay thế bài học khoa học. Có thể tắt âm thanh."
+    }
+  }
+}

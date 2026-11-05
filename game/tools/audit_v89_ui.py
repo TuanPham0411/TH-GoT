@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -12,7 +13,7 @@ failures: list[str] = []
 
 def require(source: str, tokens: tuple[str, ...], label: str) -> None:
     for token in tokens:
-        if token not in source:
+        if token not in source and re.sub(r'\s+', '', token) not in re.sub(r'\s+', '', source):
             failures.append(f"{label}: missing {token}")
 
 
@@ -24,7 +25,7 @@ require(template, (
 require(script, (
     "itemSpeechText", "speakItem", 'lang==="en"?"en-US":"vi-VN"',
     "library-card-open", "card-speak vi", "card-speak en",
-    'data-lang="vi"', 'data-lang="en"', "speechSynthesis.cancel()",
+    'data-lang="vi"', 'data-lang="en"', "speechSynthesis?.cancel()",
     "FACT_ICONS", "factIcon(f)",
 ), "javascript")
 require(styles, (

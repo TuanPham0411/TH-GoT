@@ -19,6 +19,7 @@ import drive_store
 app = Flask(__name__,root_path=str(Path(__file__).resolve().parent))
 ROOT = Path(__file__).resolve().parent
 RESOURCE = ROOT / "resource"
+EDUCATION = json.loads((ROOT / "education.json").read_text(encoding="utf-8"))
 class MemoryRequest(Request):
     def _get_file_stream(self, total_content_length, content_type, filename=None, content_length=None):
         return io.BytesIO()
@@ -42,7 +43,7 @@ def load_json(path, default=None):
 
 @app.get("/")
 def index():
-    return render_template("landing.html", game_library=load_json(RESOURCE / "games.json").get("games", []))
+    return render_template("landing.html", game_library=load_json(RESOURCE / "games.json").get("games", []), education=EDUCATION)
 
 @app.get('/play')
 def play():
@@ -66,9 +67,12 @@ def create_session():
     minutes=payload.get('duration_minutes')
     if type(minutes) is not int or minutes not in (10,20,30,40,50,60):
         return jsonify(ok=False,message='Chọn thời lượng 10, 20, 30, 40, 50 hoặc 60 phút'),400
+    profile=payload.get('profile','early-primary')
+    if not isinstance(profile,str) or profile not in {p['id'] for p in EDUCATION['profiles']}:
+        return jsonify(ok=False,message='Vui lòng chọn nhóm tuổi phù hợp'),400
     games=load_json(RESOURCE/'games.json',{}).get('games',[])
     games=[{'id':game['id'],'name':game['name'].get('vi',game['id'])} for game in games if game.get('enabled',True)]
-    config={'version':2,'games':games,'duration_minutes':minutes,'total_duration_minutes':minutes}
+    config={'version':3,'profile':profile,'games':games,'duration_minutes':minutes,'total_duration_minutes':minutes}
     token=secrets.token_urlsafe(32)
     created=datetime.now(timezone.utc).replace(microsecond=0)
     expires=created+timedelta(minutes=minutes)
@@ -104,6 +108,15 @@ def resource_file(name):
 def drive_image(path, thumbnail=False):
     if not drive_store.valid_path(path):
         abort(404)
+    cache=getattr(drive_store.store(),'view_cache',None)
+    if cache:
+        file,mime,etag,state=cache.image(path,thumbnail)
+        response=send_file(file,mimetype=mime,conditional=True,etag=etag,max_age=0)
+        response.headers['Cache-Control']='public, max-age=0, must-revalidate'
+        response.headers['X-Resource-Cache']=state
+        if state=='stale':response.headers['Warning']='110 - "Using a verified cached display copy"'
+        if mime=='image/svg+xml':response.headers['Content-Security-Policy']="sandbox; default-src 'none'; style-src 'unsafe-inline'"
+        return response
     body, mime = drive_store.store().read(path)
     if not mime.startswith('image/'):
         abort(415)
@@ -141,6 +154,7 @@ def resource_thumbnail(name):
 @app.get("/api/bootstrap")
 def bootstrap():
     return jsonify({
+        "education": EDUCATION,
         "manifest": load_json(RESOURCE / "manifest.json", {}),
         "topics": load_json(RESOURCE / "topics.json", {}).get("topics", []),
         "games": load_json(RESOURCE / "games.json", {}).get("games", []),
@@ -210,6 +224,8 @@ def health():
 @app.get('/readyz')
 def media_ready():
     from drive_migration import MARKER
+    cache=getattr(drive_store.store(),'view_cache',None)
+    if cache and cache.refresh(force=True):raise drive_store.DriveUnavailable('Drive is temporarily unavailable; cached pictures remain available')
     marker = drive_store.store().document(MARKER)
     drive_store.store().document('resource/manifest.json')
     return jsonify(ok=marker.get('schema') == 1), 200 if marker.get('schema') == 1 else 503
@@ -242,7 +258,8 @@ def cache_and_security_headers(response):
         response.headers["Cache-Control"] = "no-store"
         return response
     if response.status_code == 200 and request_path.startswith(('/resource/images/', '/static/images/', '/thumb/')):
-        response.headers['Cache-Control'] = 'no-store'
+        if 'X-Resource-Cache' not in response.headers:
+            response.headers['Cache-Control'] = 'no-store'
     elif response.status_code == 200 and request_path.startswith("/resource/"):
         response.headers["Cache-Control"] = "no-store"
     elif response.status_code == 200 and request_path.startswith("/static/"):

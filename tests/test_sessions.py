@@ -54,3 +54,20 @@ class SessionTests(ApplicationTest):
         html=self.client.get('/play').data
         self.assertIn(b'session-clock.js',html)
         self.assertNotIn(b'GOT_PORTAL_ORIGIN',html)
+
+    def test_educational_profiles_are_validated_and_do_not_remove_games(self):
+        self.google_login()
+        with self.client.session_transaction() as session:csrf=session['csrf']
+        data=self.client.get('/api/bootstrap').json
+        self.assertEqual(len(data['education']['profiles']),4)
+        ids={g['id'] for g in data['games']}
+        self.assertEqual(set(data['education']['guides']),ids)
+        for profile in data['education']['profiles']:
+            self.assertTrue(set(profile['recommended'])<=ids)
+            response=self.client.post('/api/sessions',json={'csrf':csrf,'duration_minutes':10,'profile':profile['id']})
+            token=response.json['launch_url'].split('session=')[1]
+            config=self.client.get('/api/sessions/'+token).json['config']
+            self.assertEqual(config['profile'],profile['id'])
+            self.assertEqual(len(config['games']),18)
+        for value in ('unknown',None,[],{},True):
+            self.assertEqual(self.client.post('/api/sessions',json={'csrf':csrf,'duration_minutes':10,'profile':value}).status_code,400)

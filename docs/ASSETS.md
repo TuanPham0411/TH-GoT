@@ -1,6 +1,6 @@
-# Drive là nơi lưu ảnh duy nhất
+# Drive là nguồn gốc, Pi giữ bản hiển thị nhanh
 
-App không tải gói ảnh về volume, không cài `.assets`, không ghi thumbnail xuống đĩa và không chơi bằng cache offline. Ảnh được đọc từ Drive khi hiển thị. Thumbnail và upload chỉ được xử lý trong RAM, tối đa 32 MB cho mỗi ảnh; phản hồi ảnh dùng `Cache-Control: no-store`. App không có service worker, IndexedDB hay Cache Storage để lưu ảnh.
+Ảnh gốc và các tài liệu nội dung nằm trên Drive. `/data/display-cache` chứa bản WebP dẫn xuất có giới hạn 256 MiB và ánh xạ ID/phiên bản/checksum. Không tải archive hoặc giữ bản gốc trên Pi. Xem cơ chế làm mới 60 giây, xử lý lỗi mạng và mất quyền trong [README](../README.md). Có thể xóa riêng thư mục cache khi app dừng để tạo lại; không xóa database hoặc khóa.
 
 ## Thư mục và dữ liệu ban đầu
 
@@ -35,6 +35,6 @@ Tác vụ có thể tốn thời gian và quota Drive. Nếu container restart h
 
 Khi xóa, app bỏ tài nguyên khỏi chủ đề trên Drive rồi chuyển ảnh không còn được tài liệu khác tham chiếu vào thùng rác Drive. Tệp đang dùng ở tài liệu khác được giữ. Drive không có transaction bao trùm nhiều tệp: nếu một bước gặp lỗi mạng, kiểm tra trạng thái trên trang quản trị trước khi thử lại; app không xóa ảnh cũ trước khi ghi tài liệu mới.
 
-Dữ liệu ảnh, tài liệu đang sửa và marker đều nằm trên Drive. Volume `data` chỉ chứa dữ liệu tài khoản, phiên và kết nối OAuth đã mã hóa. Không mount volume ảnh cũ vào bản mới. Chỉ xóa volume ảnh cũ sau khi đã xác minh Drive và sao lưu phù hợp; không tự xóa volume người dùng.
+Dữ liệu ảnh, tài liệu đang sửa và marker đều nằm trên Drive. Volume `data` chứa tài khoản, phiên, kết nối OAuth đã mã hóa và cache hiển thị có thể tạo lại. Không mount volume ảnh cũ vào bản mới. Chỉ xóa volume ảnh cũ sau khi đã xác minh Drive và sao lưu phù hợp; không tự xóa volume người dùng.
 
-Mất quyền Drive, hết quota hoặc mất mạng: API trả lỗi 503; không phục vụ ảnh cũ từ đĩa. Kết nối lại Drive bằng tài khoản quản trị để khôi phục quyền truy cập.
+Mất quyền Drive: API trả 503 sau khi phát hiện. Lỗi mạng/quota tạm thời chỉ cho phép đọc bản đã xác minh trong giới hạn một giờ; ảnh chưa cache vẫn trả 503. Kết nối lại Drive bằng tài khoản quản trị để khôi phục quyền truy cập.
