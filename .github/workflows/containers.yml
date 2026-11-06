@@ -29,6 +29,8 @@ jobs:
             sleep 1
           done
           node tests/browser_learning.cjs
+          node tests/browser_world.cjs
+          node tests/browser_parents.cjs
   build:
     runs-on: ubuntu-latest
     permissions:
