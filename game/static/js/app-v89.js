@@ -395,6 +395,7 @@ async function init() {
     ]);
     State.bootstrap = bootstrap;
     State.session = session;
+    if(session && !session.error){const token=new URLSearchParams(location.search).get("session");if(token)sessionStorage.setItem("got-world-session",token);}
     State.hiddenScenes = hiddenData.scenes || [];
     $("#resourceCount").textContent =
       bootstrap.manifest?.counts?.items || "500+";
@@ -2501,4 +2502,4 @@ function renderDesign() {
     .join("");
 }
 
-init();
+init().then(()=>{if(new URLSearchParams(location.search).get("view")==="library")document.querySelector('[data-view="library"]')?.click();});

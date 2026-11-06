@@ -30,6 +30,8 @@ app.config['MAX_CONTENT_LENGTH'] = drive_store.MAX_IMAGE + 1024 * 1024
 app.config['RESOURCE_ROOT'] = RESOURCE
 app.config['DRIVE_ARCHIVE_LOCK'] = Path(os.environ.get('DRIVE_ARCHIVE_LOCK', str(ROOT.parent / 'assets.lock.json' if (ROOT.parent / 'assets.lock.json').is_file() else ROOT / 'assets.lock.json')))
 drive_store.register(app)
+import learning_world
+learning_world.register(app)
 with app.app_context(), connect() as connection:
     connection.execute('CREATE TABLE IF NOT EXISTS game_sessions(token TEXT PRIMARY KEY,user_id INTEGER NOT NULL REFERENCES users(id),config_json TEXT NOT NULL,created_at TEXT NOT NULL,expires_at TEXT NOT NULL)')
 
@@ -43,6 +45,10 @@ def load_json(path, default=None):
 
 @app.get("/")
 def index():
+    return render_template("world.html", profiles=learning_world.PROFILES, subjects=learning_world.SUBJECTS, is_admin=drive_store.admin())
+
+@app.get("/classic")
+def classic_landing():
     return render_template("landing.html", game_library=load_json(RESOURCE / "games.json").get("games", []), education=EDUCATION)
 
 @app.get('/play')
@@ -82,10 +88,12 @@ def create_session():
 
 @app.get('/api/sessions/<token>')
 def game_session(token):
+    if not user():
+        return jsonify(ok=False,message='Vui lòng đăng nhập Google'),401
     if not 32<=len(token)<=96:
         return jsonify(ok=False,message='Phiên không tồn tại'),404
     with connect() as connection:
-        row=connection.execute('SELECT * FROM game_sessions WHERE token=?',(token,)).fetchone()
+        row=connection.execute('SELECT * FROM game_sessions WHERE token=? AND user_id=?',(token,user()['id'])).fetchone()
     if not row:
         return jsonify(ok=False,message='Phiên không tồn tại'),404
     if datetime.fromisoformat(row['expires_at'])<=datetime.now(timezone.utc):

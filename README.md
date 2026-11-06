@@ -1,12 +1,24 @@
-# TH-GoT — Game Of Thiên
+# TH-GoT — Thế giới học tập của bé
 
-18 trò chơi và thư viện học tập miễn phí tại **https://got.th.io.vn**. Google login bắt buộc để mở phiên; mỗi phiên mở đủ 18 game trong 10/20/30/40/50/60 phút. Đổi game hoặc reload không kéo dài deadline. Không thanh toán, subscription hay unlock; không gọi backend hoặc tài khoản của website cũ.
+**https://got.th.io.vn**: học, chơi, đọc truyện và sáng tạo từ mẫu giáo đến lớp 5.
 
-## Học từ mẫu giáo đến tiểu học
+- 48 hoạt động mới trong sáu lĩnh vực, cộng 18 trò kinh điển tại `/play`: toán, tiếng Việt, khoa học, ứng xử, tư duy và sáng tạo. Các cơ chế gồm chọn đáp án, xếp trình tự, robot theo lệnh, nhịp điệu, tranh đối xứng, nhật ký và cầu trên lưới. Đây là hoạt động bổ trợ, không phải chứng nhận hoàn thành chương trình phổ thông.
+- Bốn nhóm tuổi điều chỉnh phạm vi số, số lựa chọn và nội dung gợi ý. Đồng hồ 10–60 phút được xác minh trên máy chủ và giữ nguyên khi chuyển vùng hoặc tải lại. Phiên thuộc về tài khoản đã đăng nhập; không dùng phiên của tài khoản khác.
+- 16 bản kể ngắn, phỏng tác nhẹ nhàng từ truyện Việt Nam và tác phẩm gốc thuộc phạm vi công cộng; mỗi truyện bốn trang, có câu hỏi suy ngẫm. Không chép bản dịch hiện đại. Một số tình tiết/kết thúc được điều chỉnh và được giải thích trong lời kể; đây không phải bản văn nguyên tác.
+- Minh họa dùng ảnh gốc sẵn có trên Drive, khung cảnh chuyển động có nút tắt và hỗ trợ giảm chuyển động. Giọng kể ưu tiên giọng Việt trên thiết bị, có giọng dự phòng trên máy chủ. Xưởng sáng tạo cho phép viết tiếp khung chuyện, vẽ, kể hoặc ghi chép; bản viết và tranh của trẻ không tự gửi lên máy chủ.
+- Font Noto Sans tự lưu trữ, gồm đầy đủ chữ tiếng Việt, giấy phép OFL trong `game/static/fonts`. Trình duyệt tải WOFF2; bản TTF phục vụ kiểm tra đầy đủ glyph. Khung ảnh thư viện có kích thước độc lập với khối chữ.
 
-Bốn nhóm gợi ý: mẫu giáo 3–5 tuổi, lớp 1–2, lớp 3, lớp 4–5. Người lớn chọn nhóm và thời lượng; nhóm tuổi định hướng độ khó, số đáp án, số cặp thẻ và phạm vi số. Cả 18 trò vẫn có sẵn. Mỗi trò có mục tiêu, ba bước chơi, thao tác và gợi ý đồng hành trong `game/education.json`. Đây là hoạt động bổ trợ; người lớn chọn theo mức sẵn sàng thực tế của trẻ.
+## Quản trị sau đăng nhập
 
-Phiên mặc định 10 phút, có tổng kết số lượt trong trang đang mở, không xếp hạng trẻ hay thu thập hồ sơ trẻ. Đồng hồ máy chủ vẫn giữ deadline khi đổi trò hoặc tải lại. Trang hướng dẫn mở công khai. Bàn phím, màn hình cảm ứng, tắt âm và giảm chuyển động được hỗ trợ; giọng đọc tùy khả năng thiết bị.
+Tài khoản thuộc `ADMIN_EMAILS` mở `/parents`:
+
+1. **Kết nối & AI**: cấu hình OpenAI hoặc Gemini riêng cho GoT. Key được mã hóa bằng khóa riêng của ứng dụng, không trả lại qua API và không gửi cho trẻ. Bật AI rồi bấm tạo bản nháp sẽ gọi nhà cung cấp và có thể phát sinh phí. Trẻ dùng các bài đã duyệt, không có chat AI tự do.
+2. **Truyện & bài học**: tự viết hoặc nhờ AI soạn theo nhóm tuổi; sửa bằng biểu mẫu, kiểm tra kiến thức và sự phù hợp, lưu bản nháp rồi xác nhận duyệt. Bản nháp chỉ quản trị viên thấy. Xuất bản/gỡ cần Drive xác nhận trước khi cập nhật bản đang hiển thị. Có thể tiếp tục thêm nội dung, không khóa danh mục ở số lượng trò ban đầu.
+3. **Kênh YouTube**: cấu hình YouTube Data API v3 key, thêm link `youtube.com/@handle` hoặc `/channel/UC…`, chọn nhóm tuổi, bật/tắt, sửa tên hay xóa kênh. Đồng bộ tối đa 50 video công khai mới nhất của từng kênh. Chỉ nhận video có ID kênh khớp, cho phép nhúng, không phát trực tiếp và không bị API đánh dấu giới hạn tuổi. Không coi bộ lọc API là đánh giá đầy đủ nội dung cho từng trẻ; quản trị viên chọn kênh phù hợp.
+
+Khu xem chỉ nhận video trong danh sách phía máy chủ và đúng nhóm tuổi của phiên. Không có tìm kiếm/link tùy ý. Khung nhúng `youtube-nocookie` không nhận tương tác trực tiếp, không mở popup/điều hướng trang chính; dùng các nút của GoT. Dừng khi hết phiên, khi phát xong hoặc phát hiện ID video khác lựa chọn. Kiểm tra quyền lại mỗi 15 giây để áp dụng việc tắt/xóa kênh. **YouTube vẫn có thể hiển thị quảng cáo và nội dung từ dịch vụ của họ; GoT không thể cam kết toàn bộ khung hình thuộc kênh đã duyệt hoặc thay thế bộ lọc thiết bị/mạng.** Nếu cần loại bỏ hoàn toàn bên thứ ba, giữ khu video tắt và dùng tài nguyên tự quản trên Drive.
+
+Tài khoản, cấu hình, khóa mã hóa, bản nháp và tiến trình tổng hợp nằm trong volume `/data` cần sao lưu riêng. Nội dung quản trị xuất bản được ghi thêm vào `world/published.json` trên Drive; bản SQLite được cập nhật sau khi Drive xác nhận. Bản vẽ/nhật ký của trẻ không được lưu phía máy chủ; chỉ có số lượt hoàn thành hoạt động theo tài khoản, không có bảng xếp hạng hay hồ sơ định danh riêng của trẻ. Giữ khóa phiên khi khôi phục backup để giải mã cấu hình hiện có.
 
 ## Ảnh gốc trên Drive, bản hiển thị nhanh trên Pi
 

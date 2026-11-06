@@ -2,6 +2,7 @@ import sys,json,os,tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'tests'),str(ROOT/'game')]
+os.environ['ADMIN_EMAILS']='person@example.invalid'
 from test_auth import ApplicationTest
 case=ApplicationTest();case.setUp();case.google_login()
 with case.client.session_transaction() as session:csrf=session['csrf']

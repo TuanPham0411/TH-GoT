@@ -9,7 +9,7 @@ class SessionTests(ApplicationTest):
         self.assertEqual(self.client.post('/api/sessions',json={'duration_minutes':30}).status_code,401)
         self.google_login()
         page=self.client.get('/').data.decode()
-        self.assertIn('gotSessionDuration',page)
+        self.assertIn('worldDuration',page)
         self.assertNotIn('name="game"',page)
         self.assertNotIn('thienha.io.vn',page)
 
@@ -30,7 +30,7 @@ class SessionTests(ApplicationTest):
                 self.assertEqual(self.client.get('/api/sessions/'+token).json['expires_at'],result['expires_at'])
         with self.app.app_context(),auth.connect() as connection:
             tables={row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
-        self.assertEqual(tables,{'users','game_sessions','drive_connection'})
+        self.assertEqual(tables,{'users','game_sessions','drive_connection','world_documents','world_rounds','world_progress','world_requests'})
 
     def test_csrf_limits_and_expiration(self):
         self.google_login()
