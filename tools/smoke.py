@@ -19,8 +19,10 @@ for lang in ('vi','en'):
     with wave.open(io.BytesIO(get('/api/tts?text=Xin%20chao&lang='+lang))) as audio:assert audio.getnframes()>0
 try:
     get('/api/sessions/'+'x'*32);raise AssertionError('Unknown session accepted')
-except HTTPError as e:assert e.code==404
-print('PASS: web/database, introduction/play pages, 18 games, 10 topics, VI/EN WAV, local sessions API')
+except HTTPError as e:assert e.code==401  # Anonymous callers must sign in before inspecting sessions.
+world=json.loads(get('/api/world/catalog'));assert len(world['activities'])>=48 and len(world['stories'])>=16
+for weight in ('Regular','Bold'):assert get('/static/fonts/NotoSans-'+weight+'.woff2')[:4]==b'wOF2'
+print('PASS: web/database, world/classic pages, learning catalog, Vietnamese fonts, VI/EN WAV and authenticated sessions API')
 if a.media:
     assert json.loads(get('/readyz'))['ok']
     image=json.loads(get('/api/topic/'+data['topics'][0]['id']))['items'][0]['image']
