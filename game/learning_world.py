@@ -105,6 +105,8 @@ def ai_generate(kind,profile,topic):
  return validate_draft(kind,result,profile)
 
 def register(app):
+ import realm_media
+ realm_media.register(app)
  @app.before_request
  def world_size_limit():
   if request.path.startswith('/api/world/') and request.content_length and request.content_length>60000:abort(413)

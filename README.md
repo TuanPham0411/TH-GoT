@@ -77,3 +77,25 @@ node --test game/tests-js/session-clock.test.cjs
 Tests Drive dùng provider giả lập để kiểm tra quyền quản trị, CSRF, consent/PKCE, mã hóa token, CRUD trên Drive, cache có phiên bản/ETag, cập nhật/xóa/mất quyền, và migration trong RAM. CI không tải thư viện ảnh hoặc tạo release ảnh. Audit ảnh đầy đủ của bộ chuẩn đã được chạy trong pipeline trước khi chuyển kiến trúc; pipeline hiện tại không thay thế kiểm thử Drive thật sau khi cấp quyền.
 
 Xem [tài nguyên Drive](docs/ASSETS.md), [triển khai/sao lưu](docs/DEPLOY.md) và [nguồn gốc](docs/PROVENANCE.md).
+
+### Miền Diệu Kỳ — illustrated realm
+
+The child entrance is now a panoramic floating-island map with native touch/mouse panning,
+keyboard movement, large landmark portals, a fox guide, a backpack for adult session controls,
+and opt-in original WebAudio music. Reduced motion and muting are available at any time.
+The library retains its existing Drive documents, bilingual labels and bounded image cache.
+The activity engines, server-owned session deadlines, parent-only AI review and verified
+YouTube channel allowlist remain in force.
+
+`game/realm-assets.json` pins original commissioned/generated PNG artwork and first-party
+8-second 2D motion films by SHA256. Originals live on Drive, not in the application image.
+`/world-assets/<id>` verifies a source before generating a disposable WebP or range-capable
+MP4 copy; the 96 MiB cache rechecks Drive metadata and never accepts arbitrary paths.
+The films use animated painted scenes and an original synthesized score, not recorded footage
+or a generative video model. Render with `tools/render_realm_films.cjs` and encode with
+`tools/encode_realm_films.py`; source paths are supplied locally and never contain credentials.
+
+Story editions and abridgement notes are visible in the reader. `docs/story-sources.json`
+records references checked against the retellings; source type and variant matter. Older tales
+with threatening events are assigned to older readers and labelled for reading with adults.
+The artwork is a new illustration, not a reproduction from the cited edition.

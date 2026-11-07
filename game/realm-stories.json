@@ -1,0 +1,693 @@
+[
+  {
+    "id": "cay-khe",
+    "title": "Cây khế",
+    "origin": "Việt Nam",
+    "value": "Điều gì khác nhau giữa hai chiếc túi?",
+    "profiles": [
+      "early-primary",
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "Ăn khế trả vàng · văn bản dân gian trên Wikisource · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://vi.wikisource.org/wiki/Ăn_khế_trả_vàng",
+    "editionNote": "Có kết cục người anh rơi xuống biển; nên đọc cùng người lớn. Giữ kết thúc của văn bản đối chiếu, không thay bằng một kết thúc có hậu.",
+    "atlas": "atlas-1",
+    "atlasRow": 0,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Cây khế nhỏ",
+        "text": "Cha mẹ mất, người anh lấy phần lớn gia tài. Người em chỉ còn một túp lều và cây khế. Hai vợ chồng chăm cây, chờ mùa quả chín. Một hôm, chim lớn bay đến ăn khế. Người em than rằng nhà mình chỉ trông vào cây ấy để sống."
+      },
+      {
+        "title": "Chiếc túi ba gang",
+        "text": "Chim đáp: “Ăn một quả, trả cục vàng. May túi ba gang, mang đi mà đựng.” Người em làm đúng lời dặn. Chim đưa chàng qua biển đến nơi có vàng. Chàng lấy vừa chiếc túi nhỏ rồi theo chim trở về. Từ đó, vợ chồng có cuộc sống đủ đầy."
+      },
+      {
+        "title": "Đổi nhà lấy khế",
+        "text": "Nghe chuyện, người anh đòi đổi gia tài lấy cây khế. Người em bằng lòng. Khi chim lại đến, người anh cũng than nghèo. Nhưng thay vì chiếc túi ba gang, anh may túi rất lớn. Đến nơi có vàng, anh nhét đầy túi rồi còn giắt thêm vào người."
+      },
+      {
+        "title": "Chuyến bay nặng trĩu",
+        "text": "Trên đường về, chim chở quá nặng, phải nhắc người anh bỏ bớt vàng. Anh vẫn không chịu buông. Chim nghiêng cánh, người anh cùng số vàng rơi xuống biển. Chiếc túi mà anh nhất quyết giữ lấy đã khiến chuyến bay không thể trở về bình yên."
+      }
+    ],
+    "question": "Điều gì khác nhau giữa hai chiếc túi?",
+    "choices": [
+      "Người em làm đúng lời dặn, người anh lấy quá nhiều",
+      "Hai người mang cùng một lượng vàng",
+      "Người anh không lấy vàng"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "thach-sanh",
+    "title": "Thạch Sanh",
+    "origin": "Việt Nam",
+    "value": "Chi tiết nào giúp sự thật được biết đến?",
+    "profiles": [
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "Thạch Sanh (truyện thơ) · tóm tắt và thư mục trên Wikipedia · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://vi.wikipedia.org/wiki/Thạch_Sanh_(truyện_thơ)",
+    "editionNote": "Chọn cốt truyện của truyện thơ Nôm, có lược bỏ giao chiến và hình phạt; không coi phần lược bỏ là kết thúc khác. Đọc cùng người lớn.",
+    "atlas": "atlas-1",
+    "atlasRow": 1,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Dưới gốc đa",
+        "text": "Thạch Sanh sống dưới gốc đa, kiếm củi nuôi thân. Lý Thông kết nghĩa với chàng nhưng rồi tìm cách lợi dụng. Trong lần đi canh miếu thay Lý Thông, Thạch Sanh diệt được chằn tinh. Lý Thông lại nhận công ấy về mình."
+      },
+      {
+        "title": "Sợi dây xuống hang",
+        "text": "Một con đại bàng bắt công chúa. Thạch Sanh lần theo dấu, xuống hang cứu nàng. Công chúa được kéo lên trước, còn Lý Thông cho lấp cửa hang để chôn vùi sự thật. Trong hang, Thạch Sanh còn cứu con vua Thủy Tề và được tặng cây đàn thần."
+      },
+      {
+        "title": "Tiếng đàn nói thật",
+        "text": "Bị vu oan lấy trộm của cải, Thạch Sanh phải vào ngục. Tiếng đàn của chàng vang đến cung, khiến công chúa vốn không nói được cất tiếng kể lại chuyện cứu mình. Nhà vua cho xét rõ. Thạch Sanh được trả tự do và xin tha cho mẹ con Lý Thông."
+      },
+      {
+        "title": "Niêu cơm không vơi",
+        "text": "Thạch Sanh kết duyên cùng công chúa. Khi quân các nước kéo đến, tiếng đàn làm họ thôi đánh nhau. Chàng mời họ ăn bằng niêu cơm nhỏ mà ăn mãi không hết. Mẹ con Lý Thông, dù được chàng tha, vẫn bị trời trừng phạt vì những việc xấu đã làm."
+      }
+    ],
+    "question": "Chi tiết nào giúp sự thật được biết đến?",
+    "choices": [
+      "Tiếng đàn và lời kể của công chúa",
+      "Lý Thông tự nhận mọi việc ngay từ đầu",
+      "Niêu cơm làm mất dấu hang"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "thanh-giong",
+    "title": "Thánh Gióng",
+    "origin": "Việt Nam",
+    "value": "Ai đã góp sức nuôi Gióng lớn?",
+    "profiles": [
+      "early-primary",
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "Thánh Gióng · các dị bản và mục Truyền thuyết dân gian · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://vi.wikipedia.org/wiki/Thánh_Gióng",
+    "editionNote": "Truyền thuyết có nhiều dị bản. Bản rút gọn theo mạch dân gian quen thuộc: sứ giả, lớn nhanh, ngựa sắt, tre và bay về trời; đây không phải khẳng định lịch sử.",
+    "atlas": "atlas-2",
+    "atlasRow": 0,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Tiếng gọi trong làng",
+        "text": "Ở làng Phù Đổng, có cậu bé lên ba vẫn chưa biết nói, biết cười. Khi sứ giả đi tìm người đánh giặc, cậu bỗng cất tiếng nhờ mẹ mời sứ giả vào. Gióng xin nhà vua rèn ngựa sắt, roi sắt và áo giáp sắt."
+      },
+      {
+        "title": "Bữa cơm của cả làng",
+        "text": "Từ hôm ấy, Gióng ăn bao nhiêu cũng chưa no, áo vừa may đã chật. Mẹ không đủ gạo nuôi con, bà con trong làng cùng góp sức. Khi ngựa và áo giáp được đưa tới, cậu bé vươn vai thành tráng sĩ."
+      },
+      {
+        "title": "Ngựa sắt lên đường",
+        "text": "Gióng mặc giáp, cưỡi ngựa sắt ra trận. Trong mạch kể dân gian quen thuộc, khi roi sắt gãy, Gióng nhổ tre bên đường để tiếp tục đánh giặc. Giặc tan, xóm làng được yên. Dân làng lại có thể yên ổn làm ăn."
+      },
+      {
+        "title": "Đỉnh núi Sóc",
+        "text": "Đến núi Sóc, Gióng cởi áo giáp, rồi cả người lẫn ngựa bay về trời. Nhân dân lập đền tưởng nhớ. Từ một cậu bé trong làng, nhân vật đã lớn lên nhờ cơm gạo và sự chung sức của cộng đồng trong thế giới truyền thuyết."
+      }
+    ],
+    "question": "Ai đã góp sức nuôi Gióng lớn?",
+    "choices": [
+      "Mẹ và bà con trong làng",
+      "Chỉ một mình sứ giả",
+      "Không có ai"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "so-dua",
+    "title": "Sọ Dừa",
+    "origin": "Việt Nam",
+    "value": "Cô út khác hai chị ở điều gì lúc đầu truyện?",
+    "profiles": [
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "Sọ Dừa · cốt truyện và dị bản · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://vi.wikipedia.org/wiki/Sọ_Dừa",
+    "editionNote": "Có nhân vật bị hãm hại và gặp nạn trên biển; đọc cùng người lớn. Sọ Dừa mang hình dạng sọ dừa, không phải sọ người.",
+    "atlas": "atlas-2",
+    "atlasRow": 1,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Người chăn bò",
+        "text": "Một bà mẹ nghèo sinh được đứa con tròn như sọ dừa. Bà gọi con là Sọ Dừa. Lớn lên, chàng xin đi chăn bò cho phú ông. Đàn bò luôn no đủ. Cô con gái út đối đãi với chàng tử tế, không hắt hủi như hai chị."
+      },
+      {
+        "title": "Tiếng sáo trên đồi",
+        "text": "Một lần mang cơm, cô út thấy chàng trai tuấn tú ngồi thổi sáo giữa đàn bò. Có tiếng động, chàng lại mang hình dạng Sọ Dừa. Khi Sọ Dừa xin cưới, cô út đồng ý. Chàng lo đủ sính lễ phú ông đòi, rồi trở thành người chồng tuấn tú."
+      },
+      {
+        "title": "Chuyến đi xa",
+        "text": "Sọ Dừa học hành, đỗ đạt và được cử đi sứ. Trước lúc đi, chàng đưa vợ những vật phòng thân, trong đó có dao, đá lửa và hai quả trứng. Hai người chị tìm cách hại em. Cô út gặp nạn nhưng sống sót, trôi đến một hòn đảo."
+      },
+      {
+        "title": "Tiếng gà gọi thuyền",
+        "text": "Hai quả trứng nở thành gà. Khi thuyền Sọ Dừa đi qua, tiếng gà giúp chàng nhận ra nơi vợ đang ở. Hai vợ chồng đoàn tụ. Khi chuyện bị lộ, hai chị xấu hổ bỏ đi. Sau những ngày xa cách và gian khó, người vợ hiền đã được trở về bên chồng."
+      }
+    ],
+    "question": "Cô út khác hai chị ở điều gì lúc đầu truyện?",
+    "choices": [
+      "Cô đối xử tử tế với Sọ Dừa",
+      "Cô chỉ nhìn quần áo của chàng",
+      "Cô không bao giờ mang cơm"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "lang-lieu",
+    "title": "Bánh chưng, bánh giầy",
+    "origin": "Việt Nam",
+    "value": "Nguyên liệu nào giữ vai trò chính trong cả hai thứ bánh?",
+    "profiles": [
+      "preschool",
+      "early-primary",
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "Lang Liêu · truyền thuyết bánh chưng bánh giầy · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://vi.wikipedia.org/wiki/Lang_Liêu",
+    "editionNote": "Theo truyền thuyết Lang Liêu. Vuông tượng trưng đất, tròn tượng trưng trời là quan niệm biểu tượng cổ trong truyện, không phải kiến thức về hình dạng Trái Đất.",
+    "atlas": "atlas-3",
+    "atlasRow": 0,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Một người con làm ruộng",
+        "text": "Vua Hùng muốn chọn người nối ngôi bằng lễ vật dâng cúng tổ tiên. Các hoàng tử đi tìm của ngon vật lạ. Lang Liêu mẹ mất sớm, quen việc đồng áng, chỉ có lúa gạo và những sản vật gần gũi. Chàng lo chưa biết chuẩn bị món gì."
+      },
+      {
+        "title": "Lời mách trong mơ",
+        "text": "Trong giấc mơ, một vị thần bảo Lang Liêu hãy quý hạt gạo nuôi sống con người. Chàng được mách làm hai thứ bánh: bánh vuông và bánh tròn. Theo cách hình dung biểu tượng của người xưa trong truyện, bánh vuông gợi đất, bánh tròn gợi trời."
+      },
+      {
+        "title": "Hai thứ bánh thơm",
+        "text": "Lang Liêu chọn gạo nếp, đậu và thịt làm nhân bánh chưng, dùng lá xanh gói thành hình vuông. Chàng còn làm bánh giầy tròn từ nếp giã nhuyễn. Những món bánh gửi gắm lòng biết ơn trời đất, tổ tiên và công sức làm ra lúa gạo."
+      },
+      {
+        "title": "Lễ vật được chọn",
+        "text": "Đến ngày dâng lễ, nhà vua nghe Lang Liêu giải thích rồi chọn hai thứ bánh. Theo truyền thuyết, chàng được truyền ngôi. Bánh chưng, bánh giầy gắn với tục tưởng nhớ tổ tiên; câu chuyện giúp người nghe hiểu ý nghĩa của những lễ vật quen thuộc."
+      }
+    ],
+    "question": "Nguyên liệu nào giữ vai trò chính trong cả hai thứ bánh?",
+    "choices": [
+      "Gạo nếp",
+      "Khoai tây",
+      "Bột ca cao"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "rua-tho",
+    "title": "Rùa và Thỏ",
+    "origin": "Thế giới",
+    "value": "Vì sao Rùa về đích trước?",
+    "profiles": [
+      "preschool",
+      "early-primary",
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "Aesop · The Hare and the Tortoise · George Fyler Townsend · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://www.gutenberg.org/files/21/21-h/21-h.htm",
+    "editionNote": "Bản kể rút gọn theo tuyển tập Aesop công cộng, Project Gutenberg #21.",
+    "atlas": "atlas-3",
+    "atlasRow": 1,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Lời thách đua",
+        "text": "Thỏ chê Rùa đi chậm. Rùa không khoe khoang, chỉ nói rằng mình có thể cùng Thỏ thi chạy. Cáo được nhờ chọn đường và làm trọng tài. Thế là hai bạn đứng vào điểm xuất phát, hướng về cùng một vạch đích."
+      },
+      {
+        "title": "Một giấc ngủ bên đường",
+        "text": "Thỏ lao đi rất nhanh, bỏ Rùa ở phía sau. Nghĩ rằng mình còn thừa thời gian, Thỏ nằm xuống ngủ. Rùa vẫn bước từng bước, chậm rãi mà không dừng lại. Khoảng đường phía trước cứ ngắn dần sau mỗi bước chân."
+      },
+      {
+        "title": "Gần đến đích",
+        "text": "Rùa đi qua chỗ Thỏ đang ngủ rồi tiếp tục tiến về đích. Thỏ tỉnh dậy, vội chạy hết sức. Nhưng lần này, tốc độ không bù lại được quãng thời gian Thỏ đã bỏ phí. Rùa đã gần hoàn thành đường đua của mình."
+      },
+      {
+        "title": "Bước chân cuối cùng",
+        "text": "Rùa cán đích trước Thỏ. Trong ngụ ngôn, sự bền bỉ đã thắng thói chủ quan. Rùa không cần biến thành một người chạy nhanh: nhân vật thắng bằng việc tiếp tục từng bước trên con đường đã chọn."
+      }
+    ],
+    "question": "Vì sao Rùa về đích trước?",
+    "choices": [
+      "Rùa tiếp tục đi còn Thỏ ngủ quên",
+      "Rùa đi đường tắt do Cáo chỉ",
+      "Thỏ không tham gia cuộc đua"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "cao-chum-nho",
+    "title": "Cáo và chùm nho",
+    "origin": "Thế giới",
+    "value": "Cáo có biết chắc nho chua không?",
+    "profiles": [
+      "preschool",
+      "early-primary",
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "Aesop · The Fox and the Grapes · George Fyler Townsend · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://www.gutenberg.org/files/21/21-h/21-h.htm",
+    "editionNote": "Ngụ ngôn rút gọn theo văn bản Project Gutenberg #21.",
+    "atlas": "atlas-7",
+    "atlasRow": 1,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Giàn nho trên cao",
+        "text": "Một con Cáo đói nhìn thấy chùm nho chín treo trên giàn cao. Những quả nho khiến Cáo muốn nếm thử. Cáo đứng bên dưới, nhìn lên rồi tìm cách với tới."
+      },
+      {
+        "title": "Những lần bật nhảy",
+        "text": "Cáo lấy đà nhảy lên. Chùm nho vẫn ở ngoài tầm với. Cáo thử thêm lần nữa, rồi thêm lần nữa. Dù cố sức, Cáo không hái được quả nào."
+      },
+      {
+        "title": "Chùm nho vẫn nguyên",
+        "text": "Sau nhiều lần nhảy, Cáo mệt mà nho vẫn treo trên giàn. Cáo chưa hề nếm chúng. Không biết vị nho ra sao, Cáo lại muốn tự làm mình bớt tiếc."
+      },
+      {
+        "title": "Lời nói lúc bỏ đi",
+        "text": "Cáo bỏ đi và bảo rằng nho còn xanh, chẳng đáng ăn. Câu nói ấy không đến từ việc nếm thử. Ngụ ngôn đặt cạnh nhau điều Cáo biết thật và lời Cáo nói để tự an ủi."
+      }
+    ],
+    "question": "Cáo có biết chắc nho chua không?",
+    "choices": [
+      "Không, Cáo chưa nếm nho",
+      "Có, Cáo đã ăn cả chùm",
+      "Có, giàn nho đã nói"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "qua-binh-nuoc",
+    "title": "Quạ và bình nước",
+    "origin": "Thế giới",
+    "value": "Vì sao mực nước dâng lên?",
+    "profiles": [
+      "preschool",
+      "early-primary",
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "Aesop · The Crow and the Pitcher · George Fyler Townsend · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://www.gutenberg.org/files/21/21-h/21-h.htm",
+    "editionNote": "Ngụ ngôn rút gọn. Nếu thử cùng trẻ, người lớn dùng vật liệu phù hợp, không dùng sỏi nhỏ với trẻ có nguy cơ cho vào miệng.",
+    "atlas": "atlas-8",
+    "atlasRow": 0,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Chiếc bình gần cạn",
+        "text": "Một con Quạ khát tìm thấy chiếc bình có chút nước. Quạ đậu xuống, cúi nhìn vào trong. Nước ở quá thấp, chiếc mỏ không chạm được tới."
+      },
+      {
+        "title": "Mỏ chưa chạm nước",
+        "text": "Quạ cố với nhưng vẫn không uống được. Chiếc bình không dễ đổ nghiêng. Quạ quan sát xung quanh, tìm một cách khác thay vì chỉ cố thò mỏ sâu hơn."
+      },
+      {
+        "title": "Từng viên sỏi nhỏ",
+        "text": "Quạ nhặt những viên sỏi rồi thả vào bình. Sỏi chiếm chỗ, làm mực nước dâng lên. Quạ tiếp tục, từng viên một, cho đến khi nước đến gần miệng bình."
+      },
+      {
+        "title": "Một ngụm nước mát",
+        "text": "Cuối cùng, Quạ uống được nước. Trong ngụ ngôn, khó khăn được giải quyết bằng cách quan sát và kiên trì thử một ý tưởng. Những viên sỏi không tạo ra nước mới; chúng làm nước sẵn có dâng lên."
+      }
+    ],
+    "question": "Vì sao mực nước dâng lên?",
+    "choices": [
+      "Sỏi chiếm chỗ trong bình",
+      "Sỏi biến thành nước",
+      "Bình tự tạo ra mưa"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "gio-mat-troi",
+    "title": "Gió Bắc và Mặt Trời",
+    "origin": "Thế giới",
+    "value": "Khi Gió Bắc thổi mạnh, người đi đường làm gì?",
+    "profiles": [
+      "preschool",
+      "early-primary",
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "Aesop · The North Wind and the Sun · George Fyler Townsend · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://www.gutenberg.org/files/21/21-h/21-h.htm",
+    "editionNote": "Rút gọn đến lúc người đi đường cởi áo choàng; lược phần tắm ở dòng suối trong bản Townsend.",
+    "atlas": "atlas-8",
+    "atlasRow": 1,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Cuộc thử sức",
+        "text": "Gió Bắc và Mặt Trời tranh luận xem ai mạnh hơn. Nhìn thấy một người đi đường khoác áo choàng, họ thống nhất: ai khiến người ấy bỏ áo choàng ra sẽ thắng."
+      },
+      {
+        "title": "Gió thổi thật mạnh",
+        "text": "Gió Bắc thổi ào ào, mong giật chiếc áo khỏi người đi đường. Nhưng càng lạnh và gió càng mạnh, người ấy càng kéo áo quấn chặt quanh mình."
+      },
+      {
+        "title": "Nắng lên ấm áp",
+        "text": "Đến lượt Mặt Trời. Ánh nắng dịu rồi ấm dần. Người đi đường thấy dễ chịu hơn, nới lỏng áo và tiếp tục bước. Mặt Trời không giật, không kéo chiếc áo."
+      },
+      {
+        "title": "Chiếc áo được cởi ra",
+        "text": "Khi trời ấm lên, người đi đường tự cởi áo choàng. Mặt Trời thắng cuộc. Ngụ ngôn dùng gió và nắng để gợi suy nghĩ về sự thuyết phục: cố ép không phải lúc nào cũng đem lại điều mong muốn."
+      }
+    ],
+    "question": "Khi Gió Bắc thổi mạnh, người đi đường làm gì?",
+    "choices": [
+      "Quấn áo chặt hơn",
+      "Bỏ áo ngay lập tức",
+      "Biến áo thành cánh buồm"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "cu-cai",
+    "title": "Củ cải khổng lồ",
+    "origin": "Thế giới",
+    "value": "Ai giúp cả nhóm vào cuối câu chuyện?",
+    "profiles": [
+      "preschool",
+      "early-primary",
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "The Gigantic Turnip · nguồn gốc và chuỗi nhân vật · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/The_Gigantic_Turnip",
+    "editionNote": "Theo chuỗi phổ biến gắn với bản Ushinsky 1864: ông, bà, cháu gái, chó, mèo, chuột. Nguồn thứ cấp mô tả dị bản; không tuyên bố đã đọc bản in 1864.",
+    "atlas": "atlas-5",
+    "atlasRow": 0,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Củ cải lớn quá!",
+        "text": "Ông trồng một cây củ cải. Cây lớn lên thành một củ khổng lồ. Đến ngày thu hoạch, ông nắm lấy lá, kéo mãi mà củ cải không nhúc nhích."
+      },
+      {
+        "title": "Thêm những bàn tay",
+        "text": "Ông gọi bà. Bà nắm lấy ông, ông nắm lấy lá củ cải. Vẫn chưa được! Cháu gái đến giúp, rồi đến chó và mèo. Cả hàng cùng kéo nhưng củ cải vẫn nằm trong đất."
+      },
+      {
+        "title": "Bạn nhỏ cuối hàng",
+        "text": "Cuối cùng, Chuột cũng đến. Chuột nhỏ hơn những người bạn khác nhiều, nhưng vẫn nối vào cuối hàng. Tất cả cùng chuẩn bị, không bỏ ai ra ngoài chỉ vì bạn ấy bé."
+      },
+      {
+        "title": "Một, hai, ba… kéo!",
+        "text": "Ông, bà, cháu gái, chó, mèo và chuột cùng kéo. Củ cải bật khỏi đất! Trong câu chuyện dây chuyền này, mỗi người bạn nối thêm một chút sức, cho đến khi cả nhóm làm được điều một mình ông chưa làm nổi."
+      }
+    ],
+    "question": "Ai giúp cả nhóm vào cuối câu chuyện?",
+    "choices": [
+      "Chuột",
+      "Một chiếc máy bay",
+      "Một con cá voi"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "vit-con",
+    "title": "Chú vịt xấu xí",
+    "origin": "Thế giới",
+    "value": "Nhân vật lớn lên thành con gì?",
+    "profiles": [
+      "early-primary",
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "H. C. Andersen · The Ugly Duckling · Fairy Tales · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://www.gutenberg.org/files/27200/27200-h/27200-h.htm",
+    "editionNote": "Bản kể rút gọn, lược nhiều chặng bị xua đuổi và miêu tả đau buồn. Giữ việc nhân vật là thiên nga. Người lớn cùng đọc khi trẻ nhạy cảm với sự bắt nạt.",
+    "atlas": "atlas-5",
+    "atlasRow": 1,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Khác với các bạn",
+        "text": "Trong đàn vịt vừa nở, có một con non to hơn và khác những con còn lại. Vì vẻ ngoài ấy, chú bị chê cười và xua đuổi. Chú rời sân vịt, đi tìm nơi có thể sống mà không bị làm khổ."
+      },
+      {
+        "title": "Qua mùa đông",
+        "text": "Chú đi qua nhiều nơi, chịu cô độc và một mùa đông lạnh. Có lúc chú nhìn những con thiên nga đẹp bay trên trời mà ao ước. Chú không biết mình thuộc về đâu, vẫn cố sống qua từng ngày."
+      },
+      {
+        "title": "Mặt nước mùa xuân",
+        "text": "Mùa xuân đến. Chú gặp những con thiên nga trên mặt hồ. Khi cúi nhìn xuống nước, chú thấy hình bóng mình: chú đã lớn thành một con thiên nga. Cái tên người khác từng gọi không nói đúng chú là ai."
+      },
+      {
+        "title": "Giữa đàn thiên nga",
+        "text": "Những con thiên nga bơi lại bên chú. Sau nhiều gian khổ, chú cảm nhận niềm vui được đón nhận. Chú cúi đầu trong niềm vui, nhớ quãng ngày đã qua và ngỡ ngàng trước mùa xuân của mình."
+      }
+    ],
+    "question": "Nhân vật lớn lên thành con gì?",
+    "choices": [
+      "Thiên nga",
+      "Chim sẻ",
+      "Gà trống"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "ba-chu-heo",
+    "title": "Ba chú heo con",
+    "origin": "Thế giới",
+    "value": "Căn nhà nào không bị Sói thổi đổ?",
+    "profiles": [
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "Joseph Jacobs · English Fairy Tales · The Three Little Pigs · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://www.gutenberg.org/files/7439/7439-h/7439-h.htm",
+    "editionNote": "Bản Jacobs 1890 có hai heo đầu bị sói ăn và sói chết ở cuối truyện. Không minh họa các cảnh ấy. Dành cho trẻ lớn đọc cùng người lớn; không thay bằng kết thúc ba anh em cùng sống.",
+    "atlas": "atlas-6",
+    "atlasRow": 0,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Ba ngôi nhà",
+        "text": "Ba chú heo con rời nhà đi kiếm sống. Chú thứ nhất xây nhà bằng rơm, chú thứ hai dùng những cành bụi cây, còn chú thứ ba xây nhà gạch. Mỗi chú có một ngôi nhà, và chú heo xây nhà gạch đã làm việc rất cẩn thận."
+      },
+      {
+        "title": "Sói đến gõ cửa",
+        "text": "Sói xin vào, nhưng heo không mở. Sói thổi đổ căn nhà rơm, rồi căn nhà cành cây. Hai chú heo đầu không thoát khỏi Sói và bị nó ăn thịt. Sói tiếp tục đến căn nhà gạch của chú heo thứ ba."
+      },
+      {
+        "title": "Nhà gạch vẫn đứng",
+        "text": "Sói không thổi đổ được nhà gạch. Nó còn rủ chú heo thứ ba đi lấy củ cải, hái táo và đến hội để tìm cơ hội bắt chú. Nhưng chú heo nhiều lần đi trước giờ hẹn, quan sát và nghĩ cách thoát khỏi sói."
+      },
+      {
+        "title": "Lối ống khói",
+        "text": "Cuối cùng, Sói tìm đường xuống ống khói. Chú heo đã đặt nồi nước ở dưới; Sói rơi vào và chết. Từ đó, chú heo thứ ba không còn bị Sói rình bắt nữa. Chú sống yên trong ngôi nhà gạch vững chãi của mình."
+      }
+    ],
+    "question": "Căn nhà nào không bị Sói thổi đổ?",
+    "choices": [
+      "Nhà gạch",
+      "Nhà rơm",
+      "Nhà cành cây"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "khan-do",
+    "title": "Cô bé quàng khăn đỏ",
+    "origin": "Thế giới",
+    "value": "Ai cứu bà và Khăn Đỏ trong phần truyện này?",
+    "profiles": [
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "Anh em Grimm · Little Red-Cap · Grimm’s Fairy Tales · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://www.gutenberg.org/files/2591/2591-h/2591-h.htm",
+    "editionNote": "Rút gọn phần truyện đầu, kết thúc ở cuộc cứu thoát; không kể phần gặp con sói thứ hai. Có việc sói nuốt người và người thợ săn cứu họ; không miêu tả trực diện. Đọc cùng người lớn.",
+    "atlas": "atlas-6",
+    "atlasRow": 1,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Giỏ quà cho bà",
+        "text": "Mẹ đưa Khăn Đỏ bánh và một chai rượu mang đến cho bà đang ốm, dặn cô đi đúng đường. Trên đường qua rừng, Khăn Đỏ gặp Sói. Cô chưa biết nó nguy hiểm nên kể cả nơi bà đang ở."
+      },
+      {
+        "title": "Những bông hoa ven lối",
+        "text": "Sói gợi cho Khăn Đỏ nhìn những bông hoa. Cô rời đường để hái thêm hoa biếu bà. Trong lúc ấy, Sói chạy đến nhà bà trước, lừa bà mở cửa, nuốt bà rồi nằm trên giường, mặc đồ và đội mũ của bà."
+      },
+      {
+        "title": "Cuộc cứu thoát",
+        "text": "Đến nhà, Khăn Đỏ thấy bà có vẻ khác lạ. Những câu hỏi về tai, mắt và miệng dẫn đến lúc Sói lộ ra và nuốt cả cô. Một người thợ săn đi ngang phát hiện chuyện bất thường, vào nhà và cứu được bà cùng Khăn Đỏ."
+      },
+      {
+        "title": "Bà và cháu an toàn",
+        "text": "Bà và cháu được cứu, Sói không còn làm hại họ. Khăn Đỏ nhớ lời dặn của mẹ. Khăn Đỏ mang bánh ra, bà ăn và thấy khỏe hơn. Sau nỗi sợ, bà và cháu lại được ngồi bên nhau trong căn nhà nhỏ."
+      }
+    ],
+    "question": "Ai cứu bà và Khăn Đỏ trong phần truyện này?",
+    "choices": [
+      "Người thợ săn",
+      "Sói tự đưa hai người về",
+      "Một đàn cá"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "hoang-de",
+    "title": "Bộ quần áo mới của hoàng đế",
+    "origin": "Thế giới",
+    "value": "Vì sao các quan giả vờ thấy vải?",
+    "profiles": [
+      "early-primary",
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 5,
+    "source": "H. C. Andersen · The Emperor’s New Clothes · Andersen’s Fairy Tales · Bản kể rút gọn do GoT biên soạn.",
+    "sourceUrl": "https://www.gutenberg.org/files/1597/1597-h/1597-h.htm",
+    "editionNote": "Giữ kết thúc hoàng đế tiếp tục cuộc diễu hành dù biết lời đứa trẻ đúng. Tranh dùng cờ che nhân vật, không thể hiện cơ thể khỏa thân.",
+    "atlas": "atlas-7",
+    "atlasRow": 0,
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Hai người thợ lạ",
+        "text": "Một hoàng đế rất mê quần áo đẹp. Hai kẻ lừa đảo tự nhận dệt được loại vải mà người ngu ngốc hoặc không xứng chức sẽ không nhìn thấy. Họ bày khung dệt trống, nhận tiền bạc rồi giả vờ làm việc."
+      },
+      {
+        "title": "Khung dệt không có vải",
+        "text": "Các quan đến xem đều chẳng nhìn thấy gì. Nhưng sợ bị cho là ngu ngốc hoặc không xứng chức, họ khen tấm vải tưởng tượng. Hoàng đế cũng sợ như vậy và giả vờ nhìn thấy một bộ quần áo lộng lẫy."
+      },
+      {
+        "title": "Tiếng nói giữa đám đông",
+        "text": "Hoàng đế bước vào cuộc diễu hành trong bộ đồ không có thật. Mọi người vẫn khen vì e ngại. Một đứa trẻ bỗng nói rằng hoàng đế chẳng mặc gì. Lời ấy được truyền đi, rồi cả đám đông cùng nhận ra."
+      },
+      {
+        "title": "Đoàn rước vẫn đi",
+        "text": "Hoàng đế thấy lời mọi người nói có lý, nhưng nghĩ cuộc diễu hành phải tiếp tục. Ông càng giữ vẻ kiêu hãnh, còn các quan vẫn giả vờ nâng vạt áo. Đám đông đã nhận ra sự thật, nhưng đoàn rước vẫn đi tiếp với những vạt áo chỉ có trong lời nói."
+      }
+    ],
+    "question": "Vì sao các quan giả vờ thấy vải?",
+    "choices": [
+      "Họ sợ bị đánh giá là ngu hoặc không xứng chức",
+      "Họ thật sự nhìn thấy vải",
+      "Họ đã mặc thử tấm vải"
+    ],
+    "answer": 0
+  },
+  {
+    "id": "su-tu-chuot",
+    "title": "Sư tử và Chuột",
+    "origin": "Thế giới",
+    "value": "Chuột đã giúp Sư Tử bằng cách nào?",
+    "profiles": [
+      "preschool",
+      "early-primary",
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 4,
+    "source": "Aesop · The Lion and the Mouse · George Fyler Townsend",
+    "sourceUrl": "https://www.gutenberg.org/files/21/21-h/21-h.htm",
+    "editionNote": "Bản kể rút gọn do GoT viết theo văn bản Project Gutenberg #21.",
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Một người bạn rất nhỏ",
+        "text": "Sư Tử đang ngủ thì một chú Chuột chạy qua làm nó thức giấc. Sư Tử đặt bàn chân lên Chuột, định ăn thịt. Chuột xin được tha và hứa rằng có ngày mình sẽ giúp lại."
+      },
+      {
+        "title": "Lời hứa được giữ",
+        "text": "Sư Tử bật cười: một chú Chuột bé nhỏ có thể giúp gì cho mình? Dù vậy, nó vẫn thả Chuột đi. Chú Chuột chạy về, còn lời hứa vẫn ở lại trong câu chuyện."
+      },
+      {
+        "title": "Những sợi dây của thợ săn",
+        "text": "Ít lâu sau, Sư Tử mắc vào những sợi dây thợ săn giăng để bắt nó. Dù khỏe, nó không tự thoát được. Chuột nghe tiếng, tìm đến rồi dùng răng gặm những nút dây đang giữ Sư Tử."
+      },
+      {
+        "title": "Món quà của hàm răng nhỏ",
+        "text": "Dây đứt, Sư Tử được giải thoát. Điều mà sức mạnh của Sư Tử chưa làm nổi, hàm răng nhỏ của Chuột đã làm được. Lời hứa tưởng như khó tin trở thành một việc giúp đỡ rất thật."
+      }
+    ],
+    "question": "Chuột đã giúp Sư Tử bằng cách nào?",
+    "choices": [
+      "Gặm những sợi dây",
+      "Biến thành một con voi",
+      "Kéo cả khu rừng đi"
+    ],
+    "answer": 0,
+    "atlas": "atlas-4",
+    "atlasRow": 0
+  },
+  {
+    "id": "kien-bo-cau",
+    "title": "Kiến và Bồ Câu",
+    "origin": "Thế giới",
+    "value": "Bồ Câu đã thả vật gì để cứu Kiến?",
+    "profiles": [
+      "preschool",
+      "early-primary",
+      "middle-primary",
+      "upper-primary"
+    ],
+    "minutes": 4,
+    "source": "Aesop · The Ant and the Dove · George Fyler Townsend",
+    "sourceUrl": "https://www.gutenberg.org/files/21/21-h/21-h.htm",
+    "editionNote": "Bản kể rút gọn do GoT viết theo văn bản Project Gutenberg #21.",
+    "illustrations": [],
+    "pages": [
+      {
+        "title": "Dòng nước chảy xiết",
+        "text": "Một con Kiến xuống dòng suối để uống nước. Dòng chảy cuốn Kiến đi, khiến nó có nguy cơ chìm. Bồ Câu đậu trên cành cây gần đó nhìn thấy bạn nhỏ đang gặp nạn."
+      },
+      {
+        "title": "Chiếc lá trên nước",
+        "text": "Bồ Câu ngắt một chiếc lá và thả xuống gần Kiến. Kiến trèo lên lá, theo chiếc lá trôi vào bờ. Nhờ vậy, nó thoát khỏi dòng nước và đứng lại trên đất an toàn."
+      },
+      {
+        "title": "Người bắt chim",
+        "text": "Sau đó, một người bắt chim đến gần Bồ Câu, mang theo những cành bẫy có nhựa dính. Kiến nhìn thấy người ấy định bắt con chim đã giúp mình. Nó tìm cách làm người bắt chim mất tập trung."
+      },
+      {
+        "title": "Bồ Câu bay đi",
+        "text": "Kiến đốt vào chân người bắt chim. Người ấy kêu lên và làm rơi cành bẫy. Bồ Câu nghe tiếng động, nhận ra nguy hiểm rồi bay đi. Trong ngụ ngôn, hai người bạn đã giúp nhau ở hai lần gặp nạn khác nhau."
+      }
+    ],
+    "question": "Bồ Câu đã thả vật gì để cứu Kiến?",
+    "choices": [
+      "Một chiếc lá",
+      "Một hòn đá",
+      "Một chiếc áo"
+    ],
+    "answer": 0,
+    "atlas": "atlas-4",
+    "atlasRow": 1
+  }
+]
