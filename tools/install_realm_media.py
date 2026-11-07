@@ -22,7 +22,7 @@ def install(stream):
             raise ValueError('Invalid manifest')
         for key,item in manifest.items():
             path=PurePosixPath(item['path'])
-            if not key.replace('-','').isalnum() or path.is_absolute() or '..' in path.parts or not str(path).startswith(('images/realm-v13/','videos/realm-v13/')) or not 0<item['bytes']<=32*1024*1024 or item['mime'] not in ('image/png','video/mp4'):
+            if not key.replace('-','').isalnum() or path.is_absolute() or '..' in path.parts or not str(path).startswith(('images/realm-v13/','videos/realm-v13/','images/realm-v14/')) or not 0<item['bytes']<=32*1024*1024 or item['mime'] not in ('image/png','video/mp4'):
                 raise ValueError('Unapproved media entry')
         with app.app_context():
             source=store()

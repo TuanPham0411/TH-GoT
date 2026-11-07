@@ -1,0 +1,172 @@
+[
+  [
+    "shape-garden",
+    "Cổng hình kỳ diệu",
+    "numbers",
+    "shape",
+    0,
+    "Nhận ra hình tròn, vuông và tam giác.",
+    "Nhìn đường bao: hình tròn không có góc, hình vuông có bốn cạnh bằng nhau.",
+    "Tìm hai đồ vật có hình tròn cùng người lớn."
+  ],
+  [
+    "color-lantern",
+    "Những chiếc đèn màu",
+    "creative",
+    "color",
+    0,
+    "Ghép tên màu với dấu hiệu nhìn thấy.",
+    "Nhìn cả màu và ký hiệu để tìm chiếc đèn; có thể nhờ người lớn đọc tên.",
+    "Chọn một màu rồi tìm đồ vật có màu ấy."
+  ],
+  [
+    "size-trail",
+    "Lối đi lớn và nhỏ",
+    "logic",
+    "size",
+    0,
+    "So sánh lớn hơn, nhỏ hơn trong một cặp.",
+    "Đặt hai hình gần nhau rồi so sánh độ lớn.",
+    "Xếp hai chiếc cốc nhựa theo kích thước."
+  ],
+  [
+    "syllable-train",
+    "Toa tàu tiếng nói",
+    "language",
+    "syllable",
+    0,
+    "Nghe và nhận ra số tiếng trong một cụm từ.",
+    "Mỗi tiếng được đọc rõ một lần; vỗ tay nhẹ theo từng tiếng.",
+    "Vỗ tay theo tên đồ vật cùng người lớn."
+  ],
+  [
+    "place-value",
+    "Kho báu hàng chục",
+    "numbers",
+    "placevalue",
+    1,
+    "Tách số thành chục và đơn vị.",
+    "Số 42 có 4 chục và 2 đơn vị. Không đổi chỗ hai hàng.",
+    "Bó mười que thành một chục cùng người lớn."
+  ],
+  [
+    "carrying-workshop",
+    "Xưởng ghép chục",
+    "numbers",
+    "placeadd",
+    1,
+    "Cộng hai số có nhớ trong phạm vi 100.",
+    "Gộp đủ mười đơn vị thành một chục rồi cộng phần chục.",
+    "Giải thích phép cộng bằng các bó que."
+  ],
+  [
+    "times-market",
+    "Sạp hàng hai và năm",
+    "numbers",
+    "times",
+    1,
+    "Nhận ra nhóm bằng nhau trong bảng nhân 2 và 5.",
+    "Ba nhóm, mỗi nhóm hai vật: 2 + 2 + 2 = 6.",
+    "Xếp các cặp tất hoặc năm ngón tay."
+  ],
+  [
+    "reading-clues",
+    "Bức thư có manh mối",
+    "language",
+    "comprehension",
+    1,
+    "Dùng chi tiết trong đoạn đọc để giải thích.",
+    "Tìm câu làm căn cứ trước khi chọn lời giải thích.",
+    "Kể lại một chi tiết và vì sao bạn chọn chi tiết ấy."
+  ],
+  [
+    "food-chain",
+    "Sợi dây trong khu vườn",
+    "science",
+    "chain",
+    2,
+    "Xếp một chuỗi thức ăn đơn giản.",
+    "Mũi tên đi từ sinh vật bị ăn đến sinh vật ăn nó: cỏ → châu chấu → ếch.",
+    "Quan sát sinh vật từ xa, không bắt hay cho động vật hoang dã ăn."
+  ],
+  [
+    "paragraph-workshop",
+    "Xưởng viết đoạn văn",
+    "language",
+    "paragraph",
+    2,
+    "Sắp xếp câu theo mạch ý rõ ràng.",
+    "Đoạn văn có câu mở ý, chi tiết và câu khép lại phù hợp.",
+    "Viết hoặc kể một đoạn về nơi bạn yêu thích."
+  ],
+  [
+    "perimeter-island",
+    "Hàng rào đảo nhỏ",
+    "numbers",
+    "perimeter",
+    2,
+    "Tính chu vi hình chữ nhật.",
+    "Chu vi bằng (chiều dài + chiều rộng) × 2, cùng đơn vị đo.",
+    "Đo bốn cạnh một quyển vở rồi kiểm tra tổng."
+  ],
+  [
+    "area-garden",
+    "Diện tích vườn hoa",
+    "numbers",
+    "area",
+    2,
+    "Tính diện tích hình chữ nhật.",
+    "Diện tích bằng chiều dài × chiều rộng; đơn vị có dạng cm² hoặc m².",
+    "Vẽ ô vuông để thấy phần mặt phẳng được phủ."
+  ],
+  [
+    "fraction-sum",
+    "Ghép những phần bằng nhau",
+    "numbers",
+    "fractionadd",
+    3,
+    "Cộng hai phân số cùng mẫu.",
+    "Cộng các tử số, giữ nguyên mẫu số khi các phần cùng kích thước.",
+    "Ghép các phần giấy có cùng đơn vị ban đầu."
+  ],
+  [
+    "decimal-market",
+    "Chợ số thập phân",
+    "numbers",
+    "decimal",
+    3,
+    "Cộng số thập phân đến hàng phần trăm.",
+    "Đặt các hàng thẳng cột: phần nguyên, phần mười, phần trăm.",
+    "Đọc số đo thập phân trên một nhãn phù hợp."
+  ],
+  [
+    "percent-city",
+    "Khu phố một trăm ô",
+    "numbers",
+    "percent",
+    3,
+    "Tìm một tỉ số phần trăm của số lượng.",
+    "25% là 25 phần trong 100 phần bằng nhau; 25% cũng bằng một phần tư.",
+    "Tô 25 ô trên bảng 100 ô rồi so với một phần tư."
+  ],
+  [
+    "volume-studio",
+    "Xưởng khối hộp",
+    "numbers",
+    "volume",
+    3,
+    "Tính thể tích hình hộp chữ nhật.",
+    "Thể tích bằng dài × rộng × cao; các số đo phải cùng đơn vị.",
+    "Xếp các khối lập phương đồ chơi thành một hộp."
+  ],
+  [
+    "speed-trail",
+    "Chuyến đi đúng giờ",
+    "numbers",
+    "speed",
+    3,
+    "Liên hệ quãng đường, thời gian và vận tốc.",
+    "Vận tốc bằng quãng đường chia thời gian; chú ý đơn vị km/giờ.",
+    "Đọc một tình huống trên giấy; không thi chạy ngoài đường."
+  ]
+]

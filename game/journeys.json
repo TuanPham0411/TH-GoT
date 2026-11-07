@@ -1,0 +1,850 @@
+{
+  "kindergarten-3": {
+    "title": "Bữa tiệc lá xanh",
+    "intro": "Mây chuẩn bị một bữa tiệc nhỏ. Bạn giúp Mây tìm đồ dùng, mời bạn và chơi cùng nhau nhé.",
+    "chapters": [
+      {
+        "id": "chapter-1",
+        "title": "Mở cổng khu vườn",
+        "setup": "Cánh cổng có những ô hình khác nhau. Mây cần tìm đúng hình để mang giỏ vào vườn.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "shape-garden"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "color-lantern"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Cùng người lớn tìm một đồ vật tròn và một đồ vật vuông.",
+            "prompt": "Bạn tìm thấy hình gì? Nó giống ô nào trên cổng?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-2",
+        "title": "Giỏ quả cho ba bạn",
+        "setup": "Ba người bạn sắp đến. Mây cần đếm chậm để chuẩn bị quả cho bữa tiệc.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "count-garden"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "size-trail"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Xếp tối đa ba món đồ chơi lớn và đếm từng món.",
+            "prompt": "Bạn đã chạm vào từng món khi đếm thế nào?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-3",
+        "title": "Nghe khu vườn thức dậy",
+        "setup": "Có tiếng chim ở đâu đó. Mây rủ bạn dùng tai và mắt để tìm điều mới.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "five-senses"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "animal-homes"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Nghe một âm thanh quen thuộc từ vị trí an toàn.",
+            "prompt": "Bạn nghe thấy gì? Bạn dùng bộ phận nào để nghe?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-4",
+        "title": "Bữa tiệc bắt đầu",
+        "setup": "Một người bạn còn ngại tham gia. Mây muốn bạn ấy thấy được chào đón.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "emotion-garden"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "rhythm-orchestra"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Vỗ một nhịp ngắn rồi mời người lớn vỗ lại.",
+            "prompt": "Bạn muốn mời bạn mới bằng lời nói hay cử chỉ nào?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      }
+    ]
+  },
+  "kindergarten-4": {
+    "title": "Khu vườn tỉnh giấc",
+    "intro": "Những luống cây đang chờ được chăm sóc. Bạn cùng Mây quan sát, sắp xếp và làm khu vườn vui trở lại.",
+    "chapters": [
+      {
+        "id": "chapter-1",
+        "title": "Hạt nào cũng có chỗ",
+        "setup": "Mây có hai giỏ hạt. Cùng xem giỏ nào nhiều hơn và chia chỗ cho chúng.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "count-garden"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "compare-baskets"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Xếp hai nhóm tối đa năm khối đồ chơi, ghép từng cặp.",
+            "prompt": "Bạn biết nhóm nào nhiều hơn bằng cách nào?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-2",
+        "title": "Con đường sắc màu",
+        "setup": "Đường đến luống cây bị thiếu một viên gạch màu. Bạn tìm phần lặp lại nhé.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "pattern-trail"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "color-lantern"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Tạo dãy hai màu bằng bốn đến sáu đồ vật lớn.",
+            "prompt": "Bạn hãy chỉ cho Mây nhóm màu được lặp lại."
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-3",
+        "title": "Đợi một mầm xanh",
+        "setup": "Mây muốn hạt nảy mầm ngay. Bạn cùng quan sát các bước cây lớn lên.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "seed-journey"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "five-senses"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Cùng người lớn quan sát một cây có sẵn, không nếm lá lạ.",
+            "prompt": "Điều nào bạn nhìn thấy, điều nào bạn còn muốn hỏi?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-4",
+        "title": "Cùng chăm khu vườn",
+        "setup": "Mỗi người làm một việc nhỏ, rồi cùng nhau dọn sạch đôi tay.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "daily-routine"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "kindness-town"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Thay lượt dùng một món đồ chơi và nói khi muốn đổi lượt.",
+            "prompt": "Bạn đã chờ lượt hoặc nhờ giúp như thế nào?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      }
+    ]
+  },
+  "kindergarten-5": {
+    "title": "Chuyến tàu vào lớp Một",
+    "intro": "Mây đang chuẩn bị một chuyến tàu đến ngôi trường mới. Bạn giúp xếp toa, nghe tiếng và chuẩn bị một ngày tự lập.",
+    "chapters": [
+      {
+        "id": "chapter-1",
+        "title": "Vé tàu đến mười",
+        "setup": "Mây cần kiểm tra số vé. Bạn cùng đếm và tìm chỗ còn thiếu nhé.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "count-garden"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "number-line"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Xếp tối đa mười đồ vật lớn, đếm rồi cất từng món.",
+            "prompt": "Số cuối cùng khi đếm cho biết điều gì?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-2",
+        "title": "Toa tàu tiếng nói",
+        "setup": "Mỗi toa mang một cụm từ. Bạn nghe từng tiếng rồi tìm những tiếng có vần giống nhau.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "syllable-train"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "rhyme-river"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Vỗ tay theo tiếng trong tên hai đồ vật quen thuộc.",
+            "prompt": "Cụm từ nào có hai tiếng? Bạn nghe ra sao?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-3",
+        "title": "Một ngày mới",
+        "setup": "Đến trường có những việc cần làm theo thứ tự. Bạn giúp Mây sắp xếp trước khi đi.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "daily-routine"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "story-sequence"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Cùng người lớn chuẩn bị một món cần mang, rồi kiểm tra lại.",
+            "prompt": "Việc nào cần làm trước? Vì sao?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-4",
+        "title": "Đến trường an toàn",
+        "setup": "Mây dừng ở lối qua đường, tìm người lớn đi cùng và chào bạn mới.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "road-safety"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "emotion-garden"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Chỉ lối đi an toàn trên một bức tranh, không tự ra đường thực hành.",
+            "prompt": "Khi chưa chắc điều gì, bạn sẽ nhờ ai giúp?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      }
+    ]
+  },
+  "grade-1": {
+    "title": "Bưu điện Cầu Vồng",
+    "intro": "Những lá thư đầu tiên đang chờ được gửi. Bạn giúp Mây đọc lời nhắn, chuẩn bị đủ đồ và tìm đúng giờ hẹn.",
+    "chapters": [
+      {
+        "id": "chapter-1",
+        "title": "Lá thư đầu tiên",
+        "setup": "Một lá thư bị xáo các từ. Bạn cùng Mây đọc từng phần rồi ghép thành lời nhắn.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "vowel-orchard"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "word-order"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Viết hoặc nói một câu chào gửi người thân.",
+            "prompt": "Câu của bạn muốn nói điều gì?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-2",
+        "title": "Đủ tem cho chuyến đi",
+        "setup": "Mây thêm vài con tem vào hộp, rồi lấy ra một ít để gửi thư.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "add-market"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "subtract-train"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Dùng đồ vật lớn minh họa một phép cộng hoặc trừ trong phạm vi 20.",
+            "prompt": "Bạn đã gộp thêm hay lấy bớt?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-3",
+        "title": "Cuộc hẹn bên đồng hồ",
+        "setup": "Lá thư cần đến đúng giờ. Bạn xem đồng hồ và đọc đoạn nhắn ngắn.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "clock-town"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "read-and-understand"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Chỉ một giờ đúng trên đồng hồ đồ chơi.",
+            "prompt": "Chi tiết nào cho bạn biết giờ hẹn?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-4",
+        "title": "Lời nhắn tử tế",
+        "setup": "Một người bạn làm rơi thư. Bạn giúp Mây tìm cách hỗ trợ mà vẫn tôn trọng bạn ấy.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "kindness-town"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "story-sequence"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Kể ba câu về một lần bạn giúp hoặc được giúp.",
+            "prompt": "Bạn đã hỏi người bạn ấy cần gì chưa?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      }
+    ]
+  },
+  "grade-2": {
+    "title": "Hội chợ Mầm Xanh",
+    "intro": "Lớp của Mây mở hội chợ nhỏ. Bạn cùng tính đồ dùng, đọc bảng hướng dẫn và chuẩn bị những gian hàng biết chia sẻ.",
+    "chapters": [
+      {
+        "id": "chapter-1",
+        "title": "Kiểm kho gian hàng",
+        "setup": "Các hộp được bó theo chục. Mây cần biết có bao nhiêu đồ dùng tất cả.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "place-value"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "carrying-workshop"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Vẽ một số hai chữ số bằng bó chục và đơn vị.",
+            "prompt": "Khi đủ mười đơn vị, bạn đổi thành gì?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-2",
+        "title": "Sạp hàng hai và năm",
+        "setup": "Mỗi túi có cùng số món. Bạn tìm cách đếm theo nhóm thay vì đếm lại từ đầu.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "times-market"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "divide-picnic"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Xếp hai hoặc năm món một nhóm bằng đồ vật lớn.",
+            "prompt": "Cách đếm theo nhóm giúp bạn thế nào?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-3",
+        "title": "Đọc biển chỉ dẫn",
+        "setup": "Một bảng chỉ dẫn có chi tiết quan trọng. Bạn đọc rồi giải thích lựa chọn của mình.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "reading-clues"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "word-order"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Viết một bảng nhắn ngắn cho gian hàng tưởng tượng.",
+            "prompt": "Bạn dựa vào câu nào để hiểu lời nhắn?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-4",
+        "title": "Cùng mở hội chợ",
+        "setup": "Mây cần chuẩn bị theo bước và tránh lãng phí nước, giấy.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "sequence-cook"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "green-city"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Lập ba bước chuẩn bị một bữa ăn nguội cùng người lớn.",
+            "prompt": "Việc nào bạn có thể làm để bớt lãng phí?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      }
+    ]
+  },
+  "grade-3": {
+    "title": "Đội khám phá dòng suối",
+    "intro": "Mây nhận được lời nhắn về một dòng suối cần được chăm sóc. Bạn dùng phép tính, quan sát và ghi chép để tìm cách giúp.",
+    "chapters": [
+      {
+        "id": "chapter-1",
+        "title": "Đồ dùng của đội",
+        "setup": "Các nhóm cần chia đều đồ dùng trước khi lên đường.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "multiply-orchard"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "divide-picnic"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Đặt một tình huống chia đều trên giấy và kiểm tra bằng phép nhân.",
+            "prompt": "Bạn kiểm tra kết quả chia như thế nào?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-2",
+        "title": "Những mắt xích quanh suối",
+        "setup": "Cỏ, côn trùng và ếch có liên hệ gì? Bạn theo dấu thức ăn và nơi sống.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "food-chain"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "animal-homes"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Quan sát sinh vật từ xa hoặc qua ảnh thư viện.",
+            "prompt": "Nếu một mắt xích thay đổi, bạn muốn tìm hiểu điều gì?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-3",
+        "title": "Ghi lại điều đã thấy",
+        "setup": "Đội có điều quan sát được và cả những phỏng đoán. Bạn giúp Mây tách chúng ra.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "observation-journal"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "reading-clues"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Ghi hoặc vẽ một điều quan sát và một câu hỏi.",
+            "prompt": "Đâu là điều bạn đã thấy, đâu là điều bạn đang đoán?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-4",
+        "title": "Bản tin dòng suối",
+        "setup": "Bạn sắp xếp ý rồi chọn một việc nhỏ giúp giảm lãng phí.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "paragraph-workshop"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "green-city"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Kể hoặc viết đoạn ngắn có mở ý, chi tiết và kết thúc.",
+            "prompt": "Hành động bạn đề xuất dựa trên điều gì đã biết?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      }
+    ]
+  },
+  "grade-4": {
+    "title": "Hải trình đảo Sao",
+    "intro": "Bản đồ đảo Sao còn thiếu những ghi chép. Bạn cùng Mây đo vườn, ghép phần bằng nhau và tìm lời giải có căn cứ.",
+    "chapters": [
+      {
+        "id": "chapter-1",
+        "title": "Khu vườn trên đảo",
+        "setup": "Mây cần làm hàng rào và tính phần đất trồng hoa. Hai câu hỏi cần hai cách tính khác nhau.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "perimeter-island"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "area-garden"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Vẽ hình chữ nhật, ghi kích thước rồi tính chu vi và diện tích.",
+            "prompt": "Vì sao đơn vị chu vi và diện tích khác nhau?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-2",
+        "title": "Những phần của bản đồ",
+        "setup": "Tấm bản đồ được chia thành những phần bằng nhau. Bạn ghép và so sánh các phần.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "fraction-kitchen"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "fraction-sum"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Dùng hai tờ giấy cùng cỡ để minh họa phân số cùng mẫu.",
+            "prompt": "Vì sao phải dùng cùng một đơn vị ban đầu?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-3",
+        "title": "Theo dấu nước và ánh sáng",
+        "setup": "Trên đảo có sương, mưa và những đêm đầy sao. Bạn tìm lời giải thích thay cho phỏng đoán.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "water-cycle"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "space-observer"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Vẽ chu trình nước và kể một điều muốn kiểm chứng.",
+            "prompt": "Bạn cần thêm bằng chứng gì cho lời giải thích của mình?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-4",
+        "title": "Thiết kế lối đi",
+        "setup": "Robot cần lệnh rõ ràng, còn bản tin cần ý được sắp xếp. Bạn giúp Mây thử rồi sửa.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "coding-robot"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "paragraph-workshop"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Viết một chuỗi chỉ dẫn ngắn và nhờ người lớn làm thử trên giấy.",
+            "prompt": "Bạn đã sửa chỉ dẫn nào sau khi thử?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      }
+    ]
+  },
+  "grade-5": {
+    "title": "Thành phố ngày mai",
+    "intro": "Mây cùng các bạn thiết kế một khu phố xanh. Bạn dùng số liệu, kiểm tra thông tin và trình bày lý do cho phương án của mình.",
+    "chapters": [
+      {
+        "id": "chapter-1",
+        "title": "Bản dự toán nhỏ",
+        "setup": "Nhóm cần cộng các số đo và tính một phần trong tổng số vật liệu.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "decimal-market"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "percent-city"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Tô bảng 100 ô rồi viết phần trăm và phân số tương ứng.",
+            "prompt": "Bạn kiểm tra tỉ số phần trăm bằng cách nào?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-2",
+        "title": "Những khối nhà tương lai",
+        "setup": "Mây cần biết sức chứa của mô hình và thời gian một chuyến đi trên giấy.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "volume-studio"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "speed-trail"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Vẽ khối hộp và ghi rõ ba kích thước cùng đơn vị.",
+            "prompt": "Thiếu một kích thước thì có tính được thể tích không?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-3",
+        "title": "Thông tin nào đáng tin?",
+        "setup": "Nhóm nhận một lời nhắn trên mạng. Bạn đọc kỹ, tìm căn cứ và bảo vệ thông tin riêng.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "reading-clues"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "digital-safety"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Chọn một nhận định trong sách hoặc ảnh thư viện và chỉ rõ nguồn.",
+            "prompt": "Đâu là dữ kiện, đâu là ý kiến cần kiểm chứng thêm?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      },
+      {
+        "id": "chapter-4",
+        "title": "Trình bày phương án",
+        "setup": "Cây cầu giấy cần được thử trước khi đưa vào mô hình. Bạn kể cả điều thành công lẫn điều cần sửa.",
+        "steps": [
+          {
+            "id": "try-1",
+            "kind": "activity",
+            "activity": "design-bridge"
+          },
+          {
+            "id": "try-2",
+            "kind": "activity",
+            "activity": "observation-journal"
+          },
+          {
+            "id": "share",
+            "kind": "reflection",
+            "title": "Mang khám phá ra ngoài màn hình",
+            "offline": "Làm mô hình bằng giấy cùng người lớn, thử bằng đồ chơi nhẹ.",
+            "prompt": "Bạn chọn cách nào, đã thử ra sao và lần sau muốn đổi gì?"
+          }
+        ],
+        "closing": "Mây cảm ơn bạn đã cùng thử! Giữ lại một điều vừa khám phá và nghỉ một chút trước chuyến tiếp theo nhé."
+      }
+    ]
+  }
+}

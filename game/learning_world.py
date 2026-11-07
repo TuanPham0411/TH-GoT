@@ -4,7 +4,9 @@ import json,os,re,secrets,time,urllib.request,urllib.parse,urllib.error
 from flask import request,jsonify,render_template,current_app,abort,session
 from auth import connect,user,valid_csrf
 import drive_store
-from world_content import ACTIVITIES,STORIES,PROFILES,SUBJECTS,ART
+import journeys
+from learning_profiles import LEGACY, STAGES, canonical, expand, allowed as profile_allowed
+from world_content import ACTIVITIES,STORIES,PROFILES,SUBJECTS,ART,JOURNEYS
 from world_rounds import make_round,correct
 
 MODELS={'openai':['gpt-4.1-mini','gpt-4.1'],'gemini':['gemini-2.5-flash','gemini-2.5-pro']}
@@ -37,12 +39,13 @@ def decrypt(value):
 
 def settings(public=False):
  value=document('settings',{'channels':[],'videos':[],'aiProvider':'openai','aiModel':'gpt-4.1-mini','aiEnabled':False})
+ for channel in value.get('channels',[]):channel['profiles']=expand(channel.get('profiles',[]))
  if public:return {'channels':value.get('channels',[]),'videos':value.get('videos',[])}
  return value
 
 def catalogs():
  extra=document('published',{'stories':[],'activities':[]})
- return {'activities':ACTIVITIES+extra.get('activities',[]),'stories':STORIES+extra.get('stories',[])}
+ return {key:[dict(item,profiles=expand(item.get('profiles',[]))) for item in builtin+extra.get(key,[])] for key,builtin in [('activities',ACTIVITIES),('stories',STORIES)]}
 
 def verified_session(token):
  if not user():abort(401)
@@ -60,6 +63,7 @@ def youtube_api(resource,params,key):
  except Exception:raise ValueError('YouTube chưa trả dữ liệu hợp lệ. Kiểm tra API key, quota và quyền nhúng video.') from None
 
 def validate_draft(kind,value,profile):
+ profile=canonical(profile)
  if not isinstance(value,dict):raise ValueError('Bản nháp phải là một đối tượng JSON.')
  def text(v,limit):
   if not isinstance(v,str) or not v.strip() or len(v)>limit or re.search(r'https?://|<[^>]+>',v):raise ValueError('Nội dung phải là văn bản thuần, có độ dài phù hợp.')
@@ -87,11 +91,12 @@ def validate_draft(kind,value,profile):
  return clean
 
 def ai_generate(kind,profile,topic):
+ profile=canonical(profile)
  config=settings()
  if not config.get('aiEnabled') or not config.get('aiKey'):raise ValueError('AI chưa được quản trị viên cấu hình và bật.')
  provider=config['aiProvider'];key=decrypt(config['aiKey']);model=config['aiModel']
  schema=({'title':'Tên truyện','value':'Điều học được','pages':[{'title':'Tên trang','text':'Đoạn kể tiếng Việt'}]*4,'question':'Câu hỏi suy ngẫm','choices':['Lựa chọn 1','Lựa chọn 2','Lựa chọn 3'],'answer':0,'illustrations':[]} if kind=='story' else {'title':'Tên bài','subject':'science','goal':'Mục tiêu cụ thể','lesson':'Giải thích ngắn, đúng kiến thức','home':'Hoạt động cùng người lớn','questions':[{'prompt':'Câu hỏi','choices':['A','B','C'],'answer':0,'explanation':'Vì sao đáp án đúng'}]*5})
- prompt=('Bạn biên soạn giáo dục tiếng Việt cho '+PROFILES[profile]+'. Chủ đề do người lớn chọn: '+topic+'. Tạo '+('truyện 4 trang, mỗi trang 50–90 từ' if kind=='story' else 'bài học và 5 câu hỏi có đáp án đúng duy nhất')+'. Giọng ấm áp, không định kiến, không dọa nạt, không bạo lực hay nội dung tình dục, không quảng cáo, không xin thông tin cá nhân, không hướng dẫn hoạt động nguy hiểm hoặc chẩn đoán y tế. Mẫu giáo dùng từ ngắn và tình huống cụ thể; trẻ lớn có lập luận và câu hỏi mở. Nội dung mới, không sao chép tác phẩm còn bản quyền. Không bịa kiến thức; nếu không chắc thì chọn ví dụ đơn giản đã biết. Kết quả là bản nháp để người lớn kiểm tra, không gửi thẳng cho trẻ. Chỉ trả JSON theo cấu trúc: '+json.dumps(schema,ensure_ascii=False))
+ prompt=('Bạn biên soạn giáo dục tiếng Việt cho '+PROFILES[profile]+'. Trọng tâm giai đoạn: '+STAGES[profile]['focus']+' Bối cảnh hành trình: '+JOURNEYS[profile]['title']+'. Mây là bạn đồng hành, xưng Mây và gọi trẻ là bạn; không xưng tớ với con. Truyện tạo bằng AI phải ghi là sáng tác mới, không tự nhận là nguyên bản truyện cổ hay nguồn lịch sử đã xác minh. Chủ đề do người lớn chọn: '+topic+'. Tạo '+('truyện 4 trang, mỗi trang 50–90 từ' if kind=='story' else 'bài học và 5 câu hỏi có đáp án đúng duy nhất')+'. Giọng ấm áp, không định kiến, không dọa nạt, không bạo lực hay nội dung tình dục, không quảng cáo, không xin thông tin cá nhân, không hướng dẫn hoạt động nguy hiểm hoặc chẩn đoán y tế. Mẫu giáo dùng từ ngắn và tình huống cụ thể; trẻ lớn có lập luận và câu hỏi mở. Nội dung mới, không sao chép tác phẩm còn bản quyền. Không bịa kiến thức; nếu không chắc thì chọn ví dụ đơn giản đã biết. Kết quả là bản nháp để người lớn kiểm tra, không gửi thẳng cho trẻ. Chỉ trả JSON theo cấu trúc: '+json.dumps(schema,ensure_ascii=False))
  if provider=='openai':
   url='https://api.openai.com/v1/chat/completions';payload={'model':model,'messages':[{'role':'system','content':'Soạn giáo dục phù hợp lứa tuổi, tuân thủ các ràng buộc và chỉ trả JSON.'},{'role':'user','content':prompt}],'response_format':{'type':'json_object'},'max_tokens':3500};headers={'Authorization':'Bearer '+key}
  else:
@@ -115,6 +120,7 @@ def register(app):
   CREATE TABLE IF NOT EXISTS world_rounds(id TEXT PRIMARY KEY,owner INTEGER NOT NULL,session_token TEXT NOT NULL,activity TEXT NOT NULL,expected TEXT NOT NULL,expires INTEGER NOT NULL,completed INTEGER NOT NULL DEFAULT 0,attempts INTEGER NOT NULL DEFAULT 0);
   CREATE TABLE IF NOT EXISTS world_progress(owner INTEGER NOT NULL,activity TEXT NOT NULL,completed INTEGER NOT NULL DEFAULT 0,PRIMARY KEY(owner,activity));
   CREATE TABLE IF NOT EXISTS world_requests(owner INTEGER NOT NULL,kind TEXT NOT NULL,created INTEGER NOT NULL);''')
+ journeys.register(app,verified_session)
  @app.get('/world')
  def world():return render_template('world.html',profiles=PROFILES,subjects=SUBJECTS,is_admin=drive_store.admin())
  @app.get('/parents')
@@ -122,7 +128,7 @@ def register(app):
   drive_store.require_admin();return render_template('world_parents.html',profiles=PROFILES,subjects=SUBJECTS)
  @app.get('/api/world/catalog')
  def catalog():
-  content=catalogs();content.update(profiles=PROFILES,subjects=SUBJECTS)
+  content=catalogs();content.update(profiles=PROFILES,subjects=SUBJECTS,stages=STAGES,journeys=JOURNEYS,legacyProfiles={key:canonical(key) for key in LEGACY})
   return jsonify(content)
  @app.get('/api/world/progress')
  def progress():
@@ -133,20 +139,27 @@ def register(app):
  def start_round():
   body=payload()
   if not valid_csrf():abort(403)
-  game_session=verified_session(body.get('session'));throttle('round',60);profile=json.loads(game_session['config_json'])['profile']
+  game_session=verified_session(body.get('session'));throttle('round',60);profile=canonical(json.loads(game_session['config_json'])['profile'])
   activity=next((x for x in catalogs()['activities'] if x['id']==body.get('activity') and profile in x['profiles']),None)
   if not activity:abort(404)
+  context=body.get('journey')
+  if context is not None:
+   if not isinstance(context,dict):abort(400)
+   journeys.validate_step(user()['id'],profile,context.get('chapter'),context.get('step'),activity=activity['id'])
   task,expected=make_round(activity,profile);token=secrets.token_urlsafe(24);expires=int(datetime.fromisoformat(game_session['expires_at']).timestamp())
   with connect() as db:
    db.execute('DELETE FROM world_rounds WHERE expires<?',(int(time.time()),))
    if db.execute('SELECT COUNT(*) FROM world_rounds WHERE owner=? AND completed=0',(user()['id'],)).fetchone()[0]>60:db.execute('DELETE FROM world_rounds WHERE owner=? AND completed=0',(user()['id'],))
    db.execute('INSERT INTO world_rounds(id,owner,session_token,activity,expected,expires) VALUES(?,?,?,?,?,?)',(token,user()['id'],game_session['token'],activity['id'],json.dumps(expected),expires))
+   if context:db.execute('UPDATE world_rounds SET journey_chapter=?,journey_step=? WHERE id=?',(context['chapter'],context['step'],token))
   return jsonify(round=token,task=task)
  @app.post('/api/world/answer')
  def submit():
   body=payload()
   if not valid_csrf():abort(403)
-  verified_session(body.get('session'))
+  active_session=verified_session(body.get('session'))
+  active_profile=canonical(json.loads(active_session['config_json'])['profile'])
+  journey_state=None
   with connect() as db:
    db.execute('BEGIN IMMEDIATE')
    row=db.execute('SELECT * FROM world_rounds WHERE id=? AND owner=? AND session_token=?',(body.get('round',''),user()['id'],body['session'])).fetchone()
@@ -155,18 +168,21 @@ def register(app):
    accepted=correct(json.loads(row['expected']),body.get('answer'))
    db.execute('UPDATE world_rounds SET attempts=attempts+1,completed=? WHERE id=?',(int(accepted),row['id']))
    if accepted:db.execute('INSERT INTO world_progress VALUES(?,?,1) ON CONFLICT(owner,activity) DO UPDATE SET completed=completed+1',(user()['id'],row['activity']))
-  return jsonify(ok=accepted,message='Con đã hoàn thành! Hãy kể lại cách con làm nhé.' if accepted else 'Chưa khớp. Thử đọc gợi ý, quan sát lại rồi làm từng bước nhé.',attempts=row['attempts']+1)
+   if accepted and row['journey_chapter']:
+    journeys.record(db,user()['id'],active_profile,row['journey_chapter'],row['journey_step'])
+    journey_state=journeys.state(user()['id'],active_profile,db)
+  return jsonify(journey=journey_state,ok=accepted,message='Bạn đã hoàn thành! Kể cho Mây nghe cách bạn làm nhé.' if accepted else 'Chưa khớp. Thử đọc gợi ý, quan sát lại rồi làm từng bước nhé.',attempts=row['attempts']+1)
  @app.get('/api/world/videos')
  def videos():
   config=settings();channels={c['id']:c for c in config.get('channels',[]) if c.get('enabled',True)}
   profile=request.args.get('profile','preschool')
-  return jsonify(channels=list(channels.values()),videos=[v for v in config.get('videos',[]) if v['channelId'] in channels and profile in channels[v['channelId']]['profiles']])
+  return jsonify(channels=list(channels.values()),videos=[v for v in config.get('videos',[]) if v['channelId'] in channels and profile_allowed(channels[v['channelId']]['profiles'],profile)])
  @app.post('/api/world/video')
  def video():
   body=payload()
   if not valid_csrf():abort(403)
   row=verified_session(body.get('session'));profile=json.loads(row['config_json'])['profile'];config=settings()
-  allowed={c['id'] for c in config.get('channels',[]) if c.get('enabled',True) and profile in c['profiles']}
+  allowed={c['id'] for c in config.get('channels',[]) if c.get('enabled',True) and profile_allowed(c['profiles'],profile)}
   v=next((x for x in config.get('videos',[]) if x['id']==body.get('id') and x['channelId'] in allowed),None)
   if not v:abort(404)
   return jsonify(video=v,embed='https://www.youtube-nocookie.com/embed/'+v['id'])
@@ -238,13 +254,13 @@ def register(app):
  @app.post('/api/world/admin/generate')
  def generate():
   require_admin();throttle('ai',3);body=payload();kind=body.get('kind');profile=body.get('profile');topic=body.get('topic','')
-  if kind not in ['story','lesson'] or profile not in PROFILES or not isinstance(topic,str) or not 3<=len(topic)<=200:abort(400)
+  if kind not in ['story','lesson'] or canonical(profile) not in PROFILES or not isinstance(topic,str) or not 3<=len(topic)<=200:abort(400)
   draft=ai_generate(kind,profile,topic);draft.update(draftId=secrets.token_hex(12),type=kind,reviewed=False)
   drafts=document('drafts',[]);drafts.append(draft);save('drafts',drafts[-50:]);return jsonify(draft=draft)
  @app.post('/api/world/admin/drafts')
  def edit_draft():
   require_admin();body=payload();kind=body.get('kind');profile=body.get('profile')
-  if kind not in ['story','lesson'] or profile not in PROFILES:abort(400)
+  if kind not in ['story','lesson'] or canonical(profile) not in PROFILES:abort(400)
   clean=validate_draft(kind,body.get('content'),profile);drafts=document('drafts',[]);existing=next((d for d in drafts if d['draftId']==body.get('draftId')),None)
   if body.get('publishedId'):
    old=next((item for items in document('published',{'stories':[],'activities':[]}).values() for item in items if item['id']==body['publishedId']),None)

@@ -99,3 +99,21 @@ Story editions and abridgement notes are visible in the reader. `docs/story-sour
 records references checked against the retellings; source type and variant matter. Older tales
 with threatening events are assigned to older readers and labelled for reading with adults.
 The artwork is a new illustration, not a reproduction from the cited edition.
+
+### Hành trình theo lớp và kho truyện mở rộng
+
+The child world now has eight explicit stages: three kindergarten groups and Grades 1–5.
+Each stage has its own narrative, objectives and four chapters; every chapter contains two
+verified practice steps followed by an optional-to-start offline reflection. Progress is stored
+per adult account and stage, and activity steps can only be recorded by the answer endpoint.
+See [the learning foundation](docs/learning-foundation.md), `game/journeys.json` and
+`game/learning_profiles.py`. Existing four-band sessions/channel permissions are normalized
+without rewriting their deadlines or losing published parent content.
+
+The library of stories has 24 source-labelled retellings, now with separate Vietnamese fairy
+tale, origin legend, heroic legend, world fairy tale and fable shelves. New stories include
+Mai An Tiêm, The Hundred-knot Bamboo, Tấm Cám, Snowdrop/Snow White, Perrault's Cinderella,
+Hoàn Kiếm Lake, Betel and Areca, and Sơn Tinh–Thủy Tinh. New stories use six or eight panels;
+Thánh Gióng is expanded to six pages. The reader supports chapter/page selection and a
+per-stage tab-local reading bookmark. Tấm Cám is explicitly an extract ending at the reunion,
+with the omitted later retaliation recorded in the adult edition notes.

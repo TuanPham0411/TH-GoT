@@ -31,6 +31,7 @@ jobs:
           node tests/browser_learning.cjs
           node tests/browser_world.cjs
           node tests/browser_realm.cjs
+          node tests/browser_journeys.cjs
           node tests/browser_parents.cjs
   build:
     runs-on: ubuntu-latest

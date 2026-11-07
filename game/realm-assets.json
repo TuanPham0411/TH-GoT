@@ -138,5 +138,69 @@
     "width": 1280,
     "height": 720,
     "seconds": 8
+  },
+  "story-mai-an-tiem": {
+    "path": "images/realm-v14/0f88e332fbe6c356-story-mai-an-tiem.png",
+    "sha256": "0f88e332fbe6c3565a572091a9cc94988012cdbaa71becaf503d651c3184039f",
+    "bytes": 3849903,
+    "mime": "image/png",
+    "width": 1536,
+    "height": 1024
+  },
+  "story-tre-tram-dot": {
+    "path": "images/realm-v14/8d36497f893236da-story-tre-tram-dot.png",
+    "sha256": "8d36497f893236dae4b160bd8bbad7d8011951ef2c3151e36e417096fae0b1ba",
+    "bytes": 4017313,
+    "mime": "image/png",
+    "width": 1536,
+    "height": 1024
+  },
+  "story-tam-cam": {
+    "path": "images/realm-v14/817916f86b4b0842-story-tam-cam.png",
+    "sha256": "817916f86b4b08428ea8baef9dbc1d8b9f1d6f9c9ca4999e4d320358c1346a1f",
+    "bytes": 3776533,
+    "mime": "image/png",
+    "width": 1774,
+    "height": 887
+  },
+  "story-bach-tuyet": {
+    "path": "images/realm-v14/693d9252dc618020-story-bach-tuyet.png",
+    "sha256": "693d9252dc61802092fe445f955070f4e705f29690d3510a94c52da0b50e2f81",
+    "bytes": 3735678,
+    "mime": "image/png",
+    "width": 1774,
+    "height": 887
+  },
+  "story-lo-lem": {
+    "path": "images/realm-v14/e0c9e2909e36857a-story-lo-lem.png",
+    "sha256": "e0c9e2909e36857a3350b3d665331635226d61c739a75c9f77f85454a2fcc2ce",
+    "bytes": 3983271,
+    "mime": "image/png",
+    "width": 1536,
+    "height": 1024
+  },
+  "story-ho-guom": {
+    "path": "images/realm-v14/7b41ed7e58e29d82-story-ho-guom.png",
+    "sha256": "7b41ed7e58e29d820648434e2b279bc9d1c047eb6faee54c6e807788bca5cb8e",
+    "bytes": 3921958,
+    "mime": "image/png",
+    "width": 1536,
+    "height": 1024
+  },
+  "story-trau-cau": {
+    "path": "images/realm-v14/dd61a5f5c275bd81-story-trau-cau.png",
+    "sha256": "dd61a5f5c275bd81c4839e14c8c8a002efaed4fe8e21619ed706168c04a4e1e9",
+    "bytes": 3800509,
+    "mime": "image/png",
+    "width": 1536,
+    "height": 1024
+  },
+  "story-son-tinh": {
+    "path": "images/realm-v14/4978b523a782aef9-story-son-tinh.png",
+    "sha256": "4978b523a782aef9a69a7839cfe69d6b6416b821e7b26b84a9b7a3d24eea9300",
+    "bytes": 3832425,
+    "mime": "image/png",
+    "width": 1536,
+    "height": 1024
   }
 }
