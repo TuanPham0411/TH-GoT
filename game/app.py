@@ -74,7 +74,7 @@ def create_session():
     if type(minutes) is not int or minutes not in (10,20,30,40,50,60):
         return jsonify(ok=False,message='Chọn thời lượng 10, 20, 30, 40, 50 hoặc 60 phút'),400
     profile=payload.get('profile','early-primary')
-    if not isinstance(profile,str) or profile not in {p['id'] for p in EDUCATION['profiles']}:
+    if not isinstance(profile,str) or profile not in set(learning_world.PROFILES) | set(learning_world.LEGACY):
         return jsonify(ok=False,message='Vui lòng chọn nhóm tuổi phù hợp'),400
     games=load_json(RESOURCE/'games.json',{}).get('games',[])
     games=[{'id':game['id'],'name':game['name'].get('vi',game['id'])} for game in games if game.get('enabled',True)]

@@ -40,7 +40,9 @@
       "Hai người mang cùng một lượng vàng",
       "Người anh không lấy vàng"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "co-tich-vn",
+    "aliases": []
   },
   {
     "id": "thach-sanh",
@@ -82,7 +84,9 @@
       "Lý Thông tự nhận mọi việc ngay từ đầu",
       "Niêu cơm làm mất dấu hang"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "co-tich-vn",
+    "aliases": []
   },
   {
     "id": "thanh-giong",
@@ -94,7 +98,7 @@
       "middle-primary",
       "upper-primary"
     ],
-    "minutes": 5,
+    "minutes": 7,
     "source": "Thánh Gióng · các dị bản và mục Truyền thuyết dân gian · Bản kể rút gọn do GoT biên soạn.",
     "sourceUrl": "https://vi.wikipedia.org/wiki/Thánh_Gióng",
     "editionNote": "Truyền thuyết có nhiều dị bản. Bản rút gọn theo mạch dân gian quen thuộc: sứ giả, lớn nhanh, ngựa sắt, tre và bay về trời; đây không phải khẳng định lịch sử.",
@@ -103,20 +107,28 @@
     "illustrations": [],
     "pages": [
       {
-        "title": "Tiếng gọi trong làng",
-        "text": "Ở làng Phù Đổng, có cậu bé lên ba vẫn chưa biết nói, biết cười. Khi sứ giả đi tìm người đánh giặc, cậu bỗng cất tiếng nhờ mẹ mời sứ giả vào. Gióng xin nhà vua rèn ngựa sắt, roi sắt và áo giáp sắt."
+        "title": "Tiếng nói đầu tiên",
+        "text": "Ở làng Phù Đổng, có cậu bé lên ba vẫn chưa biết nói, biết cười. Khi sứ giả đi tìm người đánh giặc, cậu bỗng cất tiếng nhờ mẹ mời sứ giả vào. Gióng xin nhà vua chuẩn bị ngựa sắt, roi sắt và áo giáp sắt."
       },
       {
-        "title": "Bữa cơm của cả làng",
-        "text": "Từ hôm ấy, Gióng ăn bao nhiêu cũng chưa no, áo vừa may đã chật. Mẹ không đủ gạo nuôi con, bà con trong làng cùng góp sức. Khi ngựa và áo giáp được đưa tới, cậu bé vươn vai thành tráng sĩ."
+        "title": "Cơm gạo của làng",
+        "text": "Từ hôm ấy, Gióng ăn mãi chưa no, áo vừa may đã chật. Mẹ không đủ gạo nuôi con. Bà con cùng mang gạo đến, góp sức chăm cho cậu bé lớn lên. Trong truyền thuyết, sức mạnh người anh hùng bắt đầu từ cơm gạo của làng."
       },
       {
-        "title": "Ngựa sắt lên đường",
-        "text": "Gióng mặc giáp, cưỡi ngựa sắt ra trận. Trong mạch kể dân gian quen thuộc, khi roi sắt gãy, Gióng nhổ tre bên đường để tiếp tục đánh giặc. Giặc tan, xóm làng được yên. Dân làng lại có thể yên ổn làm ăn."
+        "title": "Ngựa sắt đợi trước sân",
+        "text": "Khi ngựa, roi và áo giáp được mang đến, Gióng vươn vai thành một tráng sĩ. Chàng mặc giáp, cầm roi rồi lên ngựa. Con ngựa sắt hí vang, phun lửa, đưa Gióng lên đường bảo vệ xóm làng."
       },
       {
-        "title": "Đỉnh núi Sóc",
-        "text": "Đến núi Sóc, Gióng cởi áo giáp, rồi cả người lẫn ngựa bay về trời. Nhân dân lập đền tưởng nhớ. Từ một cậu bé trong làng, nhân vật đã lớn lên nhờ cơm gạo và sự chung sức của cộng đồng trong thế giới truyền thuyết."
+        "title": "Bụi tre bên đường",
+        "text": "Trong mạch kể dân gian quen thuộc, roi sắt gãy giữa trận đánh. Gióng nhổ những bụi tre bên đường để tiếp tục chống giặc. Cuối cùng, giặc bị đánh lui. Những cánh đồng và ngôi làng lại được yên bình."
+      },
+      {
+        "title": "Lên núi Sóc",
+        "text": "Đuổi xong giặc, Gióng cưỡi ngựa đến núi Sóc. Chàng cởi áo giáp, rồi cả người và ngựa bay về trời. Người anh hùng không ở lại nhận phần thưởng, chỉ để lại dấu tích trong lời kể của nhân dân."
+      },
+      {
+        "title": "Câu chuyện còn được kể",
+        "text": "Nhân dân lập đền tưởng nhớ Gióng. Qua những lần kể, hình ảnh cậu bé lớn lên nhờ cơm gạo của làng tiếp tục được truyền lại."
       }
     ],
     "question": "Ai đã góp sức nuôi Gióng lớn?",
@@ -125,7 +137,17 @@
       "Chỉ một mình sứ giả",
       "Không có ai"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "truyen-thuyet",
+    "aliases": [],
+    "artFrames": [
+      0,
+      1,
+      2,
+      2,
+      3,
+      3
+    ]
   },
   {
     "id": "so-dua",
@@ -167,7 +189,9 @@
       "Cô chỉ nhìn quần áo của chàng",
       "Cô không bao giờ mang cơm"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "co-tich-vn",
+    "aliases": []
   },
   {
     "id": "lang-lieu",
@@ -211,7 +235,9 @@
       "Khoai tây",
       "Bột ca cao"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "su-tich",
+    "aliases": []
   },
   {
     "id": "rua-tho",
@@ -255,7 +281,9 @@
       "Rùa đi đường tắt do Cáo chỉ",
       "Thỏ không tham gia cuộc đua"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "ngu-ngon",
+    "aliases": []
   },
   {
     "id": "cao-chum-nho",
@@ -299,7 +327,9 @@
       "Có, Cáo đã ăn cả chùm",
       "Có, giàn nho đã nói"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "ngu-ngon",
+    "aliases": []
   },
   {
     "id": "qua-binh-nuoc",
@@ -343,7 +373,9 @@
       "Sỏi biến thành nước",
       "Bình tự tạo ra mưa"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "ngu-ngon",
+    "aliases": []
   },
   {
     "id": "gio-mat-troi",
@@ -387,7 +419,9 @@
       "Bỏ áo ngay lập tức",
       "Biến áo thành cánh buồm"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "ngu-ngon",
+    "aliases": []
   },
   {
     "id": "cu-cai",
@@ -431,7 +465,9 @@
       "Một chiếc máy bay",
       "Một con cá voi"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "co-tich-the-gioi",
+    "aliases": []
   },
   {
     "id": "vit-con",
@@ -474,7 +510,9 @@
       "Chim sẻ",
       "Gà trống"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "co-tich-the-gioi",
+    "aliases": []
   },
   {
     "id": "ba-chu-heo",
@@ -515,7 +553,9 @@
       "Nhà rơm",
       "Nhà cành cây"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "co-tich-the-gioi",
+    "aliases": []
   },
   {
     "id": "khan-do",
@@ -557,7 +597,9 @@
       "Sói tự đưa hai người về",
       "Một đàn cá"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "co-tich-the-gioi",
+    "aliases": []
   },
   {
     "id": "hoang-de",
@@ -600,7 +642,9 @@
       "Họ thật sự nhìn thấy vải",
       "Họ đã mặc thử tấm vải"
     ],
-    "answer": 0
+    "answer": 0,
+    "category": "co-tich-the-gioi",
+    "aliases": []
   },
   {
     "id": "su-tu-chuot",
@@ -644,7 +688,9 @@
     ],
     "answer": 0,
     "atlas": "atlas-4",
-    "atlasRow": 0
+    "atlasRow": 0,
+    "category": "ngu-ngon",
+    "aliases": []
   },
   {
     "id": "kien-bo-cau",
@@ -688,6 +734,508 @@
     ],
     "answer": 0,
     "atlas": "atlas-4",
-    "atlasRow": 1
+    "atlasRow": 1,
+    "category": "ngu-ngon",
+    "aliases": []
+  },
+  {
+    "id": "mai-an-tiem",
+    "title": "Mai An Tiêm và sự tích dưa hấu",
+    "origin": "Việt Nam",
+    "category": "su-tich",
+    "profiles": [
+      "kindergarten-5",
+      "grade-1",
+      "grade-2",
+      "grade-3",
+      "grade-4",
+      "grade-5"
+    ],
+    "minutes": 7,
+    "source": "Mai An Tiêm · văn bản tóm tắt truyền thuyết",
+    "sourceUrl": "https://vi.wikipedia.org/wiki/Mai_An_Tiêm",
+    "editionNote": "Bản kể rút gọn theo mạch truyền thuyết An Tiêm bị đày ra đảo, gieo hạt do chim mang đến, trồng dưa và được gọi về. Không coi truyền thuyết là hồ sơ lịch sử hay khẳng định nguồn gốc khoa học của dưa hấu.",
+    "value": "Kiên trì, quan sát và gây dựng cuộc sống",
+    "illustrations": [],
+    "atlas": "story-mai-an-tiem",
+    "artGrid": {
+      "columns": 3,
+      "rows": 2
+    },
+    "pages": [
+      {
+        "title": "Rời kinh thành",
+        "text": "Mai An Tiêm được vua Hùng quý mến. Nhưng một lời nói khiến vua phật ý, chàng cùng gia đình bị đày ra một hòn đảo hoang. Nhìn bờ cát xa lạ, họ phải tìm cách sống bằng chính đôi tay mình."
+      },
+      {
+        "title": "Ngôi nhà trên đảo",
+        "text": "An Tiêm cùng vợ tìm chỗ dựng nơi trú và chăm chỉ làm ăn. Giữa sóng biển và gió đảo, mỗi việc làm được đều quý: có chỗ ở, có thức ăn và có thêm hy vọng cho ngày mai."
+      },
+      {
+        "title": "Những hạt giống lạ",
+        "text": "Một hôm, chim mang đến những hạt cây lạ. An Tiêm chú ý đến chúng, nhặt lấy rồi đem gieo. Chàng chưa biết cây sẽ cho quả gì, nhưng vẫn chăm sóc và chờ xem điều gì mọc lên."
+      },
+      {
+        "title": "Mùa dưa đầu tiên",
+        "text": "Dây cây lan trên đất, rồi kết thành những quả dưa. Khi quả chín, gia đình nếm thấy vị ngọt mát. Họ giữ hạt để gieo tiếp. Từ những hạt giống ít ỏi, một ruộng dưa dần xanh tốt trên đảo."
+      },
+      {
+        "title": "Những chuyến thuyền ghé đảo",
+        "text": "Dưa ngon khiến người đi biển tìm đến trao đổi. Gia đình An Tiêm có thêm vật dụng, còn giống dưa được mang đến nhiều nơi. Tin về những quả dưa trên đảo lan xa, cuối cùng đến tai nhà vua."
+      },
+      {
+        "title": "Ngày trở về",
+        "text": "Biết gia đình An Tiêm đã gây dựng được cuộc sống, vua cho gọi họ trở về. Truyền thuyết lưu lại hình ảnh người trồng dưa bền bỉ trên đảo, gắn tên Mai An Tiêm với những mùa dưa hấu của người Việt."
+      }
+    ],
+    "question": "An Tiêm đã làm gì với những hạt giống lạ?",
+    "choices": [
+      "Đem gieo, chăm sóc và chờ cây lớn",
+      "Vứt hết xuống biển",
+      "Giữ mãi mà không gieo"
+    ],
+    "answer": 0,
+    "aliases": [
+      "sự tích dưa hấu",
+      "dua hau",
+      "An Tiêm"
+    ]
+  },
+  {
+    "id": "tre-tram-dot",
+    "title": "Cây tre trăm đốt",
+    "origin": "Việt Nam",
+    "category": "co-tich-vn",
+    "profiles": [
+      "grade-1",
+      "grade-2",
+      "grade-3",
+      "grade-4",
+      "grade-5"
+    ],
+    "minutes": 7,
+    "source": "Cây tre trăm đốt · tóm tắt truyện dân gian",
+    "sourceUrl": "https://vi.wikipedia.org/wiki/Cây_tre_trăm_đốt",
+    "editionNote": "Bản rút gọn từ cốt truyện được dẫn, giữ lời hứa của phú hộ, thử thách tìm tre, Bụt và hai câu thần chú. Không trộn lời thoại từ các bản truyện tranh hiện đại.",
+    "value": "Giữ lời hứa và nhận ra sự bất công",
+    "illustrations": [],
+    "atlas": "story-tre-tram-dot",
+    "artGrid": {
+      "columns": 3,
+      "rows": 2
+    },
+    "pages": [
+      {
+        "title": "Lời hứa mùa gặt",
+        "text": "Một chàng trai hiền lành đi làm thuê cho phú hộ. Ông chủ hứa rằng nếu chàng chịu khó làm việc ba năm thì sẽ gả con gái cho. Tin lời, chàng chăm chỉ qua hết mùa cày đến mùa gặt."
+      },
+      {
+        "title": "Điều kiện không thể tìm",
+        "text": "Đến hẹn, phú hộ lại định gả con cho nhà giàu. Ông sai chàng vào rừng tìm một cây tre đủ một trăm đốt, nói rằng có tre mới làm lễ cưới. Chàng lên đường mà chưa biết mình bị lừa."
+      },
+      {
+        "title": "Giữa rừng tre",
+        "text": "Chàng tìm hết bụi tre này đến bụi tre khác, nhưng không thấy cây nào đủ trăm đốt. Mệt mỏi và thất vọng, chàng ngồi khóc. Bụt hiện lên, hỏi chuyện rồi chỉ cho chàng cách vượt qua điều kiện vô lý ấy."
+      },
+      {
+        "title": "Khắc nhập, khắc xuất",
+        "text": "Bụt bảo chàng gom đủ một trăm đốt tre rời. Đọc “khắc nhập”, các đốt nối thành một cây; đọc “khắc xuất”, chúng lại rời ra. Nhờ thế, chàng có thể gánh tre về, rồi ghép lại trước sân nhà phú hộ."
+      },
+      {
+        "title": "Phú hộ mắc vào cây tre",
+        "text": "Phú hộ tò mò đến gần xem cây tre kỳ lạ. Phép màu khiến ông dính vào cây, không tự rời ra được. Lúc ấy ông mới chịu nhận lời phải giữ lời hứa với chàng trai."
+      },
+      {
+        "title": "Lời hứa được thực hiện",
+        "text": "Khi phú hộ hứa làm đúng điều đã nói, chàng đọc “khắc xuất” để giải thoát cho ông. Phú hộ gả con gái cho chàng. Sau bao ngày làm lụng và một chuyến tìm tre, chàng trai có được ngày cưới của mình."
+      }
+    ],
+    "question": "Điều nào cho thấy phú hộ đã không giữ lời lúc đầu?",
+    "choices": [
+      "Ông đặt điều kiện tìm cây tre trăm đốt để trì hoãn lời hứa",
+      "Ông giúp chàng làm lễ cưới ngay",
+      "Ông cùng chàng đi tìm Bụt"
+    ],
+    "answer": 0,
+    "aliases": []
+  },
+  {
+    "id": "tam-cam",
+    "title": "Tấm Cám",
+    "origin": "Việt Nam",
+    "category": "co-tich-vn",
+    "profiles": [
+      "grade-4",
+      "grade-5"
+    ],
+    "minutes": 9,
+    "source": "Tấm Cám · phần Bản Tấm Cám phổ thông",
+    "sourceUrl": "https://vi.wikipedia.org/wiki/Tấm_Cám",
+    "editionNote": "Trích mạch truyện đến khi Tấm được nhận ra ở quán nước và trở về cung. Phần trả thù sau đó trong văn bản đối chiếu được lược bỏ hoàn toàn, không thay bằng một kết thúc tha thứ hay sét đánh. Có nhân vật bị hại và hóa thân; dành cho trẻ lớn đọc cùng người lớn.",
+    "value": "Sự bất công, sức sống và những lần hóa thân",
+    "illustrations": [],
+    "atlas": "story-tam-cam",
+    "artGrid": {
+      "columns": 4,
+      "rows": 2
+    },
+    "pages": [
+      {
+        "title": "Chiếc giỏ bên bờ ruộng",
+        "text": "Tấm mồ côi, sống cùng dì ghẻ và Cám. Một hôm, hai chị em được sai đi bắt tép, ai đầy giỏ sẽ được thưởng yếm đỏ. Tấm chăm chỉ bắt được nhiều; Cám lừa chị xuống tắm rồi trút hết tép sang giỏ mình."
+      },
+      {
+        "title": "Người bạn dưới giếng",
+        "text": "Tấm khóc. Bụt hiện lên, chỉ cho nàng con cá bống còn sót lại trong giỏ. Tấm mang bống về nuôi dưới giếng. Nhưng mẹ con Cám dò biết, bắt bống ăn thịt. Theo lời Bụt, Tấm nhặt xương bống, cất vào lọ rồi chôn dưới chân giường."
+      },
+      {
+        "title": "Đường đến hội",
+        "text": "Muốn ngăn Tấm đi hội, dì ghẻ trộn thóc với gạo bắt nàng nhặt. Bụt sai chim sẻ xuống giúp. Từ những chiếc lọ đã chôn, Tấm có quần áo đẹp, giày và ngựa để lên đường. Khi qua chỗ lội, nàng đánh rơi một chiếc giày."
+      },
+      {
+        "title": "Đôi giày thêu",
+        "text": "Nhà vua nhặt được chiếc giày, cho người đi hội đến ướm thử. Tấm đi vừa, lại lấy ra chiếc còn lại giống hệt. Vua rước nàng vào cung. Mẹ con Cám ngạc nhiên và ghen ghét, còn cuộc đời Tấm tưởng như đã sang trang."
+      },
+      {
+        "title": "Chim vàng anh",
+        "text": "Tấm về nhà nhân ngày giỗ cha. Dì ghẻ hại nàng khi nàng trèo cau; Cám được đưa vào cung thay chị. Tấm hóa thành chim vàng anh, quấn quýt bên nhà vua. Cám lại hại chim; nơi lông chim rơi mọc lên hai cây xoan đào."
+      },
+      {
+        "title": "Từ khung cửi đến cây thị",
+        "text": "Cây xoan đào tỏa bóng cho vua nghỉ. Mẹ con Cám lại cho chặt cây làm khung cửi. Khung cửi cất tiếng khiến Cám sợ, nên bị đốt đi. Từ chỗ tro đổ bên đường mọc lên một cây thị, chỉ mang một quả thơm."
+      },
+      {
+        "title": "Quả thị của bà lão",
+        "text": "Một bà hàng nước xin quả thị rụng vào bị. Mỗi khi bà đi vắng, Tấm từ quả thị bước ra, dọn nhà và nấu cơm. Bà lén trở về, gặp Tấm rồi giữ nàng ở lại. Từ ấy, hai người sống thương yêu như mẹ con."
+      },
+      {
+        "title": "Miếng trầu cánh phượng",
+        "text": "Vua ghé quán nước, nhận ra cách têm trầu cánh phượng quen thuộc. Bà lão gọi Tấm ra; vua nhận ra nàng và nghe kể mọi chuyện. Tấm được rước trở về cung."
+      }
+    ],
+    "question": "Nhà vua nhận ra dấu vết quen thuộc nào ở quán nước?",
+    "choices": [
+      "Miếng trầu têm cánh phượng",
+      "Một quả táo đỏ",
+      "Đôi giày thủy tinh"
+    ],
+    "answer": 0,
+    "aliases": [
+      "cô Tấm",
+      "Tam Cam"
+    ],
+    "abridgement": "Trích phần truyện đến cuộc đoàn tụ"
+  },
+  {
+    "id": "bach-tuyet",
+    "title": "Bạch Tuyết và bảy chú lùn",
+    "origin": "Thế giới · Anh em Grimm",
+    "category": "co-tich-the-gioi",
+    "profiles": [
+      "grade-3",
+      "grade-4",
+      "grade-5"
+    ],
+    "minutes": 9,
+    "source": "Anh em Grimm · Snowdrop · Grimm’s Fairy Tales, Project Gutenberg #2591",
+    "sourceUrl": "https://www.gutenberg.org/files/2591/2591-h/2591-h.htm",
+    "editionNote": "Theo bản tiếng Anh Snowdrop trong tuyển tập #2591: miếng táo rời khỏi miệng khi quan tài được nhấc lên, không có nụ hôn đánh thức. Bản này kể hoàng hậu chết vì cơn giận ở lễ cưới, khác dị bản giày sắt nung đỏ. Lược miêu tả gây sợ; đọc cùng người lớn.",
+    "value": "Lòng đố kỵ, sự cưu mang và điều cần cảnh giác",
+    "illustrations": [],
+    "atlas": "story-bach-tuyet",
+    "artGrid": {
+      "columns": 4,
+      "rows": 2
+    },
+    "pages": [
+      {
+        "title": "Câu trả lời của gương",
+        "text": "Bạch Tuyết lớn lên trong cung điện. Người mẹ kế là hoàng hậu có chiếc gương luôn trả lời sự thật. Khi gương nói Bạch Tuyết đẹp hơn mình, lòng đố kỵ khiến hoàng hậu muốn nàng biến mất."
+      },
+      {
+        "title": "Một lối đi trong rừng",
+        "text": "Hoàng hậu sai một người đưa Bạch Tuyết vào rừng. Người ấy không nỡ làm hại nàng, để nàng đi. Bạch Tuyết lang thang giữa cây rừng, lo sợ nhưng không bị thú dữ tấn công. Đến tối, nàng tìm thấy một ngôi nhà nhỏ."
+      },
+      {
+        "title": "Ngôi nhà có bảy chiếc giường",
+        "text": "Trong nhà có bảy bộ đồ ăn và bảy chiếc giường. Đói và mệt, Bạch Tuyết ăn một ít rồi ngủ. Khi bảy người thợ mỏ trở về, họ ngạc nhiên thấy có khách. Đó là bảy chú lùn sống và làm việc trong núi."
+      },
+      {
+        "title": "Những người bạn mới",
+        "text": "Nghe chuyện, bảy chú lùn cho Bạch Tuyết ở lại. Nàng giúp chăm nom nhà cửa, còn họ đi làm trong núi. Trước khi đi, các chú nhắc nàng đừng mở cửa cho người lạ, vì hoàng hậu có thể tìm đến."
+      },
+      {
+        "title": "Dải dây buộc áo",
+        "text": "Chiếc gương báo cho hoàng hậu biết nơi Bạch Tuyết ở. Bà cải trang thành người bán hàng, dùng dải dây buộc áo siết nàng ngất đi. Bảy chú lùn về kịp, cắt dây và cứu nàng tỉnh lại."
+      },
+      {
+        "title": "Chiếc lược giấu độc",
+        "text": "Hoàng hậu lại cải trang, mang một chiếc lược có độc đến. Bạch Tuyết thử cài lược và ngã xuống. Khi các chú lùn tìm thấy rồi lấy chiếc lược ra, nàng hồi tỉnh. Họ lại nhắc nàng phải đề phòng."
+      },
+      {
+        "title": "Nửa quả táo đỏ",
+        "text": "Lần nữa, hoàng hậu đem quả táo có một nửa giấu độc. Bà ăn phần không độc để đánh lừa Bạch Tuyết. Nàng cắn phần còn lại rồi bất tỉnh. Không cứu tỉnh được nàng, bảy chú lùn đặt nàng trong quan tài thủy tinh và thay nhau trông nom."
+      },
+      {
+        "title": "Bạch Tuyết tỉnh lại",
+        "text": "Một hoàng tử đến, xin được mang quan tài đi. Khi quan tài được nhấc lên, miếng táo rơi khỏi miệng, Bạch Tuyết tỉnh lại. Nàng về cung cùng hoàng tử và làm lễ cưới. Hoàng hậu đến, nhận ra nàng rồi gục chết vì giận; Bạch Tuyết vẫn nhớ những người bạn trong núi."
+      }
+    ],
+    "question": "Trong bản kể này, điều gì xảy ra trước khi Bạch Tuyết tỉnh lại?",
+    "choices": [
+      "Miếng táo rơi ra khi quan tài được nhấc lên",
+      "Một nụ hôn làm quả táo biến mất",
+      "Chiếc giày vừa chân nàng"
+    ],
+    "answer": 0,
+    "aliases": [
+      "Bạch Tuyết và 7 chú lùn",
+      "bạc tuyết",
+      "snow white",
+      "snowdrop"
+    ]
+  },
+  {
+    "id": "lo-lem",
+    "title": "Cô bé Lọ Lem",
+    "origin": "Thế giới · Charles Perrault",
+    "category": "co-tich-the-gioi",
+    "profiles": [
+      "kindergarten-5",
+      "grade-1",
+      "grade-2",
+      "grade-3",
+      "grade-4",
+      "grade-5"
+    ],
+    "minutes": 7,
+    "source": "Charles Perrault · Cinderilla, or The Little Glass Slipper · Project Gutenberg #29021",
+    "sourceUrl": "https://www.gutenberg.org/files/29021/29021-h/29021-h.htm",
+    "editionNote": "Theo Perrault qua bản tiếng Anh Cinderilla: hai đêm dự hội, bí ngô thành xe, giày thủy tinh, phép hết lúc nửa đêm và hai chị được tha thứ. Không trộn với bản Grimm có giày vàng.",
+    "value": "Hy vọng, sự giúp đỡ và lòng rộng lượng",
+    "illustrations": [],
+    "atlas": "story-lo-lem",
+    "artGrid": {
+      "columns": 3,
+      "rows": 2
+    },
+    "pages": [
+      {
+        "title": "Bên bếp tro",
+        "text": "Một cô gái phải làm nhiều việc trong nhà, còn mẹ kế và hai người chị được sống sung túc. Làm xong, cô thường ngồi gần bếp tro nên bị gọi là Lọ Lem. Khi hai chị chuẩn bị đi hội ở cung điện, cô cũng ước được đến."
+      },
+      {
+        "title": "Bà tiên đỡ đầu",
+        "text": "Thấy Lọ Lem buồn, bà tiên đỡ đầu giúp cô. Bà biến bí ngô thành cỗ xe, chuột thành ngựa và những con vật khác thành người hầu. Quần áo cũ hóa thành bộ váy lộng lẫy; cô còn được một đôi giày thủy tinh."
+      },
+      {
+        "title": "Lời dặn trước chuyến đi",
+        "text": "Bà tiên dặn phải rời hội trước nửa đêm, khi phép màu hết hiệu lực. Đêm đầu, Lọ Lem được hoàng tử đón và mời nhảy. Cô còn đối đãi ân cần với hai chị, dù họ không nhận ra mình. Cô trở về trước giờ đã hẹn."
+      },
+      {
+        "title": "Tiếng chuông nửa đêm",
+        "text": "Đêm hội tiếp theo, Lọ Lem lại đến. Mải vui, cô quên thời gian cho đến khi chuông điểm mười hai giờ. Cô vội chạy, đánh rơi một chiếc giày. Hoàng tử nhặt lấy; còn cỗ xe và áo váy của cô trở lại như cũ."
+      },
+      {
+        "title": "Chiếc giày vừa như in",
+        "text": "Hoàng tử cho tìm người đi vừa chiếc giày. Đến nhà Lọ Lem, hai chị cố thử mà không vừa. Khi cô xin thử, chiếc giày vừa chân. Cô lấy ra chiếc còn lại; bà tiên cũng đến, khiến mọi người nhận ra cô gái ở hội."
+      },
+      {
+        "title": "Một ngày mới",
+        "text": "Hai chị xin lỗi vì đã đối xử tệ. Lọ Lem tha thứ, rồi được đưa đến gặp hoàng tử. Họ làm lễ cưới. Cô cho hai chị ở trong cung và giúp họ có cuộc sống mới."
+      }
+    ],
+    "question": "Bà tiên đã dặn Lọ Lem điều gì?",
+    "choices": [
+      "Rời hội trước nửa đêm",
+      "Ở lại đến sáng hôm sau",
+      "Không được giúp đỡ ai"
+    ],
+    "answer": 0,
+    "aliases": [
+      "Cinderella",
+      "Cinderilla",
+      "Lọ Lem"
+    ]
+  },
+  {
+    "id": "ho-guom",
+    "title": "Sự tích Hồ Gươm",
+    "origin": "Việt Nam",
+    "category": "truyen-thuyet",
+    "profiles": [
+      "grade-1",
+      "grade-2",
+      "grade-3",
+      "grade-4",
+      "grade-5"
+    ],
+    "minutes": 7,
+    "source": "Sự tích Hồ Gươm · phần nội dung truyền thuyết",
+    "sourceUrl": "https://vi.wikipedia.org/wiki/Sự_tích_Hồ_Gươm",
+    "editionNote": "Bản rút gọn theo mạch Lê Thận tìm lưỡi gươm, Lê Lợi có chuôi gươm và hoàn gươm cho Rùa Vàng. Truyện có phép màu, không thay cho tư liệu lịch sử. Lược chi tiết chiến trận.",
+    "value": "Trách nhiệm và ý nghĩa của hòa bình",
+    "illustrations": [],
+    "atlas": "story-ho-guom",
+    "artGrid": {
+      "columns": 3,
+      "rows": 2
+    },
+    "pages": [
+      {
+        "title": "Lưỡi gươm trong lưới",
+        "text": "Thuở nghĩa quân Lam Sơn còn gian khó, người đánh cá Lê Thận kéo lưới gặp một thanh sắt lạ. Sau những lần vớt lên, chàng nhận ra đó là lưỡi gươm. Rồi Lê Thận theo nghĩa quân, cùng Lê Lợi chống giặc."
+      },
+      {
+        "title": "Ánh sáng trong rừng",
+        "text": "Một lần đi qua rừng, Lê Lợi thấy ánh sáng trên ngọn cây đa. Ông trèo lên và tìm được một chuôi gươm. Về sau, chuôi ấy lắp vừa khít với lưỡi gươm Lê Thận có, như hai phần đã chờ ngày gặp lại."
+      },
+      {
+        "title": "Thanh gươm Thuận Thiên",
+        "text": "Truyền thuyết kể thanh gươm mang hai chữ Thuận Thiên và được Long Quân cho mượn. Gươm giúp nghĩa quân thêm sức mạnh, đi qua những ngày thiếu thốn. Cùng sự chung sức của mọi người, cuộc kháng chiến dần giành thắng lợi."
+      },
+      {
+        "title": "Đất nước yên bình",
+        "text": "Giặc đã bị đánh lui, cuộc sống yên ổn trở lại. Lê Lợi lên làm vua. Thanh gươm gắn với những năm chiến đấu nay theo ông về kinh thành, nhưng câu chuyện vẫn còn một cuộc gặp trên mặt hồ."
+      },
+      {
+        "title": "Cuộc gặp Rùa Vàng",
+        "text": "Một hôm, vua ngự thuyền trên hồ Tả Vọng. Rùa Vàng nổi lên, xin nhà vua hoàn gươm cho Long Quân. Hiểu đã đến lúc trả lại vật cho mượn, vua nâng gươm trao cho Rùa Vàng."
+      },
+      {
+        "title": "Hồ Hoàn Kiếm",
+        "text": "Rùa Vàng ngậm gươm rồi lặn xuống. Từ cuộc hoàn gươm ấy, truyền thuyết giải thích tên hồ Hoàn Kiếm, còn gọi là Hồ Gươm. Câu chuyện khép lại ở mặt nước yên bình, khi thanh gươm đã được trao trả."
+      }
+    ],
+    "question": "Tên Hoàn Kiếm trong truyền thuyết gắn với việc gì?",
+    "choices": [
+      "Nhà vua trả gươm cho Rùa Vàng",
+      "Nhà vua xây một cây cầu mới",
+      "Lê Thận đánh rơi chiếc lưới"
+    ],
+    "answer": 0,
+    "aliases": [
+      "Lê Lợi",
+      "Rùa Vàng",
+      "Hoàn Kiếm"
+    ]
+  },
+  {
+    "id": "trau-cau",
+    "title": "Sự tích trầu cau",
+    "origin": "Việt Nam",
+    "category": "su-tich",
+    "profiles": [
+      "grade-4",
+      "grade-5"
+    ],
+    "minutes": 7,
+    "source": "Sự tích trầu cau · phần nội dung và ghi chú dị bản",
+    "sourceUrl": "https://vi.wikipedia.org/wiki/Sự_tích_trầu_cau",
+    "editionNote": "Theo mạch phổ biến được bài viết ghi: Lang hóa đá, Tân hóa cau, người vợ hóa trầu; bài cũng nêu dị bản đổi vai hai anh em. Có mất mát và hóa thân, dành cho trẻ lớn đọc cùng người lớn. Chỉ tìm hiểu văn hóa, không hướng dẫn trẻ ăn trầu.",
+    "value": "Tình thân và một biểu tượng văn hóa",
+    "illustrations": [],
+    "atlas": "story-trau-cau",
+    "artGrid": {
+      "columns": 3,
+      "rows": 2
+    },
+    "pages": [
+      {
+        "title": "Hai anh em",
+        "text": "Ngày xưa, có hai anh em Tân và Lang rất thương nhau. Khi lớn lên, Tân lấy vợ. Cuộc sống trong nhà đổi khác; người em cảm thấy anh không còn chăm sóc mình như trước, nhưng nỗi buồn ấy chưa được nói rõ."
+      },
+      {
+        "title": "Lang rời nhà",
+        "text": "Buồn tủi, Lang bỏ đi. Chàng đi mãi đến một dòng suối, không thể tiếp tục. Kiệt sức và đau buồn, chàng qua đời bên bờ nước. Truyền thuyết kể chàng hóa thành một tảng đá trắng ở nơi ấy."
+      },
+      {
+        "title": "Tân đi tìm em",
+        "text": "Không thấy em trở về, Tân lên đường tìm. Chàng cũng đến bờ suối, mệt lả rồi qua đời bên tảng đá. Một cây cau mọc lên cạnh đó, thân vươn cao như vẫn muốn tìm thấy người thân xa cách."
+      },
+      {
+        "title": "Dây trầu bên cây cau",
+        "text": "Người vợ không thấy chồng về cũng đi tìm. Đến bờ suối, nàng ngồi bên cây cau rồi mất. Từ đó mọc lên dây trầu, quấn quanh thân cau. Ba hình tượng ở lại gần nhau trong câu chuyện hóa thân."
+      },
+      {
+        "title": "Nhà vua nghe chuyện",
+        "text": "Vua Hùng đi qua, nghe kể chuyện tình nghĩa của ba người. Trầu, cau và vôi được gắn với nhau trong truyền thuyết, trở thành biểu tượng nhắc người đời về sự gắn bó giữa anh em và vợ chồng."
+      },
+      {
+        "title": "Trầu cau trong lễ tục",
+        "text": "Từ câu chuyện ấy, người Việt kể lại nguồn gốc trầu cau và ý nghĩa của chúng trong cưới hỏi, giao hiếu. Bên dòng suối của truyền thuyết, cây cau, dây trầu và tảng đá không còn đứng riêng lẻ mà gợi nhớ một gia đình."
+      }
+    ],
+    "question": "Ba hình tượng nào gắn với sự tích này?",
+    "choices": [
+      "Cây cau, dây trầu và đá vôi",
+      "Cây thị, quả táo và chiếc giày",
+      "Cây tre, ngựa sắt và gương thần"
+    ],
+    "answer": 0,
+    "aliases": [
+      "Trầu cau",
+      "Tân Lang"
+    ]
+  },
+  {
+    "id": "son-tinh",
+    "title": "Sơn Tinh – Thủy Tinh",
+    "origin": "Việt Nam",
+    "category": "truyen-thuyet",
+    "profiles": [
+      "grade-2",
+      "grade-3",
+      "grade-4",
+      "grade-5"
+    ],
+    "minutes": 7,
+    "source": "Sơn Tinh – Thủy Tinh · các bản ghi và phần giới thiệu truyền thuyết",
+    "sourceUrl": "https://vi.wikipedia.org/wiki/Sơn_Tinh_–_Thủy_Tinh",
+    "editionNote": "Rút gọn mạch truyền thuyết quen thuộc về kén rể và nước dâng, không khẳng định phép thần là cơ chế gây lũ. Các bản Việt điện u linh, Lĩnh Nam chích quái và bản kể về sau có chi tiết khác nhau.",
+    "value": "Chung sức trước thiên tai qua hình tượng truyền thuyết",
+    "illustrations": [],
+    "atlas": "story-son-tinh",
+    "artGrid": {
+      "columns": 3,
+      "rows": 2
+    },
+    "pages": [
+      {
+        "title": "Hai người đến cầu hôn",
+        "text": "Vua Hùng có con gái là Mỵ Nương. Hai người đến cầu hôn: Sơn Tinh có tài điều khiển núi rừng, Thủy Tinh có tài gọi gió, dâng nước. Cả hai đều trổ tài khiến vua khó chọn lựa."
+      },
+      {
+        "title": "Lời hẹn lúc bình minh",
+        "text": "Vua hẹn ai mang đủ sính lễ đến trước vào sáng hôm sau sẽ được đón Mỵ Nương. Trong mạch kể quen thuộc, lễ vật có voi chín ngà, gà chín cựa, ngựa chín hồng mao cùng những lễ vật khác."
+      },
+      {
+        "title": "Sơn Tinh đến trước",
+        "text": "Sáng sớm, Sơn Tinh mang lễ vật đến trước và đưa Mỵ Nương về núi. Thủy Tinh đến sau, không đón được nàng. Giận dữ, Thủy Tinh đem nước đuổi theo, làm sóng dâng cuồn cuộn."
+      },
+      {
+        "title": "Nước dâng quanh núi",
+        "text": "Mưa gió và nước lũ bủa quanh, uy hiếp đất đai, nhà cửa. Trong thế giới của truyền thuyết, Sơn Tinh dùng phép nâng núi và dựng thành lũy đất đá để chống lại những đợt nước dâng."
+      },
+      {
+        "title": "Núi cao hơn nữa",
+        "text": "Nước dâng đến đâu, núi lại cao lên đến đó. Hai bên giằng co. Cuối cùng, Thủy Tinh đuối sức, phải rút nước và lui quân. Cuộc giao tranh khép lại, xóm làng trở về với ruộng đồng."
+      },
+      {
+        "title": "Câu chuyện qua các mùa",
+        "text": "Truyền thuyết kể rằng hằng năm Thủy Tinh lại dâng nước trả thù nhưng không thắng được Sơn Tinh. Người xưa gửi vào hình tượng ấy nỗi lo về lũ lụt và ước muốn bảo vệ cuộc sống trước thiên tai."
+      }
+    ],
+    "question": "Trong truyền thuyết, Sơn Tinh làm gì khi nước dâng?",
+    "choices": [
+      "Nâng núi và dựng lũy chống nước",
+      "Bỏ đi ra biển",
+      "Giấu hết sính lễ"
+    ],
+    "answer": 0,
+    "aliases": [
+      "Sơn Tinh Thủy Tinh",
+      "Son Tinh"
+    ]
   }
 ]

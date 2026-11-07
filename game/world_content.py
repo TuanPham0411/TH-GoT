@@ -1,7 +1,8 @@
 """Editorial curriculum and short, original retellings of public-domain tales."""
 import json
 from pathlib import Path
-PROFILES={'preschool':'Mẫu giáo · 3–5 tuổi','early-primary':'Lớp 1–2 · 6–7 tuổi','middle-primary':'Lớp 3 · 8 tuổi','upper-primary':'Lớp 4–5 · 9–11 tuổi'}
+from learning_profiles import PROFILES, STAGES, expand
+
 SUBJECTS={'numbers':'Xứ sở toán học','language':'Vườn tiếng Việt','science':'Phòng khám phá','life':'Thành phố tử tế','logic':'Đảo tư duy','creative':'Xưởng sáng tạo'}
 # id, title, subject, mechanic, youngest group (0–3), goal, short lesson, family extension
 ROWS=[
@@ -54,10 +55,11 @@ ROWS=[
 ('observation-journal','Nhật ký khám phá','creative','journal',2,'Ghi điều quan sát được và câu hỏi mới.','Tách điều mắt thấy với điều mình đang đoán. Có thể vẽ thay cho viết và không ghi thông tin riêng.','Quan sát một chiếc lá trong ba ngày.'),
 ('design-bridge','Kỹ sư cây cầu','creative','bridge',3,'Thử thiết kế, quan sát rồi cải tiến.','Cầu cần bắc qua khoảng trống và chịu được tải. Chỉ dùng giấy, khối gỗ lớn và đồ chơi nhẹ, không leo lên mô hình.','Thử gấp một tờ giấy theo hai cách để làm cầu đồ chơi.'),
 ]
+ROWS += [tuple(row) for row in json.loads((Path(__file__).parent/"curriculum-extra.json").read_text())]
 ACTIVITIES=[]
 for row in ROWS:
  id,title,subject,kind,age,goal,lesson,home=row
- ACTIVITIES.append(dict(id=id,title=title,subject=subject,kind=kind,profiles=list(PROFILES)[age:],goal=goal,lesson=lesson,home=home,minutes=5 if age<2 else 8))
+ ACTIVITIES.append(dict(id=id,title=title,subject=subject,kind=kind,profiles=list(PROFILES)[[0,3,5,6][age]:],goal=goal,lesson=lesson,home=home,minutes=5 if age<2 else 8))
 
 def illustrations():
  result={}
@@ -75,3 +77,16 @@ def story(id,title,origin,value,art,pages,question,choices,answer=0,min_age=0):
  return dict(id=id,title=title,origin=origin,value=value,profiles=list(PROFILES)[min_age:],minutes=4,source='Bản kể ngắn do GoT biên soạn từ truyện dân gian/tác phẩm gốc đã thuộc phạm vi công cộng; không chép bản dịch hiện đại.',illustrations=[image(x) for x in art if image(x)],pages=[{'title':f'Chặng {i+1}','text':text} for i,text in enumerate(pages)],question=question,choices=choices,answer=answer)
 # Only source-checked retellings enter the public story catalog.
 STORIES=json.loads((Path(__file__).parent/'realm-stories.json').read_text())
+
+JOURNEYS=json.loads((Path(__file__).parent/'journeys.json').read_text())
+for stage,journey in JOURNEYS.items():
+ for chapter in journey['chapters']:
+  for step in chapter['steps']:
+   if step['kind']=='activity':
+    activity=next(a for a in ACTIVITIES if a['id']==step['activity'])
+    if stage not in activity['profiles']:activity['profiles'].append(stage)
+for item in STORIES:item['profiles']=expand(item['profiles'])
+# Grade-specific prerequisites take precedence over broad historical activity bands.
+for activity in ACTIVITIES:
+ if activity['id'] in {'decimal-market','percent-city','volume-studio','speed-trail'}:activity['profiles']=['grade-5']
+ if activity['id'] in {'place-value','carrying-workshop','times-market','reading-clues'}:activity['profiles']=['grade-2','grade-3','grade-4','grade-5']

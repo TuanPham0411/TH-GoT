@@ -1,9 +1,11 @@
 """Age-aware practice generators; expected answers remain on the server."""
 import random
+from learning_profiles import canonical, STAGES
+from decimal import Decimal
 
 def make_round(activity,profile):
- kind=activity['kind'];grade=['preschool','early-primary','middle-primary','upper-primary'].index(profile)
- limit=[5,20,100,1000][grade]
+ profile=canonical(profile);stage=STAGES[profile];kind=activity['kind'];grade=stage['band'];school=stage['grade']
+ limit=stage['limit']
  task={'kind':'choice','prompt':activity['goal'],'hint':activity['lesson']}
  def choice(prompt,correct,others,visual=None):
   values=list(dict.fromkeys([str(correct)]+[str(x) for x in others if str(x)!=str(correct)]))[:[2,3,4,4][grade]]
@@ -11,21 +13,54 @@ def make_round(activity,profile):
   if visual:task['visual']=visual
   return str(values.index(str(correct)))
  def numeric(prompt,value,visual=None):
-  return choice(prompt,value,[max(0,value-1),value+1,value+2],visual)
+  return choice(prompt,value,([n for n in range(1,min(limit,20)+1) if n!=value] if visual and visual.get('type')=='count' else [max(0,value-1),value+1,value+2]),visual)
  def order(prompt,labels):
   items=[{'id':str(i),'label':s} for i,s in enumerate(labels)];random.shuffle(items)
   task.update(kind='order',prompt=prompt,items=items);return [str(i) for i in range(len(labels))]
  a=random.randint(1,max(2,limit//2));b=random.randint(1,max(2,limit//2))
- if kind=='count':
+ if kind=='shape':
+  name,symbol=random.choice([('tròn','●'),('vuông','■'),('tam giác','▲')]);answer=choice('Cùng Mây tìm hình '+name+'.',symbol,['●','■','▲']);task['hint']='Người lớn có thể đọc tên hình. Nhìn đường bao và số góc để tìm.'
+ elif kind=='color':
+  color,symbol=random.choice([('đỏ','🔴'),('xanh lam','🔵'),('vàng','🟡')]);answer=choice('Tìm chiếc đèn màu '+color+'.',symbol,['🔴','🔵','🟡']);task['hint']='Người lớn đọc tên màu; bạn cũng có thể chỉ vào màu tương ứng ở đồ vật quen thuộc.'
+ elif kind=='size':
+  answer=choice('Hình tròn nào lớn hơn?','Hình B',['Hình A']);task['visual']={'type':'sizes'}
+ elif kind=='syllable':
+  word,n=random.choice([('con mèo',2),('hoa',1),('cầu vồng',2),('khu vườn xanh',3)]);answer=numeric('Nghe hoặc đọc “'+word+'”. Cụm từ có mấy tiếng?',n)
+ elif kind=='placevalue':
+  tens=random.randint(1,9);units=random.randint(0,9);answer=choice(f'Số {tens*10+units} gồm mấy chục và mấy đơn vị?',f'{tens} chục, {units} đơn vị',[f'{units} chục, {tens} đơn vị',f'{tens} chục, {units+1} đơn vị'])
+ elif kind=='placeadd':
+  a=random.randint(1,4)*10+random.randint(5,9);b=random.randint(1,4)*10+random.randint(5,9);answer=numeric(f'{a} + {b} = ?',a+b)
+ elif kind=='times':
+  a=random.choice([2,5]);b=random.randint(2,9);answer=numeric(f'Có {b} túi, mỗi túi {a} hạt. Có bao nhiêu hạt tất cả?',a*b)
+ elif kind=='comprehension':
+  passage='Nhóm của Mây ghi nhận: vòi nước bị nhỏ giọt và nền dưới vòi bị ướt. Các bạn báo người lớn sửa vòi, rồi theo dõi lại vào ngày hôm sau.'
+  answer=choice(passage+'\nĐiều nào là quan sát được ghi trong đoạn?', 'Vòi bị nhỏ giọt và nền bị ướt',['Chắc chắn mọi vòi trong trường đều hỏng','Ngày mai trời chắc chắn mưa','Ai đó đã cố ý làm hỏng vòi'])
+ elif kind=='chain':answer=order('Xếp từ sinh vật bị ăn đến sinh vật ăn nó trong chuỗi thức ăn này.',['Cỏ','Châu chấu ăn cỏ','Ếch ăn châu chấu'])
+ elif kind=='paragraph':answer=order('Xếp các câu thành một đoạn có mở ý, chi tiết và kết thúc.',['Khu vườn trường có nhiều điều thú vị.','Bên lối đi, luống hoa thu hút những chú bướm.','Dưới tán cây, chúng em có một góc ngồi đọc sách.','Em muốn cùng các bạn chăm sóc khu vườn ấy.'])
+ elif kind in ['perimeter','area']:
+  length=random.randint(4,12);width=random.randint(2,length-1);value=2*(length+width) if kind=='perimeter' else length*width;unit='cm' if kind=='perimeter' else 'cm²';label='chu vi' if kind=='perimeter' else 'diện tích';answer=choice(f'Hình chữ nhật dài {length} cm, rộng {width} cm. {label.capitalize()} bằng bao nhiêu?',f'{value} {unit}',[f'{value+2} {unit}',f'{value+length} {unit}',f'{max(1,value-2)} {unit}'])
+ elif kind=='fractionadd':
+  d=random.choice([4,6,8,10]);a=random.randint(1,d-2);b=random.randint(1,d-a);answer=choice(f'{a}/{d} + {b}/{d} bằng phân số nào trước khi rút gọn?',f'{a+b}/{d}',[f'{a+b}/{d*2}',f'{a+b+1}/{d}',f'{a}/{d}'])
+ elif kind=='decimal':
+  a=random.randint(105,995);b=random.randint(105,995)
+  fmt=lambda n:format(Decimal(n)/100,'.2f').replace('.',',')
+  answer=choice(f'Cộng hai số đo: {fmt(a)} m + {fmt(b)} m = ?',fmt(a+b)+' m',[fmt(a+b+10)+' m',fmt(a+b-10)+' m',fmt(a+b+100)+' m'])
+ elif kind=='percent':
+  total=random.choice([40,80,120,200]);percent=random.choice([10,25,50,75]);value=total*percent//100;answer=numeric(f'Khu phố có {total} cây. {percent}% số cây là cây ăn quả. Có bao nhiêu cây ăn quả?',value)
+ elif kind=='volume':
+  length=random.randint(3,8);width=random.randint(2,6);height=random.randint(2,5);value=length*width*height;answer=choice(f'Hộp chữ nhật dài {length} cm, rộng {width} cm, cao {height} cm. Thể tích bằng bao nhiêu?',f'{value} cm³',[f'{value+height} cm³',f'{length*width} cm³',f'{2*(length+width)} cm³'])
+ elif kind=='speed':
+  speed=random.choice([12,15,20,30]);hours=random.choice([2,3,4]);answer=choice(f'Một xe đi đều {speed*hours} km trong {hours} giờ. Vận tốc là bao nhiêu?',f'{speed} km/giờ',[f'{speed+hours} km/giờ',f'{speed*hours} km/giờ',f'{speed*2} km/giờ'])
+ elif kind=='count':
   n=random.randint(1,min(limit,20));answer=numeric('Có tất cả bao nhiêu quả?',n,{'type':'count','count':n,'symbol':'🍎'})
  elif kind=='compare':
-  a=random.randint(1,min(limit,12));b=a+random.randint(1,3)
+  a=random.randint(1,max(1,min(limit,12)-1));b=random.randint(a+1,min(limit,12))
   left,right=random.sample([(a,'Giỏ A'),(b,'Giỏ B')],2)
   answer=choice('Giỏ nào có nhiều quả hơn?',left[1] if left[0]>right[0] else right[1],['Giỏ A','Giỏ B','Hai giỏ bằng nhau'],{'type':'baskets','left':left[0],'right':right[0]})
  elif kind=='add':answer=numeric(f'{a} + {b} = ?',a+b)
  elif kind=='subtract':a,b=max(a,b),min(a,b);answer=numeric(f'{a} − {b} = ?',a-b)
- elif kind=='multiply':a=random.randint(2,9);b=random.randint(2,9);answer=numeric(f'{a} hàng cây, mỗi hàng {b} cây. Có tất cả bao nhiêu cây?',a*b)
- elif kind=='divide':a=random.randint(2,9);b=random.randint(2,9);answer=numeric(f'Chia đều {a*b} chiếc bánh cho {a} bạn. Mỗi bạn được mấy chiếc?',b)
+ elif kind=='multiply':a=random.choice([2,5]) if school<=2 else random.randint(2,9);b=random.randint(2,9);answer=numeric(f'{a} hàng cây, mỗi hàng {b} cây. Có tất cả bao nhiêu cây?',a*b)
+ elif kind=='divide':a=random.choice([2,5]) if school<=2 else random.randint(2,9);b=random.randint(2,9);answer=numeric(f'Chia đều {a*b} chiếc bánh cho {a} bạn. Mỗi bạn được mấy chiếc?',b)
  elif kind=='fraction':
   d=random.choice([2,4,8]);n=random.randint(1,d-1);answer=choice(f'Hình có {d} phần bằng nhau, tô {n} phần. Phân số nào biểu thị phần tô?',f'{n}/{d}',[f'{d}/{n}',f'{n}/{d+1}',f'{n+1}/{d}'],{'type':'fraction','parts':d,'filled':n})
  elif kind=='clock':

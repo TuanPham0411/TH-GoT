@@ -96,5 +96,54 @@
     "checkedAt": "2026-11-07",
     "notes": "Giữ kết thúc hoàng đế tiếp tục cuộc diễu hành dù biết lời đứa trẻ đúng. Tranh dùng cờ che nhân vật, không thể hiện cơ thể khỏa thân.",
     "method": "Đối chiếu văn bản/miêu tả cốt truyện tại liên kết; GoT tự viết bản kể rút gọn tiếng Việt, không chép bản dịch hiện đại."
+  },
+  {
+    "work": "Mai An Tiêm · văn bản tóm tắt truyền thuyết",
+    "url": "https://vi.wikipedia.org/wiki/Mai_An_Tiêm",
+    "checkedAt": "2026-11-07",
+    "notes": "Bản kể rút gọn theo mạch truyền thuyết An Tiêm bị đày ra đảo, gieo hạt do chim mang đến, trồng dưa và được gọi về. Không coi truyền thuyết là hồ sơ lịch sử hay khẳng định nguồn gốc khoa học của dưa hấu.",
+    "method": "Đối chiếu cốt truyện và dị bản tại nguồn; bản kể tiếng Việt mới, rút gọn, không sao chép bản dịch hiện đại."
+  },
+  {
+    "work": "Cây tre trăm đốt · tóm tắt truyện dân gian",
+    "url": "https://vi.wikipedia.org/wiki/Cây_tre_trăm_đốt",
+    "checkedAt": "2026-11-07",
+    "notes": "Bản rút gọn từ cốt truyện được dẫn, giữ lời hứa của phú hộ, thử thách tìm tre, Bụt và hai câu thần chú. Không trộn lời thoại từ các bản truyện tranh hiện đại.",
+    "method": "Đối chiếu cốt truyện và dị bản tại nguồn; bản kể tiếng Việt mới, rút gọn, không sao chép bản dịch hiện đại."
+  },
+  {
+    "work": "Tấm Cám · phần Bản Tấm Cám phổ thông",
+    "url": "https://vi.wikipedia.org/wiki/Tấm_Cám",
+    "checkedAt": "2026-11-07",
+    "notes": "Trích mạch truyện đến khi Tấm được nhận ra ở quán nước và trở về cung. Phần trả thù sau đó trong văn bản đối chiếu được lược bỏ hoàn toàn, không thay bằng một kết thúc tha thứ hay sét đánh. Có nhân vật bị hại và hóa thân; dành cho trẻ lớn đọc cùng người lớn.",
+    "method": "Đối chiếu cốt truyện và dị bản tại nguồn; bản kể tiếng Việt mới, rút gọn, không sao chép bản dịch hiện đại."
+  },
+  {
+    "work": "Charles Perrault · Cinderilla, or The Little Glass Slipper · Project Gutenberg #29021",
+    "url": "https://www.gutenberg.org/files/29021/29021-h/29021-h.htm",
+    "checkedAt": "2026-11-07",
+    "notes": "Theo Perrault qua bản tiếng Anh Cinderilla: hai đêm dự hội, bí ngô thành xe, giày thủy tinh, phép hết lúc nửa đêm và hai chị được tha thứ. Không trộn với bản Grimm có giày vàng.",
+    "method": "Đối chiếu cốt truyện và dị bản tại nguồn; bản kể tiếng Việt mới, rút gọn, không sao chép bản dịch hiện đại."
+  },
+  {
+    "work": "Sự tích Hồ Gươm · phần nội dung truyền thuyết",
+    "url": "https://vi.wikipedia.org/wiki/Sự_tích_Hồ_Gươm",
+    "checkedAt": "2026-11-07",
+    "notes": "Bản rút gọn theo mạch Lê Thận tìm lưỡi gươm, Lê Lợi có chuôi gươm và hoàn gươm cho Rùa Vàng. Truyện có phép màu, không thay cho tư liệu lịch sử. Lược chi tiết chiến trận.",
+    "method": "Đối chiếu cốt truyện và dị bản tại nguồn; bản kể tiếng Việt mới, rút gọn, không sao chép bản dịch hiện đại."
+  },
+  {
+    "work": "Sự tích trầu cau · phần nội dung và ghi chú dị bản",
+    "url": "https://vi.wikipedia.org/wiki/Sự_tích_trầu_cau",
+    "checkedAt": "2026-11-07",
+    "notes": "Theo mạch phổ biến được bài viết ghi: Lang hóa đá, Tân hóa cau, người vợ hóa trầu; bài cũng nêu dị bản đổi vai hai anh em. Có mất mát và hóa thân, dành cho trẻ lớn đọc cùng người lớn. Chỉ tìm hiểu văn hóa, không hướng dẫn trẻ ăn trầu.",
+    "method": "Đối chiếu cốt truyện và dị bản tại nguồn; bản kể tiếng Việt mới, rút gọn, không sao chép bản dịch hiện đại."
+  },
+  {
+    "work": "Sơn Tinh – Thủy Tinh · các bản ghi và phần giới thiệu truyền thuyết",
+    "url": "https://vi.wikipedia.org/wiki/Sơn_Tinh_–_Thủy_Tinh",
+    "checkedAt": "2026-11-07",
+    "notes": "Rút gọn mạch truyền thuyết quen thuộc về kén rể và nước dâng, không khẳng định phép thần là cơ chế gây lũ. Các bản Việt điện u linh, Lĩnh Nam chích quái và bản kể về sau có chi tiết khác nhau.",
+    "method": "Đối chiếu cốt truyện và dị bản tại nguồn; bản kể tiếng Việt mới, rút gọn, không sao chép bản dịch hiện đại."
   }
 ]

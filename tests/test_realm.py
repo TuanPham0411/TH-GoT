@@ -38,9 +38,9 @@ class RealmTests(ApplicationTest):
         page=self.client.get('/').get_data(as_text=True)
         self.assertIn('realm-stage',page);self.assertIn('/play?view=library',page);self.assertIn('realmBackpack',page)
         catalog=self.client.get('/api/world/catalog').json
-        self.assertGreaterEqual(len(catalog['activities']),48);self.assertEqual(len(catalog['stories']),16)
+        self.assertGreaterEqual(len(catalog['activities']),48);self.assertGreaterEqual(len(catalog['stories']),24)
         for story in catalog['stories']:
-            self.assertTrue(story['sourceUrl'].startswith('https://'));self.assertTrue(story['editionNote']);self.assertEqual(len(story['pages']),4)
+            self.assertTrue(story['sourceUrl'].startswith('https://'));self.assertTrue(story['editionNote']);self.assertIn(len(story['pages']),range(4,9))
             if story.get('atlas'):self.assertIn(story['atlas'],realm_media.MANIFEST)
 
     def test_importer_preserves_originals_and_rejects_extra_files(self):

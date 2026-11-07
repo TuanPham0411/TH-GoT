@@ -16,7 +16,7 @@ class WorldTests(ApplicationTest):
  def post(self,path,body):return self.client.post('/api/world/'+path,json=body,headers=self.headers)
  def admin(self):os.environ['ADMIN_EMAILS']='person@example.invalid'
  def test_catalog_and_all_activity_generators_have_real_valid_answers(self):
-  self.assertEqual(len(ACTIVITIES),48);self.assertEqual(len(STORIES),16)
+  self.assertGreaterEqual(len(ACTIVITIES),65);self.assertGreaterEqual(len(STORIES),24)
   for a in ACTIVITIES:
    for profile in a['profiles']:
     for seed in range(3):
@@ -24,7 +24,7 @@ class WorldTests(ApplicationTest):
      self.assertTrue(task['prompt']);self.assertNotIn('answer',task)
      if not isinstance(expected,dict):self.assertTrue(correct(expected,expected))
      if task['kind']=='choice':self.assertIn(expected,[x['id'] for x in task['options']]);self.assertEqual(len({x['label'] for x in task['options']}),len(task['options']))
-  for story in STORIES:self.assertEqual(len(story['pages']),4);self.assertIn(story['answer'],range(len(story['choices'])))
+  for story in STORIES:self.assertIn(len(story['pages']),range(4,9));self.assertIn(story['answer'],range(len(story['choices'])))
  def test_session_owner_expiry_round_profile_and_duplicate_progress(self):
   token=self.start();started=self.post('round',{'session':token,'activity':'count-garden'});self.assertEqual(started.status_code,200)
   with self.app.app_context(),auth.connect() as db:row=db.execute('SELECT expected FROM world_rounds WHERE id=?',(started.json['round'],)).fetchone();expected=json.loads(row['expected'])
