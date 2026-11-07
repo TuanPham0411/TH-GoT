@@ -3,7 +3,7 @@
     "id": "cay-khe",
     "title": "Cây khế",
     "origin": "Việt Nam",
-    "value": "Điều gì khác nhau giữa hai chiếc túi?",
+    "value": "Biết đủ và giữ lời",
     "profiles": [
       "early-primary",
       "middle-primary",
@@ -46,7 +46,7 @@
     "id": "thach-sanh",
     "title": "Thạch Sanh",
     "origin": "Việt Nam",
-    "value": "Chi tiết nào giúp sự thật được biết đến?",
+    "value": "Lòng tốt và sự thật",
     "profiles": [
       "middle-primary",
       "upper-primary"
@@ -88,7 +88,7 @@
     "id": "thanh-giong",
     "title": "Thánh Gióng",
     "origin": "Việt Nam",
-    "value": "Ai đã góp sức nuôi Gióng lớn?",
+    "value": "Sức mạnh của cộng đồng",
     "profiles": [
       "early-primary",
       "middle-primary",
@@ -131,7 +131,7 @@
     "id": "so-dua",
     "title": "Sọ Dừa",
     "origin": "Việt Nam",
-    "value": "Cô út khác hai chị ở điều gì lúc đầu truyện?",
+    "value": "Nhìn xa hơn vẻ bề ngoài",
     "profiles": [
       "middle-primary",
       "upper-primary"
@@ -173,7 +173,7 @@
     "id": "lang-lieu",
     "title": "Bánh chưng, bánh giầy",
     "origin": "Việt Nam",
-    "value": "Nguyên liệu nào giữ vai trò chính trong cả hai thứ bánh?",
+    "value": "Quý hạt gạo, nhớ cội nguồn",
     "profiles": [
       "preschool",
       "early-primary",
@@ -217,7 +217,7 @@
     "id": "rua-tho",
     "title": "Rùa và Thỏ",
     "origin": "Thế giới",
-    "value": "Vì sao Rùa về đích trước?",
+    "value": "Bền bỉ từng bước",
     "profiles": [
       "preschool",
       "early-primary",
@@ -261,7 +261,7 @@
     "id": "cao-chum-nho",
     "title": "Cáo và chùm nho",
     "origin": "Thế giới",
-    "value": "Cáo có biết chắc nho chua không?",
+    "value": "Quan sát trước khi kết luận",
     "profiles": [
       "preschool",
       "early-primary",
@@ -305,7 +305,7 @@
     "id": "qua-binh-nuoc",
     "title": "Quạ và bình nước",
     "origin": "Thế giới",
-    "value": "Vì sao mực nước dâng lên?",
+    "value": "Thử một cách khác",
     "profiles": [
       "preschool",
       "early-primary",
@@ -349,7 +349,7 @@
     "id": "gio-mat-troi",
     "title": "Gió Bắc và Mặt Trời",
     "origin": "Thế giới",
-    "value": "Khi Gió Bắc thổi mạnh, người đi đường làm gì?",
+    "value": "Dịu dàng và thuyết phục",
     "profiles": [
       "preschool",
       "early-primary",
@@ -393,7 +393,7 @@
     "id": "cu-cai",
     "title": "Củ cải khổng lồ",
     "origin": "Thế giới",
-    "value": "Ai giúp cả nhóm vào cuối câu chuyện?",
+    "value": "Mỗi bạn góp một chút sức",
     "profiles": [
       "preschool",
       "early-primary",
@@ -437,7 +437,7 @@
     "id": "vit-con",
     "title": "Chú vịt xấu xí",
     "origin": "Thế giới",
-    "value": "Nhân vật lớn lên thành con gì?",
+    "value": "Một nơi để được đón nhận",
     "profiles": [
       "early-primary",
       "middle-primary",
@@ -480,7 +480,7 @@
     "id": "ba-chu-heo",
     "title": "Ba chú heo con",
     "origin": "Thế giới",
-    "value": "Căn nhà nào không bị Sói thổi đổ?",
+    "value": "Cẩn thận và biết ứng biến",
     "profiles": [
       "upper-primary"
     ],
@@ -521,7 +521,7 @@
     "id": "khan-do",
     "title": "Cô bé quàng khăn đỏ",
     "origin": "Thế giới",
-    "value": "Ai cứu bà và Khăn Đỏ trong phần truyện này?",
+    "value": "Nghe lời dặn, tìm sự giúp đỡ",
     "profiles": [
       "middle-primary",
       "upper-primary"
@@ -563,7 +563,7 @@
     "id": "hoang-de",
     "title": "Bộ quần áo mới của hoàng đế",
     "origin": "Thế giới",
-    "value": "Vì sao các quan giả vờ thấy vải?",
+    "value": "Can đảm nói điều mình thấy",
     "profiles": [
       "early-primary",
       "middle-primary",
@@ -606,7 +606,7 @@
     "id": "su-tu-chuot",
     "title": "Sư tử và Chuột",
     "origin": "Thế giới",
-    "value": "Chuột đã giúp Sư Tử bằng cách nào?",
+    "value": "Bạn nhỏ cũng có sức mạnh",
     "profiles": [
       "preschool",
       "early-primary",
@@ -650,7 +650,7 @@
     "id": "kien-bo-cau",
     "title": "Kiến và Bồ Câu",
     "origin": "Thế giới",
-    "value": "Bồ Câu đã thả vật gì để cứu Kiến?",
+    "value": "Giúp nhau qua lúc khó",
     "profiles": [
       "preschool",
       "early-primary",
