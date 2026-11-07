@@ -87,7 +87,7 @@ The library retains its existing Drive documents, bilingual labels and bounded i
 The activity engines, server-owned session deadlines, parent-only AI review and verified
 YouTube channel allowlist remain in force.
 
-`game/realm-assets.json` pins original commissioned/generated PNG artwork and first-party
+`game/realm-assets.json` pins original commissioned/generated PNG artwork and four first-party
 8-second 2D motion films by SHA256. Originals live on Drive, not in the application image.
 `/world-assets/<id>` verifies a source before generating a disposable WebP or range-capable
 MP4 copy; the 96 MiB cache rechecks Drive metadata and never accepts arbitrary paths.
